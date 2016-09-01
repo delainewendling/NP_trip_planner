@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>National Parks Trip Planner</title>
+  <link rel="stylesheet" type="text/css" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-app="NPApp">
+  <div ng-controller="trailsCtrl">
+    <div ng-repeat="trail in trails">
+    <h3> {{trail.name}}</h3>
+    <p> {{trail.park_name}} </p>
+    <a href="{{trail.park_agency_website}}" target="_blank"> {{trail.park_name}} Website <a>
+    <!-- Wire this up to add trails to firebase -->
+    <button>Add to Trails</button>
+  </div>
+<!-- Third Party Libs -->
+<script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="lib/bower_components/angular/angular.min.js"></script>
+<script src="lib/bower_components/angular-route/angular-route.min.js"></script>
+<script src="lib/node_modules/angularfire/dist/angularfire.min.js"></script>
+<!-- Root File -->
+<script type="text/javascript" src="app/app.js"></script>
+<!-- Providers -->
+<script type="text/javascript" src="app/factories/api-getter.js"></script>
+<script type="text/javascript" src="app/factories/apiFactory.js"></script>
+
+<!-- Controllers -->
+<script type="text/javascript" src="app/controllers/trailsCtrl.js"></script>
+</body>
+</html>
