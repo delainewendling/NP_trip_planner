@@ -6,7 +6,8 @@
 </head>
 <body ng-app="NPApp">
   <div ng-controller="trailsCtrl">
-    <div ng-repeat="trail in trails">
+    <input type="text" name="searchTrails" ng-model="searchText" id="searchBox" placeholder="Search by park name...">
+    <div ng-repeat="trail in trails | filter: {park_name: searchText}">
     <h3> {{trail.name}}</h3>
     <p> {{trail.park_name}} </p>
     <a href="{{trail.park_agency_website}}" target="_blank"> {{trail.park_name}} Website <a>
