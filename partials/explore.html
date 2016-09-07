@@ -1,8 +1,17 @@
-<section>
-  <div>
-    
+<section class="map">
+  <div id="map-canvas">
+    <ui-gmap-google-map  center="map.center"
+                    zoom="map.zoom"
+                    options="options">
+
+    <!-- other ui-gmap-directives here -->
+    </ui-gmap-google-map >
   </div>
-  <script async defer
-     src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyCIgZ-Q1sVOjdFaoB03feD5HatWJD9e-2I&v=3&callback=initMap">
-   </script>
 </section>
+    <!-- <input type="text" name="searchTrails" ng-model="searchText" id="searchBox" placeholder="Search by park name...">
+    <div ng-repeat="trail in trails | filter: {park_name: searchText}">
+    <h3 ng-model="newTrail.name"><a ng-href="#/trails/trail/{{item.id}}"> {{trail.name}}</a></h3>
+    <p ng-model="newTrail.park_name"> {{trail.park_name}} </p>
+    <a href="{{trail.park_agency_website}}" target="_blank"> {{trail.park_name}} Website <a> -->
+    <!-- Wire this up to add trails to firebase -->
+    <!-- <button type="submit" ng-click="addTrail()">Add to Trails</button> -->

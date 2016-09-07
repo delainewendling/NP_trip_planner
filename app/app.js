@@ -1,9 +1,15 @@
 "use strict";
 
-var app = angular.module("NPApp", ["firebase", "ngRoute"])
-.constant("FirebaseURL", "https://national-parks-trip-planner.firebaseio.com/");
-
-app.config(function($routeProvider){
+var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps"])
+.constant("FirebaseURL", "https://national-parks-trip-planner.firebaseio.com/")
+.config(function(uiGmapGoogleMapApiProvider, ImportantKeys) {
+  uiGmapGoogleMapApiProvider.configure({
+      key: ImportantKeys.googleMapsKey,
+      v: '3.24',
+      libraries: 'weather,geometry,visualization,places'
+  });
+})
+.config(function($routeProvider){
   $routeProvider
   .when('/', {
     templateUrl: 'partials/login.html',
