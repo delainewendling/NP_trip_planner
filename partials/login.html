@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-offset-3 loginScreen">
+      <h3> Welcome! </h3> <p> Login or Register Below </p>
+      <div class="col-xs-6">
+          <input type="email" name="email" placeholder="Email" ng-model="account.email">
+          <input type="password" name="password" placeholder="Password" ng-model="account.password">
+          <button class="btn btn-info loginBtn" ng-click="register()"> Register </button>
+          <button class="btn btn-info loginBtn" ng-click="loginWithEmail()"> Login </button>
+      </div>
+      <div class="col-xs-6">
+          <button class="btn btn-danger loginBtn"> Login with Google </button>
+          <button class="btn btn-primary loginBtn"> Login with Facebook </button>
+      </div>
+    </div>
+  </div>
+</div>

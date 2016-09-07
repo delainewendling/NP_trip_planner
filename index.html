@@ -5,28 +5,37 @@
   <link rel="stylesheet" type="text/css" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body ng-app="NPApp">
-  <div ng-controller="trailsCtrl">
+  <div ng-include="'partials/navbar.html'"></div>
+  <div ng-view></div>
+  <!-- <div ng-controller="trailsCtrl">
     <input type="text" name="searchTrails" ng-model="searchText" id="searchBox" placeholder="Search by park name...">
     <div ng-repeat="trail in trails | filter: {park_name: searchText}">
-    <h3> {{trail.name}}</h3>
-    <p> {{trail.park_name}} </p>
-    <a href="{{trail.park_agency_website}}" target="_blank"> {{trail.park_name}} Website <a>
+    <h3 ng-model="newTrail.name"><a ng-href="#/trails/trail/{{item.id}}"> {{trail.name}}</a></h3>
+    <p ng-model="newTrail.park_name"> {{trail.park_name}} </p>
+    <a href="{{trail.park_agency_website}}" target="_blank"> {{trail.park_name}} Website <a>-->
     <!-- Wire this up to add trails to firebase -->
-    <button>Add to Trails</button>
-  </div>
+    <!-- <button type="submit" ng-click="addTrail()">Add to Trails</button> -->
+  <!-- </div> -->
 <!-- Third Party Libs -->
 <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="lib/bower_components/angular/angular.min.js"></script>
 <script src="lib/bower_components/angular-route/angular-route.min.js"></script>
 <script src="lib/node_modules/angularfire/dist/angularfire.min.js"></script>
+<script src="lib/bower_components/firebase/firebase.js"></script>
 <!-- Root File -->
 <script type="text/javascript" src="app/app.js"></script>
 <!-- Providers -->
-<script type="text/javascript" src="app/factories/api-getter.js"></script>
+<script type="text/javascript" src="app/factories/key-getter.js"></script>
 <script type="text/javascript" src="app/factories/apiFactory.js"></script>
-
+<script type="text/javascript" src="app/factories/fbFactory.js"></script>
+<script type="text/javascript" src="app/factories/authFactory.js"></script>
 <!-- Controllers -->
 <script type="text/javascript" src="app/controllers/trailsCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/navCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/exploreCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/loginCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/tripsCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/wishlistCtrl.js"></script>
 </body>
 </html>
