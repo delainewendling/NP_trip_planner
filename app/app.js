@@ -36,6 +36,7 @@ var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps"])
 
 //Initializes Firebase right away
 app.run((ImportantKeys)=>{
+  console.log("firebase running");
   let creds = ImportantKeys;
   let authConfig = {
     apiKey: creds.fbKey,

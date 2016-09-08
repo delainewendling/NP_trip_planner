@@ -25,7 +25,7 @@ app.factory("AuthFactory", function(){
   };
 
 
-  let loginUserWithGoogle = function(userObject){
+  let loginUserWithGoogle = function(){
     let provider = new firebase.auth.GoogleAuthProvider();
     // if (firebase.auth().currentUser) {
     //   let facebookCredential = firebase.auth.FacebookAuthProvider.credential(
@@ -50,7 +50,7 @@ app.factory("AuthFactory", function(){
   };
 
 
-  let loginUserWithFacebook = function(userObject){
+  let loginUserWithFacebook = function(){
     let provider = new firebase.auth.FacebookAuthProvider();
     // if (firebase.auth().currentUser) {
     //   let facebookCredential = firebase.auth.FacebookAuthProvider.credential(

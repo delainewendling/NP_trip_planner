@@ -33,6 +33,33 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
     }, (error)=>{
       console.log(`Error logging in user ${error}`);
     });
-  }
+  };
+
+  $scope.loginWithGoogle = ()=> {
+    console.log("You're logging in with google");
+    AuthFactory.loginUserWithGoogle()
+    .then((data)=>{
+      console.log("You logged in with google", data);
+      if (data){
+        $window.location.href = '#/parks/explore'
+      }
+    }, (error)=>{
+      console.log(`Error logging in user ${error}`);
+    });
+  };
+
+   $scope.loginWithFacebook = ()=> {
+    console.log("You're logging in with facebook");
+    AuthFactory.loginUserWithFacebook()
+    .then((data)=>{
+      console.log("You logged in with facebook", data);
+      if (data){
+        $window.location.href = '#/parks/explore'
+      }
+    }, (error)=>{
+      console.log(`Error logging in user ${error}`);
+    });
+  };
+
 });
 
