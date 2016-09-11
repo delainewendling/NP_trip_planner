@@ -1,88 +1,79 @@
 "use strict";
 
-app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailinfoFactory){
-  //Will add the map view here
+app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailinfoFactory, FirebaseFactory, AuthFactory){
+  //The map that shows up when the user goes to the Yosemite view should be centered on Yosemite National Park. Below are the coordinates for Yosemite.
     $scope.map = {
       center: {latitude: 37.8651, longitude: -119.5383 },
       zoom: 9,
       bounds: {}
     };
     $scope.options = {scrollwheel: false};
+    //I want the sidebar to be closed when a marker hasn't been clicked
+    $scope.beenClicked = false;
 
-    // $scope.halfDomeInfo = {
-    //   imgUrl: '../images/halfDome.jpeg',
-    //   title: 'Half Dome'
-    // }
-
+  //I need to get the trail information from firebase and create objects that will provide the necessary information to create a marker for each trail. I also want to print information in the sidebar about each trail so I need to create an object for each trail with that information.
     TrailinfoFactory.getTrailInfo()
     .then((trailData)=>{
       let trails = trailData.trails;
-      console.log("trails now", trails);
       setMarkers(trails);
       setTrailInfo(trails);
     });
 
+    //Creating objects with relevant information for each marker and pushing to an array
     function setMarkers(trails){
+      $scope.markers = [];
       trails.forEach((trail)=>{
-        $scope.marker = {
+        $scope.markers.push({
           id: trail.id,
-          coords: trail.coords
-        }
+          latitude: trail.coords.latitude,
+          longitude: trail.coords.longitude
+        });
       });
-    }
+    };
 
+    //Creating objects with relevant information for each trail and pushing to an array
     function setTrailInfo(trails){
+      $scope.trailsInfo = [];
       trails.forEach((trail)=>{
-        $scope.trailInfo = {
+        $scope.trailsInfo.push({
           id: trail.id,
           name: trail.name,
-          imgUrl: trail.coverImgUrl
-        }
+          imgUrl: trail.coverImgUrl,
+          whyVisit: trail.whyVisit,
+          description: trail.description
+        });
       });
     };
 
-    $scope.beenClicked = false;
 
-    $scope.onClick = function() {
-
-      $scope.beenClicked = !$scope.beenClicked;
-      $scope.$apply();
+    $scope.onClick = function(instance, event, marker) {
+      console.log("marker id", marker.id);
+      $scope.trailInfo = $scope.trailsInfo[marker.id];
+      console.log("trail Info", $scope.trailInfo);
+      showInformation();
     };
-
-  //   var createRandomMarker = function(i, bounds) {
-  //     var lat_min = bounds.southwest.latitude,
-  //       lat_range = bounds.northeast.latitude - lat_min,
-  //       lng_min = bounds.southwest.longitude,
-  //       lng_range = bounds.northeast.longitude - lng_min;
-
-  //     // if (idKey === null) {
-  //     //   idKey = "id";
-  //     // }
-
-  //     var latitude = lat_min + (Math.random() * lat_range);
-  //     var longitude = lng_min + (Math.random() * lng_range);
-  //     var ret = {
-  //       latitude: latitude,
-  //       longitude: longitude,
-  //       title: 'm' + i,
-  //       id: i
-  //     };
-  //     return ret;
-  //   };
-  //   $scope.randomMarkers = [];
-  //   // Get the bounds from the map once it's loaded
-  //   $scope.$watch(function() {
-  //     return $scope.map.bounds;
-  //   }, function(nv, ov) {
-  //     // Only need to regenerate once
-  //     if (!ov.southwest && nv.southwest) {
-  //       var markers = [];
-  //       for (var i = 0; i < 50; i++) {
-  //         markers.push(createRandomMarker(i, $scope.map.bounds))
-  //       }
-  //       $scope.randomMarkers = markers;
-  //     }
-  //   }, true);
+    //This function shows the sidebar when any marker is clicked. The appropriate information is shown in the sidebar
+    function showInformation(){
+      $scope.beenClicked = true;
+      $scope.$apply();
+    }
+    //Since each marker calls the onClick function it is difficult to open and close the sidebar by resetting the beenClicked property using clicks. Therefore, I created a button that will make the beenClicked property false so that the user can close the sidebar when he/she is done looking at trail information.
+    $scope.closeSidebar = ()=>{
+      $scope.beenClicked = false;
+      // $scope.$apply();
+    }
+    //The user should be able to add a trail to his/her wishlist if there are no trips planned
+    $scope.addTrailToWishlist = (trailInfo)=>{
+      let userId = AuthFactory.getUserId();
+      trailInfo.uid = userId;
+      trailInfo.wishlist = true;
+      console.log("trail info", trailInfo);
+      FirebaseFactory.addToWishlist(trailInfo)
+      .then((trailData)=>{
+        $scope.closeSidebar();
+        console.log("successfully added", trailData);
+      });
+    };
 
   // ApiFactory.getActivities("Yosemite+National+Park", "hiking", "25")
   // .then((trailCollection)=>{
@@ -90,10 +81,5 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //   $scope.trails = trailCollection;
   // });
 
-  // uiGmapGoogleMapApi is a promise.
-  // The "then" callback function provides the google.maps object.
-  // uiGmapGoogleMapApi.then(function(maps) {
-  //   console.log("a map!");
-  // });
 
 });

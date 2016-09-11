@@ -6,21 +6,19 @@
                     bounds="map.bounds">
 
     <!-- other ui-gmap-directives here -->
-      <ui-gmap-marker
-        idKey='marker.id'
-        coords='marker.coords'
-        type="marker.type",
-        labelContent="marker.labelContent",
-        click="onClick()"
-        events="marker.events">
-      </ui-gmap-marker>
-      <!-- <ui-gmap-markers
-            models="randomMarkers" coords="'self'" icon="'icon'">
-      </ui-gmap-markers> -->
+      <ui-gmap-markers
+            models="markers" coords="'self'" icon="'icon'" click="onClick">
+      </ui-gmap-markers>
     </ui-gmap-google-map>
     <div ng-show="beenClicked" class="sideBar">
-      <h3 class="TrailName"> {{trailInfo.name}} </h3>
-      <img src="{{trailInfo.imgUrl}}" alt="Picture of {{trailInfo.name}}">
+      <div><button class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
+      <div><button class="btn btn-info wishlist" ng-click="addTrailToWishlist(trailInfo)">Add to Wishlist</button></div>
+      <h3 class="trailName"> {{trailInfo.name}} </h3>
+      <img src="{{trailInfo.imgUrl}}" alt="Picture of {{trailInfo.name}}" class="trailImg img-responsive">
+      <h4> Why Visit? </h4>
+      <p> {{trailInfo.whyVisit}} </p>
+      <h4 ng-show="trailInfo.description"> Description </h4>
+      <p ng-show="trailInfo.description"> {{trailInfo.description}} </p>
     </div>
   </div>
 </section>
