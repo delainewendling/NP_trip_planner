@@ -8,8 +8,19 @@ var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps"])
       v: '3.24',
       libraries: 'weather,geometry,visualization,places'
   });
-})
-.config(function($routeProvider){
+});
+let isAuth = (AuthFactory, $window)=> new Promise((resolve, reject)=>{
+    //This will be a boolean and it will resolve if its true, meaning you can access the URLs below
+    if(AuthFactory.isAuthenticated()){
+      console.log("user");
+      resolve();
+    } else {
+      console.log("no user");
+      // $window.location.href="#/"
+      reject();
+    }
+});
+app.config(function($routeProvider){
   $routeProvider
   .when('/', {
     templateUrl: 'partials/login.html',
@@ -21,17 +32,20 @@ var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps"])
   })
   .when('/parks/explore', {
     templateUrl: 'partials/explore.html',
-    controller: 'ExploreCtrl'
+    controller: 'ExploreCtrl',
+    resolve: {isAuth}
   })
   .when('/parks/trips', {
     templateUrl: 'partials/trips.html',
-    controller: 'TripsCtrl'
+    controller: 'TripsCtrl',
+    resolve: {isAuth}
   })
   .when('/parks/wishlist', {
     templateUrl: 'partials/wishlist.html',
-    controller: 'WishlistCtrl'
+    controller: 'WishlistCtrl',
+    resolve: {isAuth}
   })
-  .otherwise('/login');
+  .otherwise('/');
 });
 
 //Initializes Firebase right away

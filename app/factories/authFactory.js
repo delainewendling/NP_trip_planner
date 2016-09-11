@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("AuthFactory", function(){
+app.factory("AuthFactory", function($window, ImportantKeys){
 
   let createUserWithEmail = function(userObject){
     return firebase.auth().createUserWithEmailAndPassword(userObject.email, userObject.password)
@@ -82,9 +82,17 @@ app.factory("AuthFactory", function(){
     }
   }
 
+  // let instagramAuth = ()=> {
+  //   $window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${ImportantKeys.instagramClientId}&redirect_uri=https://localhost/#/parks/explore&response_type=token`;
+  // }
+
   let logoutUser = function(){
     return firebase.auth().signOut();
   };
 
-  return {createUserWithEmail, loginUserWithEmail, loginUserWithGoogle, loginUserWithFacebook, logoutUser};
+  let isAuthenticated = ()=>{
+    return (firebase.auth().currentUser) ? true : false;
+  }
+
+  return {createUserWithEmail, loginUserWithEmail, loginUserWithGoogle, loginUserWithFacebook, logoutUser, isAuthenticated};
 })

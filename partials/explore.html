@@ -2,16 +2,41 @@
   <div id="map-canvas">
     <ui-gmap-google-map  center="map.center"
                     zoom="map.zoom"
-                    options="options">
+                    options="options",
+                    bounds="map.bounds">
 
     <!-- other ui-gmap-directives here -->
+      <ui-gmap-marker
+        idKey='marker.id'
+        coords='marker.coords'
+        type="marker.type",
+        labelContent="marker.labelContent",
+        click="onClick()"
+        events="marker.events">
+      </ui-gmap-marker>
+      <!-- <ui-gmap-markers
+            models="randomMarkers" coords="'self'" icon="'icon'">
+      </ui-gmap-markers> -->
     </ui-gmap-google-map>
+    <div ng-show="beenClicked" class="sideBar">
+      <h3 class="TrailName"> {{trailInfo.name}} </h3>
+      <img src="{{trailInfo.imgUrl}}" alt="Picture of {{trailInfo.name}}">
+    </div>
   </div>
 </section>
-    <!-- <input type="text" name="searchTrails" ng-model="searchText" id="searchBox" placeholder="Search by park name...">
-    <div ng-repeat="trail in trails | filter: {park_name: searchText}">
-    <h3 ng-model="newTrail.name"><a ng-href="#/trails/trail/{{item.id}}"> {{trail.name}}</a></h3>
-    <p ng-model="newTrail.park_name"> {{trail.park_name}} </p>
-    <a href="{{trail.park_agency_website}}" target="_blank"> {{trail.park_name}} Website <a> -->
+<!-- <ui-gmap-window
+            options="windowOptions"
+            closeClick="closeClick()"
+            templateUrl='"partials/InfoWindow.html"'
+            isIconVisibleOnClick='true'
+            >
+          </ui-gmap-window> -->
+<!-- <section>
+  <input type="text" name="searchTrails" ng-model="searchText" id="searchBox" placeholder="Search by park name...">
+  <div ng-repeat="trail in trails | filter: {park_name: searchText}">
+  <h3 ng-model="newTrail.name"><a ng-href="#/trails/trail/{{item.id}}"> {{trail.name}}</a></h3>
+  <p ng-model="newTrail.park_name"> {{trail.park_name}} </p>
+  <a href="{{trail.park_agency_website}}" target="_blank"> {{trail.park_name}} Website </a>
+</section> -->
     <!-- Wire this up to add trails to firebase -->
     <!-- <button type="submit" ng-click="addTrail()">Add to Trails</button> -->

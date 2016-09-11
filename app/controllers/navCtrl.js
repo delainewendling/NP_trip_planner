@@ -1,11 +1,11 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, AuthFactory, $window){
+app.controller("NavCtrl", function($scope, AuthFactory){
 
   $scope.logout = function(){
     AuthFactory.logoutUser()
     .then(()=>{
-      $window.location.href = '/';
+      console.log("user logged out");
     });
   };
 

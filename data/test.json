@@ -1,0 +1,28 @@
+{
+  "trails": [
+    {
+      "id": "0",
+      "name": "Half Dome",
+      "coords": {
+        "latitude": 37.7459,
+        "longitude": -119.5332
+      },
+      "distance-oneway": "n/a",
+      "distance-roundtrip": 14.2,
+      "difficulty": "strenuous",
+      "family-friendly": false,
+      "elevation-gain": 4800,
+      "whyVisit": "Half Dome is the ultimate Yosemite day hike - the one you can't die without doing, and the one you're most likely to die while doing.It's got 900 feet (300 meters) worth of spectacular waterfalls at the bottom if you take the Mist Trail route; bigger-than-life panoramic vistas at the top; and a knee-knocking, hand-clamming cable ascent that will test your courage, your strength, and the tread on your shoes.",
+      "hazards": "",
+      "permit": "http://www.recreation.gov/permits/Cables_On_Half_Dome/r/wildernessAreaDetails.do?page=detail&contractCode=NRSO&parkId=79064",
+      "trailhead": "",
+      "parking:": "",
+      "coverImgUrl": "../images/halfDome.jpeg",
+      "estTime": "10-14 hours",
+      "region": "Yosemite Valley",
+      "type": "day-hike",
+      "scenery-factor": 5,
+      "crowd-factor": 4
+    }
+  ]
+}

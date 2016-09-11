@@ -5,9 +5,11 @@
   <link rel="stylesheet" type="text/css" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<body ng-app="NPApp">
-  <div ng-include="'partials/navbar.html'"></div>
-  <div ng-view></div>
+<body ng-app="NPApp" ng-cloak>
+  <div ng-controller="TopCtrl">
+    <div ng-include="'partials/navbar.html'"></div>
+    <div ng-view></div>
+  </div>
 <!-- Third Party Libs -->
 <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -24,9 +26,10 @@
 <script type="text/javascript" src="app/factories/apiFactory.js"></script>
 <script type="text/javascript" src="app/factories/fbFactory.js"></script>
 <script type="text/javascript" src="app/factories/authFactory.js"></script>
+<script type="text/javascript" src="app/factories/TrailinfoFactory.js"></script>
 <!-- Controllers -->
-<script type="text/javascript" src="app/controllers/trailsCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/navCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/TopCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/exploreCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/loginCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/tripsCtrl.js"></script>

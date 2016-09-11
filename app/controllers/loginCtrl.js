@@ -1,6 +1,7 @@
 "use strict";
 
 app.controller("LoginCtrl", function($scope, AuthFactory, $window){
+
   $scope.account = {
     email: "",
     password: ""
@@ -28,6 +29,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
     .then((data)=>{
       console.log("You logged in with your email", data);
       if (data){
+        // AuthFactory.instagramAuth()
         $window.location.href = '#/parks/explore'
       }
     }, (error)=>{
@@ -41,6 +43,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
     .then((data)=>{
       console.log("You logged in with google", data);
       if (data){
+        // AuthFactory.instagramAuth()
         $window.location.href = '#/parks/explore'
       }
     }, (error)=>{
