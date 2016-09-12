@@ -26,7 +26,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         $scope.markers.push({
           id: trail.id,
           latitude: trail.coords.latitude,
-          longitude: trail.coords.longitude
+          longitude: trail.coords.longitude,
+          icon: '../images/hikerLogo.png'
         });
       });
     };
@@ -40,7 +41,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
           name: trail.name,
           imgUrl: trail.coverImgUrl,
           whyVisit: trail.whyVisit,
-          description: trail.description
+          description: trail.description,
+          park: trail.park
         });
       });
     };

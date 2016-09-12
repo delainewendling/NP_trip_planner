@@ -13,6 +13,7 @@
       "family-friendly": false,
       "elevation-gain": 4800,
       "whyVisit": "Half Dome is the ultimate Yosemite day hike - the one you can't die without doing, and the one you're most likely to die while doing. It's got 900 feet (300 meters) worth of spectacular waterfalls at the bottom if you take the Mist Trail route; bigger-than-life panoramic vistas at the top; and a knee-knocking, hand-clamming cable ascent that will test your courage, your strength, and the tread on your shoes.",
+      "description": "Rising nearly 5,000 feet above Yosemite Valley and 8,800 feet above sea level, Half Dome is a Yosemite icon and a great challenge to many hikers. Despite an 1865 report declaring that it was perfectly inaccessible, being probably the only one of the prominent points about the Yosemite which never has been, and never will be, trodden by human foot, George Anderson reached the summit in 1875, in the process laying the predecessor to today's cable route. Today, thousands of people reach the summit. For most, it is an exciting, arduous hike; for a few, it becomes more of an adventure than they wanted. Indeed, park rangers assist hundreds of people on the Half Dome trail every summer. Most of these emergencies could have been prevented... read on to learn how. Much of the hike to Half Dome is an adventure into Wilderness, and, while there is nothing you can do to guarantee your safety, below you will find some tips to reduce your risk and have a safer, more enjoyable hike.",
       "hazards": "",
       "permit": "http://www.recreation.gov/permits/Cables_On_Half_Dome/r/wildernessAreaDetails.do?page=detail&contractCode=NRSO&parkId=79064",
       "trailhead": "",
@@ -22,7 +23,8 @@
       "region": "Yosemite Valley",
       "type": "day-hike",
       "scenery-factor": 5,
-      "crowd-factor": 4
+      "crowd-factor": 4,
+      "park": "Yosemite National Park"
     },
     {
       "id": 1,
@@ -50,7 +52,8 @@
       "region": "Yosemite Valley",
       "type": "day-hike",
       "scenery-factor": 5,
-      "crowd-factor": 4
+      "crowd-factor": 4,
+      "park": "Yosemite National Park"
     }
   ]
 }

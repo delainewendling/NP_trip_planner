@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps"])
+var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps", 'ngMaterial', 'ngMessages', 'ui.bootstrap'])
 .constant("FirebaseURL", "https://national-parks-trip-planner.firebaseio.com/")
 .config(function(uiGmapGoogleMapApiProvider, ImportantKeys) {
   uiGmapGoogleMapApiProvider.configure({
@@ -8,6 +8,12 @@ var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps"])
       v: '3.24',
       libraries: 'weather,geometry,visualization,places'
   });
+})
+.config(function($mdDateLocaleProvider){
+  $mdDateLocaleProvider.parseDate = function(dateString) {
+      var m = moment(dateString, 'L', true);
+      return m.isValid() ? m.toDate() : new Date(NaN);
+  };
 });
 let isAuth = (AuthFactory, $window)=> new Promise((resolve, reject)=>{
     //This will be a boolean and it will resolve if its true, meaning you can access the URLs below
@@ -23,25 +29,30 @@ let isAuth = (AuthFactory, $window)=> new Promise((resolve, reject)=>{
 app.config(function($routeProvider){
   $routeProvider
   .when('/', {
-    templateUrl: 'partials/login.html',
+    templateUrl: 'partials/Login.html',
     controller: 'LoginCtrl'
   })
   .when('/login', {
-    templateUrl: 'partials/login.html',
+    templateUrl: 'partials/Login.html',
     controller: 'LoginCtrl'
   })
   .when('/parks/explore', {
-    templateUrl: 'partials/explore.html',
+    templateUrl: 'partials/Explore.html',
     controller: 'ExploreCtrl',
     resolve: {isAuth}
   })
   .when('/parks/trips', {
-    templateUrl: 'partials/trips.html',
+    templateUrl: 'partials/Trips.html',
     controller: 'TripsCtrl',
     resolve: {isAuth}
   })
+  .when('/parks/trip/:tripId', {
+    templateUrl: 'partials/SingleTrip.html',
+    controller: 'SingleTripCtrl',
+    resolve: {isAuth}
+  })
   .when('/parks/wishlist', {
-    templateUrl: 'partials/wishlist.html',
+    templateUrl: 'partials/Wishlist.html',
     controller: 'WishlistCtrl',
     resolve: {isAuth}
   })

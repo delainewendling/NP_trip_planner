@@ -2,6 +2,10 @@
 
 app.controller("WishlistCtrl", function($scope, FirebaseFactory){
 
+  $scope.showMoreInfo = -1;
+
+  
+
   function showWishlistItems() {
     FirebaseFactory.getWishlistItems()
     .then((wishlist)=>{
@@ -15,6 +19,11 @@ app.controller("WishlistCtrl", function($scope, FirebaseFactory){
   }
 
   showWishlistItems();
+
+  $scope.viewItem = (itemId)=>{
+    console.log("itemId", itemId);
+    $scope.showMoreInfo = itemId;
+  }
 
   $scope.wishlistDelete = (itemId)=>{
     FirebaseFactory.deleteWishlistItem(itemId)

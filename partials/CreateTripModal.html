@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{isEditing ? 'Update Trip' : 'Create Trip'}}</h3>
+</div>
+<div class="modal-body">
+  <label for="tripName">Name:</label>
+  <input type="text" class="form-control" name="tripName" ng-model="trip.name" required/>
+
+  <label for="tripDescription">Description (optional):</label>
+  <input type="text" class="form-control" name="tripDescription" ng-model="trip.description"/>
+  <label for="tripImgUrl">Trip Image Link (optional):</label>
+  <input type="text" class="form-control" name="tripImgUrl" ng-model="trip.imgUrl"/>
+  <h3> Start Date: </h3> {{startDt}}
+  <h3> End Date: </h3> {{endDt}}
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="close()">Close</button>
+  <button class="btn btn-success" ng-show="{{!isEditing}}" ng-click="create()">Create</button>
+  <button class="btn btn-success" ng-show="{{isEditing}}" ng-click="update(pin, pin.id)">Update</button>
+</div>
+<img ng-src="{{trip.imgUrl}}" class="img-thumbnail img-responsive">
