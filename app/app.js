@@ -9,12 +9,8 @@ var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps", 'ngMaterial',
       libraries: 'weather,geometry,visualization,places'
   });
 })
-.config(function($mdDateLocaleProvider){
-  $mdDateLocaleProvider.parseDate = function(dateString) {
-      var m = moment(dateString, 'L', true);
-      return m.isValid() ? m.toDate() : new Date(NaN);
-  };
-});
+.config(function($mdDateLocaleProvider){});
+
 let isAuth = (AuthFactory, $window)=> new Promise((resolve, reject)=>{
     //This will be a boolean and it will resolve if its true, meaning you can access the URLs below
     if(AuthFactory.isAuthenticated()){

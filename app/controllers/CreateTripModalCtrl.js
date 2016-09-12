@@ -1,9 +1,13 @@
 'use strict';
 
-app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFactory, TripFactory, $route, startDate, endDate, isEditing) {
+app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFactory, TripFactory, $route, startDate, endDate, isEditing, $mdDateLocale) {
 
-  $scope.startDt = startDate;
-  $scope.endDt = startDate;
+  $mdDateLocale.formatDate = function(date) {
+    return moment(date).format('MM-DD-YYYY');
+  };
+
+  $scope.startDt = $mdDateLocale.formatDate(startDate);
+  $scope.endDt = $mdDateLocale.formatDate(endDate);
   $scope.isEditing = isEditing;
 
   $scope.trip = {
