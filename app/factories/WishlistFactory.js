@@ -1,10 +1,11 @@
 "use strict";
 
-app.factory("FirebaseFactory", function($q, $http, FirebaseURL){
+app.factory("WishlistFactory", function($q, $http, FirebaseURL, AuthFactory){
 
   let getWishlistItems = ()=>{
+    let userId = AuthFactory.getUserId();
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/wishlist.json`)
+      $http.get(`${FirebaseURL}/wishlist.json?orderBy="uid"&equalTo="${userId}"`)
       .success((wishlistData)=>{
         console.log("wishlist", wishlistData);
         resolve(wishlistData);

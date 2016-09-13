@@ -16,7 +16,6 @@ app.controller("TripDatesCtrl", function($scope, $uibModal){
   }
 
   $scope.getTripDates = ()=>{
-    console.log("start date milliseconds?", $scope.startDate.getTime());
     let modalInstance = $uibModal.open({
       templateUrl: 'partials/CreateTripModal.html',
       controller: 'CreateTripModalCtrl',

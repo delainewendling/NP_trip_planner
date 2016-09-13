@@ -26,7 +26,7 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory){
       for (let i=0; i<getNumberOfDays($scope.trip); i++){
         days.push({
           day: 'Day ' + (i+1),
-          date: moment($scope.trip.startMilliseconds + (i*oneDay)).format("MMMM Do YYYY"),
+          date: moment($scope.trip.startMilliseconds + (i*oneDay)).format("dddd MMMM Do YYYY"),
           activities: []
         });
       };

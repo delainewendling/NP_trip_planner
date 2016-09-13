@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps", 'ngMaterial', 'ngMessages', 'ui.bootstrap'])
+var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps", 'ngMaterial', 'ngMessages', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 .constant("FirebaseURL", "https://national-parks-trip-planner.firebaseio.com/")
 .config(function(uiGmapGoogleMapApiProvider, ImportantKeys) {
   uiGmapGoogleMapApiProvider.configure({

@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("TripFactory", ($q, $http, FirebaseURL)=>{
+app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
 
   let createTrip = (tripObj)=>{
     return $q((resolve, reject)=>{
@@ -16,8 +16,9 @@ app.factory("TripFactory", ($q, $http, FirebaseURL)=>{
 
   let getTrips = ()=>{
     let trips = [];
+    let userId = AuthFactory.getUserId();
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/trips.json`)
+      $http.get(`${FirebaseURL}trips.json?orderBy="uid"&equalTo="${userId}"`)
       .success((tripData)=>{
         Object.keys(tripData).forEach((key)=>{
           tripData[key].id = key;

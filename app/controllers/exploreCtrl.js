@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailinfoFactory, FirebaseFactory, AuthFactory){
+app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailinfoFactory, WishlistFactory, AuthFactory){
   //The map that shows up when the user goes to the Yosemite view should be centered on Yosemite National Park. Below are the coordinates for Yosemite.
     $scope.map = {
       center: {latitude: 37.8651, longitude: -119.5383 },
@@ -62,7 +62,6 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     //Since each marker calls the onClick function it is difficult to open and close the sidebar by resetting the beenClicked property using clicks. Therefore, I created a button that will make the beenClicked property false so that the user can close the sidebar when he/she is done looking at trail information.
     $scope.closeSidebar = ()=>{
       $scope.beenClicked = false;
-      // $scope.$apply();
     }
     //The user should be able to add a trail to his/her wishlist if there are no trips planned
     $scope.addTrailToWishlist = (trailInfo)=>{
@@ -70,7 +69,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
       trailInfo.uid = userId;
       trailInfo.wishlist = true;
       console.log("trail info", trailInfo);
-      FirebaseFactory.addToWishlist(trailInfo)
+      WishlistFactory.addToWishlist(trailInfo)
       .then((trailData)=>{
         $scope.closeSidebar();
         console.log("successfully added", trailData);

@@ -1,13 +1,11 @@
 "use strict";
 
-app.controller("WishlistCtrl", function($scope, FirebaseFactory){
+app.controller("WishlistCtrl", function($scope, WishlistFactory, $uibModal, $mdDialog){
 
   $scope.showMoreInfo = -1;
 
-  
-
   function showWishlistItems() {
-    FirebaseFactory.getWishlistItems()
+    WishlistFactory.getWishlistItems()
     .then((wishlist)=>{
       $scope.wishlistItems = [];
       Object.keys(wishlist).forEach((key)=>{
@@ -26,10 +24,17 @@ app.controller("WishlistCtrl", function($scope, FirebaseFactory){
   }
 
   $scope.wishlistDelete = (itemId)=>{
-    FirebaseFactory.deleteWishlistItem(itemId)
+    WishlistFactory.deleteWishlistItem(itemId)
     .then(()=>{
       console.log("item deleted");
       showWishlistItems();
+    });
+  };
+
+  $scope.addToTrip = ()=>{
+    let modalInstance = $uibModal.open({
+      templateUrl: 'partials/AddToTripModal.html',
+      controller: 'AddToTripModalCtrl',
     });
   };
 
