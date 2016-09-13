@@ -6,6 +6,9 @@ app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFa
     return moment(date).format('MM-DD-YYYY');
   };
 
+  let startMilliseconds = startDate.getTime();
+  let endMilliseconds = endDate.getTime();
+
   $scope.startDt = $mdDateLocale.formatDate(startDate);
   $scope.endDt = $mdDateLocale.formatDate(endDate);
   $scope.isEditing = isEditing;
@@ -13,8 +16,10 @@ app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFa
   $scope.trip = {
     name: '',
     description: '',
-    startDate: $scope.startDt,
-    endDate: $scope.endDt,
+    startDate,
+    endDate,
+    startMilliseconds,
+    endMilliseconds,
     imgUrl: ''
   }
 

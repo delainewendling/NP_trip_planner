@@ -17,20 +17,13 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="container">
   <div ng-repeat="day in days">
     <div class="clearfix" ng-if="$index % 3 == 0"></div>
-      <div class="col-xs-4 tripCard" >
-        <div ng-click="showTrip(trip.id)">
-            <h3> {{trip.name}} </h3>
-            <p ng-show="trip.description">{{trip.description}}</p>
+      <div class="col-xs-4 dayCard" >
+        <div>
+            <h3> {{day.day}} </h3>
+            <p>{{day.date}}</p>
             <img src='{{trip.imgUrl}}' ng-if="trip.imgUrl" class="tripImg">
         </div>
-        <button class="btn btn-danger" ng-click="tripDelete(trip.id)">X</button>
-        <div ng-if="(showMoreInfo === wishlist.id)">
-          <img src="{{wishlist.imgUrl}}" alt="Picture of {{wishlist.name}}" class="wishlistImg"> -->
-          <!-- <p> <strong> Description: </strong>{{wishlist.description}} </p> -->
-       <!--  </div>
       </div>
-  </div>  -->
+  </div>

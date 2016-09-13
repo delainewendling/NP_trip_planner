@@ -3,7 +3,7 @@
 app.controller("TripDatesCtrl", function($scope, $uibModal){
   $scope.startDate = new Date();
 
-  $scope.endDate = new Date();
+  $scope.endDate = null;
 
   $scope.minStartDate = new Date(
     $scope.startDate.getFullYear(),
@@ -16,8 +16,7 @@ app.controller("TripDatesCtrl", function($scope, $uibModal){
   }
 
   $scope.getTripDates = ()=>{
-    console.log("start date", $scope.startDate);
-    console.log("end date", $scope.endDate);
+    console.log("start date milliseconds?", $scope.startDate.getTime());
     let modalInstance = $uibModal.open({
       templateUrl: 'partials/CreateTripModal.html',
       controller: 'CreateTripModalCtrl',
