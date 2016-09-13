@@ -2,22 +2,65 @@
   <h3 class="modal-title">Add {{trail.name}} Trip</h3>
 </div>
 <div class="modal-body">
-  <!-- Single button -->
-    <div class="btn-group" uib-dropdown is-open="status.isopen">
-      <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" ng-click="openTrips($event)">
+  <div class="col-xs-12">
+    <!-- Dropdown to select trip -->
+    <div uib-dropdown is-open="status.isTripOpen">
+      <button id="single-button" type="button" class="btn btn-secondary" ng-disabled="disabled" ng-click="openTrips($event)">
         Choose Trip <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-        <li role="menuitem" ng-repeat="trip in trips"><a href="#">{{trip.name}}</a></li>
+        <li role="menuitem" ng-repeat="trip in trips" ng-click="getDaysAndLogTrip(trip.id)"><a ng-click="closeTrips()">{{trip.name}}</a></li>
       </ul>
     </div>
+    <!-- TODO: Add functionality to show chosen trip -->
+    <span> Selected Trip: </span>
+  </div>
+  <!-- Days of that particular trip -->
+  <div class="col-xs-12">
+    <div uib-dropdown is-open="status.isDayOpen">
+      <button id="single-button" type="button" class="btn btn-secondary" ng-disabled="status.isDayDisabled" ng-click="openDays($event)">
+        Choose Day <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+        <li role="menuitem" ng-repeat="day in trip.days" ng-click="logDay(day.id)"><a ng-click="closeDays(day.startDate)">{{day.date}}</a></li>
+      </ul>
+    </div>
+    <!-- TODO: Add functionality to show chosen day -->
+    <span> Selected Day: </span>
+  </div>
+  <!-- Start and End Times for Trail -->
+  <div class="col-xs-12">
+    <span> Start Time: </span>
+    <div uib-timepicker ng-model="startTime" ng-change="updateStart()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+    <span> End Time: </span>
+    <div uib-timepicker ng-model="endTime" ng-change="updateEnd()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+  </div>
+<!--   <div class="col-xs-12 input-group">
+    <label for="expectedDuration">How long will this Trail take?</label>
+    <input type="text" id="expectedDuration" placeholder="Expected Time" class="form-control">
+    <div class="input-group-btn">
+      <div uib-dropdown is-open="status.isTimeOpen">
+        <button id="single-button" type="button" class="btn btn-default" ng-click="openTime($event)">
+          Choose Time Unit <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+          <li role="menuitem" ng-click="logTime(hour)"><a ng-click="closeTime()">hours</a></li>
+          <li role="menuitem" ng-click="logTime(minute)"><a ng-click="closeTime()">minutes</a></li>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+  <div class="col-xs-12 input-group">
+    <label for="notes" class="col-form-label">Notes</label>
+     <textarea placeholder="Add notes here..." class="form-control" id="notes"></textarea>
+  </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-danger" ng-click="close()">Close</button>
-  <button class="btn btn-success" ng-show="{{!isEditing}}" ng-click="create()">Create</button>
+  <button class="btn btn-danger" ng-click="closeModal()">Close</button>
+  <button class="btn btn-success" ng-show="{{!isEditing}}" ng-click="addTrip()">Add Trail</button>
   <button class="btn btn-success" ng-show="{{isEditing}}" ng-click="update(pin, pin.id)">Update</button>
 </div>
-<img ng-src="{{trip.imgUrl}}" class="img-thumbnail img-responsive">
+<!-- <img ng-src="{{trip.imgUrl}}" class="img-thumbnail img-responsive"> -->
     <!-- Angular-Material Way -->
   <!-- <div layout-align="center center" layout="column">
     <h2 class="md-title">Trip</h2>

@@ -16,14 +16,12 @@
       </div>
     </div> -->
   </div>
-</div>
-  <div ng-repeat="day in days">
+  <div ng-repeat="day in trip.days">
     <div class="clearfix" ng-if="$index % 3 == 0"></div>
       <div class="col-xs-4 dayCard" >
         <div>
             <h3> {{day.day}} </h3>
             <p>{{day.date}}</p>
-            <img src='{{trip.imgUrl}}' ng-if="trip.imgUrl" class="tripImg">
         </div>
       </div>
   </div>
