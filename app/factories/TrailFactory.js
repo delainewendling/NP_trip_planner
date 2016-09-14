@@ -6,7 +6,6 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
     return $q((resolve, reject)=>{
       $http.get('../../data/test.json')
       .success((trailData)=>{
-        console.log("trail data", trailData);
         resolve(trailData);
       })
       .error((error)=>{
@@ -15,9 +14,9 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
     });
   };
 
-  let addTrailToTrip = (trailObj)=>{
-    return $q((resolve, reject)=>{
-      $http.post(`${FirebaseURL}/trails.json`, JSON.stringify(trailObj))
+  let getTrailsFromWishlist = (userId)=>{
+     return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}/wishlist.json?orderBy="uid"&equalTo="${userId}"`)
       .success((trailData)=>{
         console.log("trail data", trailData);
         resolve(trailData);
@@ -28,5 +27,17 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
     });
   }
 
-  return {getTrailInfo, addTrailToTrip};
+  let addTrailToTrip = (trailObj)=>{
+    return $q((resolve, reject)=>{
+      $http.post(`${FirebaseURL}/trails.json`, JSON.stringify(trailObj))
+      .success((trailData)=>{
+        resolve(trailData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  }
+
+  return {getTrailInfo, addTrailToTrip, getTrailsFromWishlist};
 });

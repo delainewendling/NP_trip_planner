@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory, $uibModalInstance, trailName){
+app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory, $uibModalInstance, trailName, AuthFactory){
 
   //Get the Trips from a user's firebase and use them to populate the trips dropdown menu
   function getTrips (){
@@ -24,7 +24,8 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
       startDate: '',
       startTime: '',
       endTime: '',
-      notes: ''
+      notes: '',
+      uid: AuthFactory.getUserId()
   }
 
   //We need to get available days from the trip chosen in the dropdown menu

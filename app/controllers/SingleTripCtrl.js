@@ -12,6 +12,7 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory){
       $scope.trip = tripData;
     });
 
+
 });
 
 
