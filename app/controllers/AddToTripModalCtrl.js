@@ -106,17 +106,13 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
 
   $scope.updateStart = function() {
     $scope.trailObj.startTime = $scope.startTime;
-    console.log("new start time", $scope.startTime);
   };
 
   $scope.updateEnd = function() {
     $scope.trailObj.endTime = $scope.endTime;
-    console.log("new end time", $scope.endTime);
   };
 
   $scope.addTrail = ()=>{
-    console.log("what is the trailName?", $scope.trailObj.trailName);
-    console.log("what are the notes?", $scope.trailObj.notes);
     TrailFactory.addTrailToTrip($scope.trailObj)
     .then((trailData)=>{
       console.log("successfully added trail to trip");

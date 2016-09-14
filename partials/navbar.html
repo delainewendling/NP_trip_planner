@@ -9,26 +9,33 @@
       </button>
       <a class="navbar-brand" href="#">Discover America</a>
     </div>
-    <!-- search -->
-    <div class="col-xs-6 searchBox" ng-show="isActive('/items/list')">
-      <div class="input-group">
-        <span class="input-group-btn">
-          <button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
-        </span>
-        <!-- TODO: Bind the input to our todo list. When we place ng-model directly on an input it gets added to the controller scope-->
-        <input type="text" class="form-control" placeholder="Search tasks..." ng-model="searchText.search">
-      </div>
-    </div> <!-- End search -->
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <!-- TODO: Use Angular to loop through nav items -->
       <ul class="nav navbar-nav navbar-right">
         <!-- <li ng-show="!$parent.isLoggedIn"><a ng-href="#/login"> Login </a></li> -->
         <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/explore" > Explore </a></li>
-        <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/trips"> Trips </a></li>
         <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/wishlist"> Wishlist </a></li>
-        <li ng-show="$parent.isLoggedIn" ng-click="logout()"><a ng-href="#/">Logout </button></li>
+        <!-- <li ><a ng-href="#/parks/trips"> Trips </a> -->
+        <!-- Dropdown to select trip -->
+        <li uib-dropdown on-toggle="toggled(open)" ng-show="$parent.isLoggedIn">
+            <a href id="simple-dropdown" uib-dropdown-toggle> Trips <span class="caret"></span></a>
+          <ul class="dropdown-menu" uib-dropdown-menu>
+            <li ng-repeat="trip in trips"><a href='#/parks/trip/{{trip.id}}'>{{trip.name}}</a></li>
+          </ul>
+        </li>
+        <li ng-show="$parent.isLoggedIn" ng-click="logout()"><a ng-href="#/">Logout </a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+    <!-- search -->
+   <!--  <div class="col-xs-6 searchBox" ng-show="isActive('/items/list')">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </span>
+     TODO: Bind the input to our todo list. When we place ng-model directly on an input it gets added to the controller scope-->
+        <!-- <input type="text" class="form-control" placeholder="Search tasks..." ng-model="searchText.search">
+      </div>  -->
+    <!-- </div> End search -->
