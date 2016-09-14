@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailinfoFactory, WishlistFactory, AuthFactory){
+app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailFactory, WishlistFactory, AuthFactory){
   //The map that shows up when the user goes to the Yosemite view should be centered on Yosemite National Park. Below are the coordinates for Yosemite.
     $scope.map = {
       center: {latitude: 37.8651, longitude: -119.5383 },
@@ -12,7 +12,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $scope.beenClicked = false;
 
   //I need to get the trail information from firebase and create objects that will provide the necessary information to create a marker for each trail. I also want to print information in the sidebar about each trail so I need to create an object for each trail with that information.
-    TrailinfoFactory.getTrailInfo()
+    TrailFactory.getTrailInfo()
     .then((trailData)=>{
       let trails = trailData.trails;
       setMarkers(trails);

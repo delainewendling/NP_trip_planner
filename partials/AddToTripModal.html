@@ -52,12 +52,12 @@
   </div> -->
   <div class="col-xs-12 input-group">
     <label for="notes" class="col-form-label">Notes</label>
-     <textarea placeholder="Add notes here..." class="form-control" id="notes"></textarea>
+     <textarea placeholder="Add notes here..." class="form-control" id="notes" ng-model="trailObj.notes"></textarea>
   </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-danger" ng-click="closeModal()">Close</button>
-  <button class="btn btn-success" ng-show="{{!isEditing}}" ng-click="addTrip()">Add Trail</button>
+  <button class="btn btn-success" ng-click="addTrail()">Add Trail</button>
   <button class="btn btn-success" ng-show="{{isEditing}}" ng-click="update(pin, pin.id)">Update</button>
 </div>
 <!-- <img ng-src="{{trip.imgUrl}}" class="img-thumbnail img-responsive"> -->

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AddToTripModalCtrl", function ($scope, TripFactory, $uibModalInstance){
+app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory, $uibModalInstance, trailName){
 
   //Get the Trips from a user's firebase and use them to populate the trips dropdown menu
   function getTrips (){
@@ -17,9 +17,19 @@ app.controller("AddToTripModalCtrl", function ($scope, TripFactory, $uibModalIns
 
   getTrips();
 
+  $scope.trailObj = {
+      trailName,
+      tripId: '',
+      dayId: '',
+      startDate: '',
+      startTime: '',
+      endTime: '',
+      notes: ''
+  }
+
   //We need to get available days from the trip chosen in the dropdown menu
   $scope.getDaysAndLogTrip= (tripId)=>{
-    $scope.tripId = tripId;
+    $scope.trailObj.tripId = tripId;
     console.log("trip id is: ", tripId);
     TripFactory.getSingleTrip(tripId)
     .then((tripData)=>{
@@ -29,6 +39,8 @@ app.controller("AddToTripModalCtrl", function ($scope, TripFactory, $uibModalIns
 
   $scope.logDay = (dayId)=>{
     console.log("day id", dayId);
+    $scope.trailObj.dayId= dayId;
+
   }
 
   $scope.status = {
@@ -75,46 +87,45 @@ app.controller("AddToTripModalCtrl", function ($scope, TripFactory, $uibModalIns
 
   //Closes the days dropdown
   $scope.closeDays = function(startDate) {
+    $scope.trailObj.startDate = startDate;
     console.log("what is the start date?", startDate);
     $scope.status.isDayOpen = false;
     $scope.startTime = new Date(`${startDate} 7:00:00`);
     $scope.endTime = new Date(`${startDate} 7:00:00`);
   };
 
-  // $scope.closeTime = function() {
-  //   $scope.status.isTimeOpen = false;
-  // };
-
-  //Closes Modal (nothing is saved)
-  $scope.closeModal = () => {
-    $uibModalInstance.close();
-    };
-
-
+  //Want to set the hour step to one hour and minute step to 15 minutes
   $scope.hstep = 1;
   $scope.mstep = 15;
 
   $scope.ismeridian = true;
   $scope.toggleMode = function() {
-    $scope.ismeridian = ! $scope.ismeridian;
+    $scope.ismeridian = !$scope.ismeridian;
   };
 
   $scope.updateStart = function() {
+    $scope.trailObj.startTime = $scope.startTime;
     console.log("new start time", $scope.startTime);
   };
 
   $scope.updateEnd = function() {
+    $scope.trailObj.endTime = $scope.endTime;
     console.log("new end time", $scope.endTime);
   };
 
-  $scope.changed = function () {
-    console.log('Time changed to: ' + $scope.startTime);
-    console.log('Time changed to: ' + $scope.endTime);
+  $scope.addTrail = ()=>{
+    console.log("what is the trailName?", $scope.trailObj.trailName);
+    console.log("what are the notes?", $scope.trailObj.notes);
+    TrailFactory.addTrailToTrip($scope.trailObj)
+    .then((trailData)=>{
+      console.log("successfully added trail to trip");
+      $scope.closeModal();
+    })
+  }
+
+  //Closes Modal (nothing is saved)
+  $scope.closeModal = () => {
+    $uibModalInstance.close();
   };
 
-  //  $scope.toggleDropdown = function($event) {
-  //   $event.preventDefault();
-  //   $event.stopPropagation();
-  //   $scope.status.isopen = !$scope.status.isopen;
-  // };
 });

@@ -31,10 +31,16 @@ app.controller("WishlistCtrl", function($scope, WishlistFactory, $uibModal, $mdD
     });
   };
 
-  $scope.addToTrip = ()=>{
+  $scope.addToTrip = (trailName)=>{
+    console.log("trail name", trailName);
     let modalInstance = $uibModal.open({
       templateUrl: 'partials/AddToTripModal.html',
       controller: 'AddToTripModalCtrl',
+      resolve:{
+        trailName: function(){
+          return trailName.toString();
+        }
+      }
     });
   };
 
