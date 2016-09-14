@@ -64,6 +64,85 @@
   margin: 0 auto
   max-height: 200px
 
-.greyText 
+.greyText
   color: #aaa
+
+.tripsMenu
+  z-index: 2000
+
+ul[dnd-list],
+ul[dnd-list] > li
+  position: relative
+
+
+ul[dnd-list]
+  min-height: 50px
+  padding-left: 0px
+  list-style-type: none
+
+ul[dnd-list] .dndDraggingSource
+  display: none
+
+
+ul[dnd-list] .dndPlaceholder
+  background-color: #ddd
+
+ul[dnd-list] li
+  background-color: #fff
+  border: 1px solid #ddd
+  border-top-right-radius: 4px
+  border-top-left-radius: 4px
+  display: block
+  padding: 10px 15px
+  margin: 2px 2px 2px 2px
+
+.selected
+  background-color: #f8f8f8
+
+.dayCard
+  text-align: center
+  background-color: #E2E4E6
+  border-radius: 4px
+  padding: 2px 10px 5px
+
+.activityCard
+  min-height: 42px
+
+.addActivity
+  color: #aaa
+  padding-left: 15px
+  cursor: pointer
+
+.addActivity:focus
+  outline: 0
+
+.dayInfo
+  text-align: left
+
+.singleTripView
+  background-color: #00AECC
+
+.activityInput
+  background-color: transparent
+  border: 0px solid
+  height: 30px
+  width: 160px
+  text-align: left
+  width: 90%
+
+.activityInput:focus
+  outline: 0
+
+.deleteIcon
+  z-index: 1500
+  position: absolute
+  top: 40%
+  left: 85%
+  cursor: pointer
+  font-size: 15px
+  color: #777
+
+
+
+
 

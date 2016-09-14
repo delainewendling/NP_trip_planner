@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps", 'ngMaterial', 'ngMessages', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
+var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps", 'ngMaterial', 'ngMessages', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'dndLists'])
 .constant("FirebaseURL", "https://national-parks-trip-planner.firebaseio.com/")
 .config(function(uiGmapGoogleMapApiProvider, ImportantKeys) {
   uiGmapGoogleMapApiProvider.configure({
@@ -9,7 +9,7 @@ var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps", 'ngMaterial',
       libraries: 'weather,geometry,visualization,places'
   });
 })
-.config(function($mdDateLocaleProvider){});
+.config(function($mdDateLocaleProvider){})
 
 let isAuth = (AuthFactory, $window)=> new Promise((resolve, reject)=>{
     //This will be a boolean and it will resolve if its true, meaning you can access the URLs below

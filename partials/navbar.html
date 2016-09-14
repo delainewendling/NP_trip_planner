@@ -20,7 +20,7 @@
         <!-- Dropdown to select trip -->
         <li uib-dropdown on-toggle="toggled(open)" ng-show="$parent.isLoggedIn">
             <a href id="simple-dropdown" uib-dropdown-toggle> Trips <span class="caret"></span></a>
-          <ul class="dropdown-menu" uib-dropdown-menu>
+          <ul class="dropdown-menu tripsMenu" uib-dropdown-menu>
             <li ng-repeat="trip in trips"><a href='#/parks/trip/{{trip.id}}'>{{trip.name}}</a></li>
           </ul>
         </li>
