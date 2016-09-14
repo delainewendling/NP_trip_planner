@@ -25,7 +25,19 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
         reject(error);
       });
     });
-  }
+  };
+
+  let getTrailsInTrip = (tripId)=>{
+     return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}/trails.json?orderBy="tripId"&equalTo="${tripId}"`)
+      .success((trailData)=>{
+        resolve(trailData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
 
   let addTrailToTrip = (trailObj)=>{
     return $q((resolve, reject)=>{
@@ -37,7 +49,9 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
         reject(error);
       });
     });
-  }
+  };
 
-  return {getTrailInfo, addTrailToTrip, getTrailsFromWishlist};
+
+
+  return {getTrailInfo, addTrailToTrip, getTrailsFromWishlist, getTrailsInTrip};
 });

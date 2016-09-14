@@ -8,29 +8,46 @@
 
     <!-- other ui-gmap-directives here -->
       <ui-gmap-markers
-            models="markers" coords="'self'" icon="'icon'" click="onClick">
+            models="markers" coords="'self'" icon="'icon'" click="onClick" ng-cloak>
       </ui-gmap-markers>
     </ui-gmap-google-map>
-    <div ng-show="beenClicked" class="sideBar">
+    <div ng-show="beenClicked" class="sideBar" ng-cloak>
       <div><button class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
-      <div><button class="btn btn-info wishlist" ng-click="addTrailToWishlist(trailInfo)" ng-show="!inWishlist">Add to Wishlist</button></div>
-      <div ng-show="inWishlist" class="greyText"><i>Added to Wishlist</i></div>
+      <div><button class="btn btn-info wishlist" ng-click="addTrailToWishlist(trailInfo)" ng-show="!inWishlist" ng-cloak>Add to Wishlist</button></div>
+      <div ng-show="inWishlist" class="greyText" ng-cloak><i>Added to Wishlist</i></div>
       <h3 class="trailName"> {{trailInfo.name}} </h3>
       <img src="{{trailInfo.imgUrl}}" alt="Picture of {{trailInfo.name}}" class="trailImg img-responsive">
-      <h4> Why Visit? </h4>
+      <div class="col-xs-12">
+        <div class="col-xs-6">
+          <strong> Scenery: </strong> {{trailInfo.scenery}}/5
+        </div>
+        <div class="col-xs-6">
+          <strong> Crowd Factor: </strong> {{trailInfo.crowd}}/5
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="col-xs-6">
+           <strong>Distance:</strong> {{trailInfo.distance}}
+        </div>
+        <div class="col-xs-6">
+           <strong>Estimated Time: </strong> {{trailInfo.estTime}}
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="col-xs-6">
+           <strong>Difficulty: </strong>{{trailInfo.difficulty}}
+        </div>
+        <div class="col-xs-6">
+           <strong>Elevation Gain: </strong> {{trailInfo.elevationGain}} ft.
+        </div>
+      </div>
+      <h4 class="whyVisit"> Why Visit? </h4>
       <p> {{trailInfo.whyVisit}} </p>
       <h4 ng-show="trailInfo.description"> Description </h4>
       <p ng-show="trailInfo.description"> {{trailInfo.description}} </p>
     </div>
   </div>
 </section>
-<!-- <ui-gmap-window
-            options="windowOptions"
-            closeClick="closeClick()"
-            templateUrl='"partials/InfoWindow.html"'
-            isIconVisibleOnClick='true'
-            >
-          </ui-gmap-window> -->
 <!-- <section>
   <input type="text" name="searchTrails" ng-model="searchText" id="searchBox" placeholder="Search by park name...">
   <div ng-repeat="trail in trails | filter: {park_name: searchText}">

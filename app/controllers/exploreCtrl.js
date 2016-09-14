@@ -46,21 +46,33 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
           imgUrl: trail.coverImgUrl,
           whyVisit: trail.whyVisit,
           description: trail.description,
-          park: trail.park
+          park: trail.park,
+          estTime: trail.estTime,
+          distance: trail.distance,
+          difficulty: trail.difficulty,
+          hazards: trail.hazards,
+          permit: trail.permit,
+          elevationGain: trail.elevationGain,
+          scenery: trail.sceneryFactor,
+          crowd: trail.crowdFactor
         });
       });
     };
 
 
-    TrailFactory.getTrailsFromWishlist(AuthFactory.getUserId())
-    .then((trailData)=>{
-      console.log("what are the wishlist trails?", trailData);
-      //I want to create an array of trail names from the wishlist so that I can compare the names in the wishlist to the names on the markers and see if that trail has been added to the wishlist of not.
-      Object.keys(trailData).forEach((key)=>{
-        $scope.trailNames.push(trailData[key].name);
-      })
-      console.log("trail Names in wishlist", $scope.trailNames);
-  });
+    function getWishlistTrails () {
+      TrailFactory.getTrailsFromWishlist(AuthFactory.getUserId())
+      .then((trailData)=>{
+        console.log("what are the wishlist trails?", trailData);
+        //I want to create an array of trail names from the wishlist so that I can compare the names in the wishlist to the names on the markers and see if that trail has been added to the wishlist of not.
+        Object.keys(trailData).forEach((key)=>{
+          $scope.trailNames.push(trailData[key].name);
+        })
+        console.log("trail Names in wishlist", $scope.trailNames);
+      });
+    }
+
+    getWishlistTrails();
 
     //When a marker is clicked I want to make sure that the user does not add a trail to his/her wishlist when it has already been added.
     $scope.onClick = function(instance, event, marker) {
@@ -96,12 +108,11 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $scope.addTrailToWishlist = (trailInfo)=>{
       let userId = AuthFactory.getUserId();
       trailInfo.uid = userId;
-      trailInfo.wishlist = true;
       console.log("trail info", trailInfo);
       WishlistFactory.addToWishlist(trailInfo)
       .then((trailData)=>{
         $scope.closeSidebar();
-        console.log("successfully added", trailData);
+        getWishlistTrails();
       });
     };
 
