@@ -56,5 +56,17 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
     });
   };
 
-  return {createTrip, getTrips, deleteTrip, getSingleTrip};
+  let deleteTrailFromTrip = (trailId)=>{
+    return $q((resolve, reject)=>{
+      $http.delete(`${FirebaseURL}/trails/${trailId}.json`)
+      .success((trailData)=>{
+        resolve(trailData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  }
+
+  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip};
 });

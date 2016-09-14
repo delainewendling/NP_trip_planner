@@ -46,7 +46,15 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
           imgUrl: trail.coverImgUrl,
           whyVisit: trail.whyVisit,
           description: trail.description,
-          park: trail.park
+          park: trail.park,
+          estTime: trail.estTime,
+          distance: trail.distance,
+          difficulty: trail.difficulty,
+          hazards: trail.hazards,
+          permit: trail.permit,
+          elevationGain: trail.elevationGain,
+          scenery: trail.sceneryFactor,
+          crowd: trail.crowdFactor
         });
       });
     };
@@ -100,12 +108,10 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $scope.addTrailToWishlist = (trailInfo)=>{
       let userId = AuthFactory.getUserId();
       trailInfo.uid = userId;
-      trailInfo.wishlist = true;
       console.log("trail info", trailInfo);
       WishlistFactory.addToWishlist(trailInfo)
       .then((trailData)=>{
         $scope.closeSidebar();
-        console.log("successfully added", trailData);
         getWishlistTrails();
       });
     };

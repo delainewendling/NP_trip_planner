@@ -12,22 +12,48 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       $scope.trip = tripData;
     });
 
-    TrailFactory.getTrailsInTrip($routeParams.tripId)
-    .then((trailData)=>{
-      console.log("trail data", trailData);
-      addTrailsToActivities(trailData);
-    });
+    showTrails();
 
-    function addTrailsToActivities(trailData){
+    function showTrails(){
+      TrailFactory.getTrailsInTrip($routeParams.tripId)
+      .then((trailData)=>{
+        console.log("trail data", trailData);
+        let trails = [];
+        Object.keys(trailData).forEach((key)=>{
+          trailData[key].id =key;
+          trails.push(trailData[key]);
+        })
+        addTrailsToActivities(trails);
+      });
+    }
+
+    function addTrailsToActivities(trails){
       $scope.activities = [];
-      Object.keys(trailData).forEach((key)=>{
+      Object.keys(trails).forEach((key)=>{
         $scope.activities.push({
-          text: trailData[key].trailName,
-          id: trailData[key].dayId
+          name: trails[key].name,
+          dayId: trails[key].dayId,
+          id: trails[key].id,
+          distance: trails[key].distance,
+          estTime: trails[key].estTime,
+          elevationGain: trails[key].elevationGain,
+          difficulty: trails[key].difficulty,
+          startTime: trails[key].startTime,
+          endTime: trails[key].endTime,
+          notes: trails[key].notes,
+          wishlist: true
         });
       });
       console.log("activities", $scope.activities);
     };
+
+    $scope.deleteFromTrip = (trailId)=>{
+      TripFactory.deleteTrailFromTrip(trailId)
+      .then(()=>{
+        console.log("successfully deleted");
+        showTrails();
+      })
+    }
 
     $scope.addNote = (event, dayId)=>{
       if (event.charCode == 13) {
