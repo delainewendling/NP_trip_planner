@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailinfoFactory, WishlistFactory, AuthFactory){
+app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailFactory, WishlistFactory, AuthFactory){
   //The map that shows up when the user goes to the Yosemite view should be centered on Yosemite National Park. Below are the coordinates for Yosemite.
     $scope.map = {
       center: {latitude: 37.8651, longitude: -119.5383 },
@@ -10,9 +10,12 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $scope.options = {scrollwheel: false};
     //I want the sidebar to be closed when a marker hasn't been clicked
     $scope.beenClicked = false;
+    $scope.inWishlist = false;
+
+  $scope.trailNames = [];
 
   //I need to get the trail information from firebase and create objects that will provide the necessary information to create a marker for each trail. I also want to print information in the sidebar about each trail so I need to create an object for each trail with that information.
-    TrailinfoFactory.getTrailInfo()
+    TrailFactory.getTrailInfo()
     .then((trailData)=>{
       let trails = trailData.trails;
       setMarkers(trails);
@@ -27,7 +30,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
           id: trail.id,
           latitude: trail.coords.latitude,
           longitude: trail.coords.longitude,
-          icon: '../images/hikerLogo.png'
+          icon: '../images/hikerLogo.png',
+          name: trail.name
         });
       });
     };
@@ -48,12 +52,37 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     };
 
 
+    TrailFactory.getTrailsFromWishlist(AuthFactory.getUserId())
+    .then((trailData)=>{
+      console.log("what are the wishlist trails?", trailData);
+      //I want to create an array of trail names from the wishlist so that I can compare the names in the wishlist to the names on the markers and see if that trail has been added to the wishlist of not.
+      Object.keys(trailData).forEach((key)=>{
+        $scope.trailNames.push(trailData[key].name);
+      })
+      console.log("trail Names in wishlist", $scope.trailNames);
+  });
+
+    //When a marker is clicked I want to make sure that the user does not add a trail to his/her wishlist when it has already been added.
     $scope.onClick = function(instance, event, marker) {
-      console.log("marker id", marker.id);
       $scope.trailInfo = $scope.trailsInfo[marker.id];
-      console.log("trail Info", $scope.trailInfo);
+      $scope.inWishlist = inWishlist(marker.name);
       showInformation();
     };
+
+    function inWishlist(trailName){
+      let counter = 0;
+      $scope.trailNames.forEach((trail)=>{
+        if (trail == trailName) {
+          counter++;
+        }
+      });
+      if (counter){
+        return true;
+      } else {
+        return false;
+      }
+    };
+
     //This function shows the sidebar when any marker is clicked. The appropriate information is shown in the sidebar
     function showInformation(){
       $scope.beenClicked = true;
