@@ -9,6 +9,7 @@
     </div>
     <div class="col-xs-4">
       <md-button class="md-warn md-raised tripAdvice"> Warnings </md-button>
+      <span class="deleteTrip" ng-click="openDeleteModal()"> Delete Trip <span class="glyphicon glyphicon-remove-circle"></span></span>
     </div>
   </div>
   <h4> {{trip.name}} </h4>
@@ -56,7 +57,7 @@
                   <p> <strong> Est. Time: </strong> {{activity.estTime}} </p>
                   <p> <strong> Elevation Gain: </strong> {{activity.elevationGain}} </p>
                   <input type="text" class="activityInput" ng-model="activity.notes" value="{{activity.notes}}">
-                  <span class="glyphicon glyphicon-trash deleteIcon" ng-show="options" ng-click="deleteFromTrip(activity.id)"></span>
+                  <span class="glyphicon glyphicon-trash deleteIcon" ng-show="optionsTrail" ng-click="deleteTrailFromTrip(activity.id)"></span>
                 </span>
               </li>
             </ul>

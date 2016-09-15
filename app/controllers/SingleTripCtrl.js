@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, NoteFactory){
+app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, NoteFactory, $uibModal){
 
   //Need to define these things. Activities will have a trip Id on them that matches the routeParams
   // $scope.activities
@@ -14,6 +14,13 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       console.log("trip data", tripData);
       $scope.trip = tripData;
     });
+
+    $scope.openDeleteModal = ()=>{
+      let modalInstance = $uibModal.open({
+      templateUrl: 'partials/DeleteTrip.html',
+      controller: 'DeleteTripModalCtrl'
+      });
+    };
 
     // showNotes();
     showTrails();
@@ -75,7 +82,7 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       console.log("activities", $scope.activities);
     };
 
-    $scope.deleteFromTrip = (trailId)=>{
+    $scope.deleteTrailFromTrip = (trailId)=>{
       TripFactory.deleteTrailFromTrip(trailId)
       .then(()=>{
         console.log("successfully deleted");
@@ -108,20 +115,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
         });
       };
     };
-
-
-
-    // // Generate initial model
-    // for (var i = 1; i <= 3; ++i) {
-    //     $scope.models.lists.A.push({label: "Item A" + i});
-    //     $scope.models.lists.B.push({label: "Item B" + i});
-    // }
-
-    // // Model to JSON for demo purpose
-    // $scope.$watch('models', function(model) {
-    //     $scope.modelAsJson = angular.toJson(model, true);
-    // }, true);
-
 
 });
 
