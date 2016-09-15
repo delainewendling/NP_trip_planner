@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h3 class="modal-title">Average Temperature in Yosemite during your Trip </h3>
+</div>
+<div class="modal-body">
+  <table class="table table-bordered">
+    <thead>
+      <th> Month </th>
+      <th> Avg. High </th>
+      <th> Avg. Low </th>
+      <th> Avg. Precipitation </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="month in months">
+        <td> {{month.month}} </td>
+        <td> {{month.maxTemp}} &deg;F</td>
+        <td> {{month.minTemp}} &deg;F</td>
+        <td> {{month.avgPrecip}} in.</td>
+      </tr>
+    </tbody>
+</table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-info" ng-click="close()">Close</button>
+</div>
