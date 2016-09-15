@@ -15,6 +15,10 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory){
     }
   });
 
+  $scope.getTrips = ()=>{
+    getTrips();
+  }
+
   function getTrips (){
     let trips = [];
     TripFactory.getTrips()

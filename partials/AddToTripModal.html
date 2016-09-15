@@ -28,13 +28,6 @@
     <!-- TODO: Add functionality to show chosen day -->
     <span> Selected Day: </span>
   </div>
-  <!-- Start and End Times for Trail -->
-  <div class="col-xs-12">
-    <span> Start Time: </span>
-    <div uib-timepicker ng-model="startTime" ng-change="updateStart()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-    <span> End Time: </span>
-    <div uib-timepicker ng-model="endTime" ng-change="updateEnd()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-  </div>
   <!-- Any notes user wants to add about the trail -->
   <div class="col-xs-12 input-group">
     <label for="notes" class="col-form-label">Notes</label>
@@ -45,6 +38,13 @@
   <button class="btn btn-danger" ng-click="closeModal()">Close</button>
   <button class="btn btn-success" ng-click="addTrail()">Add Trail</button>
 </div>
+<!-- Start and End Times for Trail -->
+  <!-- <div class="col-xs-12">
+    <span> Start Time: </span>
+    <div uib-timepicker ng-model="startTime" ng-change="updateStart()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+    <span> End Time: </span>
+    <div uib-timepicker ng-model="endTime" ng-change="updateEnd()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+  </div> -->
 <!-- <img ng-src="{{trip.imgUrl}}" class="img-thumbnail img-responsive"> -->
     <!-- Angular-Material Way -->
   <!-- <div layout-align="center center" layout="column">

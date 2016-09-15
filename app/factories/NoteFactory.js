@@ -5,6 +5,12 @@ app.factory('NoteFactory', ($q, $http, FirebaseURL)=>{
   let getNotes = (tripId)=>{
     return $q((resolve, reject)=>{
       $http.get(`${FirebaseURL}/notes.json?orderBy="tripId"&equalTo="${tripId}`)
+      .success((noteData)=>{
+        resolve(noteData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
     });
   };
 

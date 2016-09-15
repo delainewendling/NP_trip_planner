@@ -24,9 +24,9 @@ app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFa
   //For each day of the trip I want to have a day number, corresponding date, and id. This uses the number of days and creates an array of objects with the desired properties.
   function createDayArray (){
     let days = [];
-    for (let i=0; i<getNumberOfDays(); i++){
+    for (let i=1; i<=getNumberOfDays(); i++){
       days.push({
-        day: 'Day ' + (i+1),
+        day: 'Day ' + (i),
         date: moment(startMilliseconds + (i*oneDay)).format("dddd MMMM Do YYYY"),
         startDate,
         id: i

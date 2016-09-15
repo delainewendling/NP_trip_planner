@@ -27,8 +27,6 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
       tripId: '',
       dayId: '',
       startDate: '',
-      startTime: '',
-      endTime: '',
       notes: '',
       uid: trailObj.uid
   }
@@ -45,7 +43,7 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
 
   $scope.logDay = (dayId)=>{
     console.log("day id", dayId);
-    $scope.trailObj.dayId= dayId+1;
+    $scope.trailObj.dayId= dayId;
 
   }
 
@@ -74,14 +72,6 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
     $scope.status.isDayOpen = !$scope.status.isDayOpen;
   };
 
-  $scope.openTime= ($event)=>{
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isTripOpen = false;
-    $scope.status.isDayOpen = false;
-    $scope.status.isTimeOpen = !$scope.status.isTimeOpen;
-  };
-
   //Closes the Trips dropdown
   $scope.closeTrips = function() {
     console.log("closing?", $scope.status.isTripOpen)
@@ -96,26 +86,26 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
     $scope.trailObj.startDate = startDate;
     console.log("what is the start date?", startDate);
     $scope.status.isDayOpen = false;
-    $scope.startTime = new Date(`${startDate} 7:00:00`);
-    $scope.endTime = new Date(`${startDate} 7:00:00`);
   };
 
+    // $scope.startTime = new Date(`${startDate} 7:00:00`);
+    // $scope.endTime = new Date(`${startDate} 7:00:00`);
   //Want to set the hour step to one hour and minute step to 15 minutes
-  $scope.hstep = 1;
-  $scope.mstep = 15;
+  // $scope.hstep = 1;
+  // $scope.mstep = 15;
 
-  $scope.ismeridian = true;
-  $scope.toggleMode = function() {
-    $scope.ismeridian = !$scope.ismeridian;
-  };
+  // $scope.ismeridian = true;
+  // $scope.toggleMode = function() {
+  //   $scope.ismeridian = !$scope.ismeridian;
+  // };
 
-  $scope.updateStart = function() {
-    $scope.trailObj.startTime = $scope.startTime;
-  };
+  // $scope.updateStart = function() {
+  //   $scope.trailObj.startTime = $scope.startTime;
+  // };
 
-  $scope.updateEnd = function() {
-    $scope.trailObj.endTime = $scope.endTime;
-  };
+  // $scope.updateEnd = function() {
+  //   $scope.trailObj.endTime = $scope.endTime;
+  // };
 
   $scope.addTrail = ()=>{
     TrailFactory.addTrailToTrip($scope.trailObj)
