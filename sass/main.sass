@@ -122,18 +122,31 @@ ul[dnd-list] li
 .activityInput
   background-color: transparent
   border: 0px solid
-  height: 30px
+  min-height: 30px
   width: 160px
   text-align: left
   width: 90%
+  overflow: auto
+
+textarea.vert
+  resize: vertical
 
 .activityInput:focus
   outline: 0
 
-.deleteIcon
+.deleteTrailIcon
   z-index: 1500
   position: absolute
   top: 80%
+  left: 85%
+  cursor: pointer
+  font-size: 15px
+  color: #777
+
+.deleteNoteIcon
+  z-index: 1500
+  position: absolute
+  top: 40%
   left: 85%
   cursor: pointer
   font-size: 15px
