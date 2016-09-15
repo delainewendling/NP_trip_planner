@@ -47,11 +47,7 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
   };
 
   $scope.openCreateTripView = ()=>{
-    // let modalInstance = $uibModal.open({
-    //   templateUrl: 'partials/CreateTripModal.html',
-    //   controller: 'CreateTripModalCtrl'
-    // });
     $window.location.href = '#/parks/trips/create';
-  }
+  };
 
 });

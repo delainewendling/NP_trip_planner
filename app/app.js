@@ -16,7 +16,7 @@ app.directive('focusMe', function($timeout) {
     scope: { trigger: '=focusMe' },
     link: function(scope, element) {
       scope.$watch('trigger', function(value) {
-        if(value === true) { 
+        if(value === true) {
           element[0].focus();
           scope.trigger = false;
         }
@@ -49,11 +49,6 @@ app.config(function($routeProvider){
   .when('/parks/explore', {
     templateUrl: 'partials/Explore.html',
     controller: 'ExploreCtrl',
-    resolve: {isAuth}
-  })
-  .when('/parks/trips', {
-    templateUrl: 'partials/Trips.html',
-    controller: 'TripsCtrl',
     resolve: {isAuth}
   })
   .when('/parks/trips/create', {
