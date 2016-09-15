@@ -57,12 +57,14 @@
                   class="activityCard"
                   ng-mouseenter="optionsNote=true" ng-mouseleave="optionsNote=false"
                   >
-                <textarea type="text" ng-model="note.text" class="activityInput" value="{{note.text}}" ng-focus="focused" ng-keypress="updateNote($event, note.id, note.text)" keyup="autoExpand($event)">
-                <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="optionsNote" ng-click="deleteNoteFromTrip(note.id)"></span>
+                <textarea type="text" ng-model="note.text" class="activityInput" value="{{note.text}}" ng-focus="focused" ng-keypress="updateNote($event, note.id, note.text)">
+                <!-- focus-me="focusInput" -->
                 </textarea>
+                <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="optionsNote" ng-click="deleteNoteFromTrip(note.id)"></span>
               </li>
         </div>
         <div class="addActivity" ng-click="addNote(day.id)"> Add Note... </div>
+        <!-- ; focusInput=true" -->
       </div>
   </div>
 </div>

@@ -6,8 +6,20 @@ app.factory('NoteFactory', ($q, $http, FirebaseURL)=>{
     return $q((resolve, reject)=>{
       $http.get(`${FirebaseURL}notes.json?orderBy="tripId"&equalTo="${tripId}"`)
       .success((noteData)=>{
-        console.log("notes from firebase?", noteData);
         resolve(noteData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  let getCurrentNote = (noteId)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}notes/${noteId}`)
+      .success((note)=>{
+        console.log("note from firebase?", note);
+        resolve(note);
       })
       .error((error)=>{
         reject(error);
@@ -39,5 +51,17 @@ app.factory('NoteFactory', ($q, $http, FirebaseURL)=>{
     });
   };
 
-  return {getNotes, addNote, updateNote};
+  let deleteNoteFromTrip = (noteId)=>{
+    return $q((resolve, reject)=>{
+      $http.delete(`${FirebaseURL}notes/${noteId}.json`)
+      .success((deleted)=>{
+        resolve(deleted);
+      })
+      .error((error)=>{
+        reject(noteData);
+      });
+    });
+  };
+
+  return {getNotes, addNote, updateNote, deleteNoteFromTrip, getCurrentNote};
 });

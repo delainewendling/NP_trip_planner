@@ -83,25 +83,37 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       TripFactory.deleteTrailFromTrip(trailId)
       .then(()=>{
         console.log("successfully deleted");
-        //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later. 
+        //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
         $route.reload();
         // showTrails();
-      })
-    }
+      });
+    };
+
+    $scope.deleteNoteFromTrip = (noteId)=>{
+      NoteFactory.deleteNoteFromTrip(noteId)
+      .then(()=>{
+        console.log("successfully deleted");
+        //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
+        $route.reload();
+        // showTrails();
+      });
+    };
 
     $scope.addNote= (dayId)=>{
       //Need to create a noteObj to add to Firebase. Even though there is no text in this note the note instance needs to be added so that the user is updating the note when pressing enter rather than creating a whole new note everytime the enter key is pressed.
-      let noteObj = {
+      var noteObj = {
         text: '',
         day: dayId,
         tripId: $routeParams.tripId
       }
       //A new note needs to be added to $scope.notes so that the user sees a card show up on the screen. This instance of the note will be replaced with the note in firebase when the user navigates away from this page.
-      $scope.notes.push(noteObj);
       //The note is added to firebase
       NoteFactory.addNote(noteObj)
       .then((note)=>{
-        console.log("added note!", note);
+        console.log("added note!", note.name);
+          let newNote = noteObj;
+          newNote.id = note.name;
+          $scope.notes.push(newNote);
       });
     };
 
