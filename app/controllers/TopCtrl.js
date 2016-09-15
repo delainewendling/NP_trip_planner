@@ -16,4 +16,4 @@ app.controller("TopCtrl", function($scope, $window, $route){
       $window.location.href = '#/';
     }
   });
-})
+});

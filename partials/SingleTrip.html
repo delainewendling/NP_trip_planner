@@ -1,6 +1,10 @@
 <section>
   <div class="singleTripView">
   <!-- Add icons here -->
+    <div class="col-xs-12 tripInformation">
+      <h4> {{trip.name}} </h4>
+      <p> {{trip.description}} </p>
+    </div>
     <div class="col-xs-4">
       <md-button class="md-primary md-raised tripAdvice"> Average Temperature </md-button>
     </div>
@@ -9,10 +13,9 @@
     </div>
     <div class="col-xs-4">
       <md-button class="md-warn md-raised tripAdvice"> Warnings </md-button>
+      <span class="deleteTrip" ng-click="openDeleteModal()"> Delete Trip <span class="glyphicon glyphicon-remove-circle"></span></span>
     </div>
   </div>
-  <h4> {{trip.name}} </h4>
-  <p> {{trip.description}} </p>
   <img src="{{trip.imgUrl}}" class="tripImg">
   </div>
   <div ng-repeat="day in trip.days">
@@ -23,31 +26,46 @@
             <h3> {{day.day}} </h3>
             <p>{{day.date}}</p>
           </div>
-            <ul dnd-list="activities">
+            <ul dnd-list="trails">
               <!-- The dnd-draggable directive makes an element draggable and will transfer the object that was assigned to it. If an element was dragged away, you have to remove it from the original list yourself using the dnd-moved attribute -->
-              <li ng-repeat="activity in activities track by $index",
-                  ng-show="activity.dayId == (day.id+1)"
-                  dnd-draggable="activity"
-                  dnd-moved="activities.splice($index, 1)"
+              <li ng-repeat="trail in trails track by $index",
+                  ng-if="trail.dayId == day.id"
+                  dnd-draggable="trail"
+                  dnd-moved="trails.splice($index, 1)"
                   dnd-effect-allowed="move"
-                  dnd-selected="activities.selected = activity"
-                  ng-class="{'selected': selected === activity}"
+                  dnd-selected="trails.selected = trail"
+                  ng-class="{'selected': selected === trail}"
                   class="activityCard"
-                  ng-mouseenter="options=true" ng-mouseleave="options=false"
+                  ng-mouseenter="optionsTrail=true" ng-mouseleave="optionsTrail=false"
                   >
-                <input type="text" ng-model="activity.text" class="activityInput" value="{{activity.text}}" ng-focus="focused" ng-keypress="addNote($event, day.dayId)" ng-show="!activity.wishlist">
-                <div ng-show="activity.wishlist" class="trailInfo">
-                  <h3> {{activity.name}}</h3>
-                  <p> <strong> Distance: </strong> {{activity.distance}} </p>
-                  <p> <strong> Est. Time: </strong> {{activity.estTime}} </p>
-                  <p> <strong> Elevation Gain: </strong> {{activity.elevationGain}} </p>
-                  <input type="text" class="activityInput" ng-model="activity.notes" value="{{activity.notes}}">
-                </div>
-                <span class="glyphicon glyphicon-trash deleteIcon" ng-show="options" ng-click="deleteFromTrip(activity.id)"></span>
+              <span ng-show="trail.wishlist" class="trailInfo">
+                  <h3> {{trail.name}}</h3>
+                  <p> <strong> Distance: </strong> {{trail.distance}} </p>
+                  <p> <strong> Est. Time: </strong> {{trail.estTime}} </p>
+                  <p> <strong> Elevation Gain: </strong> {{trail.elevationGain}} </p>
+                  <label for="trailNotes" class="trailNote"> Notes: </label>
+                  <textarea type="text" id="trailNotes" class="activityInput" ng-model="trail.notes" value="{{trail.notes}}" ng-keypress="updateTrailNote($event, trail.id, trail.notes); blurInput($event)"></textarea>
+                  <span class="glyphicon glyphicon-trash deleteTrailIcon" ng-show="optionsTrail" ng-click="deleteTrailFromTrip(trail.id)"></span>
+                </span>
               </li>
             </ul>
+            <ul dnd-list="notes">
+            <li ng-repeat="note in notes track by $index",
+                  ng-if="note.day == day.id"
+                  dnd-draggable="note"
+                  dnd-moved="notes.splice($index, 1)"
+                  dnd-effect-allowed="move"
+                  dnd-selected="notes.selected = note"
+                  ng-class="{'selected': selected === note}"
+                  class="activityCard"
+                  ng-mouseenter="optionsNote=true" ng-mouseleave="optionsNote=false"
+                  >
+                <textarea type="text" ng-model="note.text" class="activityInput" value="{{note.text}}" ng-keypress="updateNote($event, note.id, note.text); blurInput($event)" focus-me="focusInput">
+                </textarea>
+                <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="optionsNote" ng-click="deleteNoteFromTrip(note.id)"></span>
+              </li>
         </div>
-        <div class="addActivity" ng-click="createNote(day.id+1)"> Add Note... </div>
+        <div class="addActivity" ng-click="addNote(day.id); focusInput=true""> Add Note or Activity... </div>
       </div>
   </div>
 </div>

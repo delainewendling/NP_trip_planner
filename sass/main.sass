@@ -110,7 +110,7 @@ ul[dnd-list] li
 
 .addActivity
   color: #aaa
-  padding-left: 15px
+  padding: 0 0 15px 15px
   cursor: pointer
 
 .addActivity:focus
@@ -119,25 +119,31 @@ ul[dnd-list] li
 .dayInfo
   text-align: left
 
-.singleTripView
-  background-color: #00AECC
-
 .activityInput
   background-color: transparent
   border: 0px solid
-  height: 30px
-  width: 160px
+  min-height: 30px
   text-align: left
   width: 90%
+  overflow: auto
 
 .activityInput:focus
   outline: 0
 
-.deleteIcon
+.deleteTrailIcon
   z-index: 1500
   position: absolute
   top: 80%
   left: 85%
+  cursor: pointer
+  font-size: 15px
+  color: #777
+
+.deleteNoteIcon
+  z-index: 1500
+  position: absolute
+  top: 40%
+  left: 88%
   cursor: pointer
   font-size: 15px
   color: #777
@@ -148,4 +154,25 @@ ul[dnd-list] li
 .trailInfo
   text-align: left
 
+.deleteTrip
+  border-radius: 15px
+  display: inline-block
+  padding: 8px
+  margin-left: 10%
+  background-color: #E2E4E6
+
+.deleteTrip:focus
+  outline: 0
+
+.tripInformation
+  text-align: center
+
+.trailNote
+  width: 100%
+  text-align: left
+
+.validation-messages
+  font-size: 12px
+  color: #dd2c00
+  margin-left: 15px
 

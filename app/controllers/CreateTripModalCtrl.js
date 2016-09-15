@@ -1,85 +1,82 @@
 'use strict';
 
-app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFactory, TripFactory, $route, startDate, endDate, isEditing, $mdDateLocale) {
+app.controller('CreateTripModalCtrl', function($scope, AuthFactory, TripFactory, $route,$window) {
 
-  //Convert the dates passed into the controller function to MM-DD-YYYY format so that they are in a nice format for the modal view.
-  $mdDateLocale.formatDate = function(date) {
-    return moment(date).format('MM-DD-YYYY');
+  let startMilliseconds,
+      endMilliseconds,
+      startDate,
+      endDate;
+
+  $scope.startDate = new Date();
+
+  $scope.endDate = new Date();
+
+  $scope.minStartDate = new Date(
+    $scope.startDate.getFullYear(),
+    $scope.startDate.getMonth(),
+    $scope.startDate.getDate());
+
+  $scope.updateEndDate = ()=>{
+    console.log("hello");
+    $scope.minEndDate = $scope.startDate;
   };
-  $scope.startDt = $mdDateLocale.formatDate(startDate);
-  $scope.endDt = $mdDateLocale.formatDate(endDate);
-  $scope.isEditing = isEditing;
+
+  function calculateMilliseconds(){
+    startMilliseconds = $scope.startDate.getTime();
+    endMilliseconds = $scope.endDate.getTime();
+  }
 
   //The trip object that is saved to firebase should have an array of days so that trips can be added to specific days of the trip
-  let startMilliseconds = startDate.getTime();
-  let endMilliseconds = endDate.getTime();
   //There are 86400000 milliseconds in a day
   let oneDay = 86400000;
 
   function getNumberOfDays (){
     let difference = endMilliseconds - startMilliseconds;
-    return (Math.round(difference/oneDay)+1);
-  };
+    return (Math.round(difference/oneDay));
+  }
 
   //For each day of the trip I want to have a day number, corresponding date, and id. This uses the number of days and creates an array of objects with the desired properties.
   function createDayArray (){
     let days = [];
-    for (let i=0; i<getNumberOfDays(); i++){
+    for (let i=0; i<=getNumberOfDays(); i++){
       days.push({
         day: 'Day ' + (i+1),
         date: moment(startMilliseconds + (i*oneDay)).format("dddd MMMM Do YYYY"),
         startDate,
-        id: i
+        id: increaseByOne(i)
       });
-    };
+    }
     return days;
-  };
-
-  //The following are the properties on the trip object saved to firebase
-  $scope.trip = {
-    name: '',
-    description: '',
-    startDate,
-    endDate,
-    startMilliseconds,
-    endMilliseconds,
-    imgUrl: '',
-    numberOfDays: getNumberOfDays(),
-    days: createDayArray()
   }
 
-  //A trip is created and added to firebase using the create button 
+  function increaseByOne (index){
+    return index+1;
+  }
+  //The following are the properties on the trip object saved to firebase
+  $scope.trip = {
+      name: '',
+      description: '',
+      imgUrl: ''
+  };
+  //A trip is created and added to firebase using the create button
   $scope.create = () => {
+    startDate = $scope.startDate;
+    endDate = $scope.endDate;
+    calculateMilliseconds();
+    $scope.trip.startDate = startDate;
+    $scope.trip.endDate = endDate;
+    $scope.trip.startMilliseconds = startMilliseconds;
+    $scope.trip.endMilliseconds = endMilliseconds;
+    $scope.trip.numberOfDays = getNumberOfDays();
+    $scope.trip.days = createDayArray();
     $scope.trip.uid = AuthFactory.getUserId();
+    console.log("$scope.trip", $scope.trip);
     TripFactory.createTrip($scope.trip)
     .then(()=>{
       $scope.trip = {};
-      $uibModalInstance.close();
-      $route.reload();
+      $window.location.href = '#/parks/explore';
     });
   };
 
-  //Closes the modal
-  $scope.close = () => {
-    $uibModalInstance.close();
-  };
-
-  // $scope.update = (board)=>{
-  //   let updatedBoard = {
-  //     title: board.title,
-  //     description: board.description
-  //   };
-  //   BoardsFactory.updateBoard(updatedBoard, board.id)
-  //   .then(()=>{
-  //     console.log("successful edit");
-  //     $scope.board = {};
-  //     $uibModalInstance.close();
-  //     return BoardsFactory.getBoards();
-  //   })
-  //   .then((boards)=>{
-  //     console.log("boards", boards);
-  //     $route.reload();
-  //   });
-  // };
 
 });

@@ -1,10 +1,9 @@
 "use strict";
 
-app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route){
+app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, NoteFactory, $uibModal){
 
-  //Need to define these things. Activities will have a trip Id on them that matches the routeParams
-  // $scope.activities
-  //Write a function in the TripFactory that gets the correct single trip from the database
+  //This is where the trails that have been added to this trip are located. 
+  $scope.trails = [];
 
     TripFactory.getSingleTrip($routeParams.tripId)
     .then((tripData)=>{
@@ -12,25 +11,58 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       $scope.trip = tripData;
     });
 
+    //Opens a modal to make sure the user really wants to delete the trip
+    $scope.openDeleteModal = ()=>{
+      let modalInstance = $uibModal.open({
+      templateUrl: 'partials/DeleteTrip.html',
+      controller: 'DeleteTripModalCtrl'
+      });
+    };
+
+    showNotes();
     showTrails();
+    $scope.notes = [];
+
+    function showNotes(){
+      NoteFactory.getNotes($routeParams.tripId)
+      .then((noteData)=>{
+        console.log("note data", noteData);
+        Object.keys(noteData).forEach((key)=>{
+          noteData[key].id =key;
+          $scope.notes.push(noteData[key]);
+        });
+        addNotesToNotes($scope.notes);
+      });
+    }
+
+    function addNotesToNotes(notes){
+      Object.keys(notes).forEach((key)=>{
+        $scope.notes.push({
+          text: notes[key].text,
+          day: notes[key].dayId,
+          id: notes[key].id,
+          wishlist: false
+        });
+      });
+      console.log("notes", $scope.notes);
+    }
 
     function showTrails(){
       TrailFactory.getTrailsInTrip($routeParams.tripId)
       .then((trailData)=>{
-        console.log("trail data", trailData);
         let trails = [];
         Object.keys(trailData).forEach((key)=>{
           trailData[key].id =key;
           trails.push(trailData[key]);
-        })
-        addTrailsToActivities(trails);
+        });
+        addTrailsToTrailsArr(trails);
       });
     }
 
-    function addTrailsToActivities(trails){
-      $scope.activities = [];
+    function addTrailsToTrailsArr(trails){
+      console.log("trails", trails);
       Object.keys(trails).forEach((key)=>{
-        $scope.activities.push({
+        $scope.trails.push({
           name: trails[key].name,
           dayId: trails[key].dayId,
           id: trails[key].id,
@@ -44,46 +76,86 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
           wishlist: true
         });
       });
-      console.log("activities", $scope.activities);
-    };
+      console.log("activities", $scope.trails);
+    }
 
-    $scope.deleteFromTrip = (trailId)=>{
+    $scope.deleteTrailFromTrip = (trailId)=>{
       TripFactory.deleteTrailFromTrip(trailId)
       .then(()=>{
         console.log("successfully deleted");
-        showTrails();
-      })
-    }
-
-    $scope.addNote = (event, dayId)=>{
-      if (event.charCode == 13) {
-        console.log("note will be added", dayId);
-      }
-    }
-
-    $scope.cardAdded = false;
-
-    $scope.createNote= (dayId)=>{
-      console.log("day id", dayId);
-      $scope.activities.push({
-        text: '',
-        id: dayId
+        //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
+        $route.reload();
+        // showTrails();
       });
-      $scope.cardAdded = true;
-      console.log("activities?", $scope.activities);
-    }
+    };
 
-    // // Generate initial model
-    // for (var i = 1; i <= 3; ++i) {
-    //     $scope.models.lists.A.push({label: "Item A" + i});
-    //     $scope.models.lists.B.push({label: "Item B" + i});
+    $scope.deleteNoteFromTrip = (noteId)=>{
+      NoteFactory.deleteNoteFromTrip(noteId)
+      .then(()=>{
+        console.log("successfully deleted");
+        //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
+        $route.reload();
+        // showTrails();
+      });
+    };
+
+    $scope.updateTrailNote = (event, trailId, text)=>{
+      if (event.charCode == 13) {
+        console.log("note will be updated", trailId);
+        let textPatch = { notes: text };
+        TrailFactory.updateTrailNote(textPatch, trailId)
+        .then((note)=>{
+          console.log("updated trail note!");
+        });
+      }
+    };
+
+    $scope.addNote= (dayId)=>{
+      //Need to create a noteObj to add to Firebase. Even though there is no text in this note the note instance needs to be added so that the user is updating the note when pressing enter rather than creating a whole new note everytime the enter key is pressed.
+      var noteObj = {
+        text: '',
+        day: dayId,
+        tripId: $routeParams.tripId
+      };
+      //A new note needs to be added to $scope.notes so that the user sees a card show up on the screen. This instance of the note will be replaced with the note in firebase when the user navigates away from this page.
+      //The note is added to firebase
+      NoteFactory.addNote(noteObj)
+      .then((note)=>{
+        console.log("added note!", note.name);
+          let newNote = noteObj;
+          newNote.id = note.name;
+          $scope.notes.push(newNote);
+      });
+    };
+
+    $scope.updateNote = (event, noteId, text)=>{
+      if (event.charCode == 13) {
+        console.log("note will be updated", noteId);
+        let textPatch = { text };
+        NoteFactory.updateNote(textPatch, noteId)
+        .then((note)=>{
+          console.log("updated note!");
+        });
+      }
+    };
+
+    //This takes the focus off of a note after hitting enter.
+    $scope.blurInput = (event)=>{
+      if (event.charCode == 13) {
+        let target = event.target;
+        target.blur();
+      }
+    };
+
+    // $scope.autoExpand = function(e) {
+    //     var element = typeof e === 'object' ? e.target : document.getElementById(e);
+    //     var scrollHeight = element.scrollHeight -60; // replace 60 by the sum of padding-top and padding-bottom
+    //     element.style.height =  scrollHeight + "px";
+    // };
+
+    // function expand() {
+    //   $scope.autoExpand('TextArea');
     // }
-
-    // // Model to JSON for demo purpose
-    // $scope.$watch('models', function(model) {
-    //     $scope.modelAsJson = angular.toJson(model, true);
-    // }, true);
-
 
 });
 

@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailFactory, WishlistFactory, AuthFactory){
+app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailFactory, WishlistFactory, AuthFactory, $uibModal){
   //The map that shows up when the user goes to the Yosemite view should be centered on Yosemite National Park. Below are the coordinates for Yosemite.
     $scope.map = {
       center: {latitude: 37.8651, longitude: -119.5383 },
@@ -34,7 +34,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
           name: trail.name
         });
       });
-    };
+    }
 
     //Creating objects with relevant information for each trail and pushing to an array
     function setTrailInfo(trails){
@@ -57,7 +57,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
           crowd: trail.crowdFactor
         });
       });
-    };
+    }
 
 
     function getWishlistTrails () {
@@ -67,7 +67,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         //I want to create an array of trail names from the wishlist so that I can compare the names in the wishlist to the names on the markers and see if that trail has been added to the wishlist of not.
         Object.keys(trailData).forEach((key)=>{
           $scope.trailNames.push(trailData[key].name);
-        })
+        });
         console.log("trail Names in wishlist", $scope.trailNames);
       });
     }
@@ -93,7 +93,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
       } else {
         return false;
       }
-    };
+    }
 
     //This function shows the sidebar when any marker is clicked. The appropriate information is shown in the sidebar
     function showInformation(){
@@ -103,7 +103,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     //Since each marker calls the onClick function it is difficult to open and close the sidebar by resetting the beenClicked property using clicks. Therefore, I created a button that will make the beenClicked property false so that the user can close the sidebar when he/she is done looking at trail information.
     $scope.closeSidebar = ()=>{
       $scope.beenClicked = false;
-    }
+    };
     //The user should be able to add a trail to his/her wishlist if there are no trips planned
     $scope.addTrailToWishlist = (trailInfo)=>{
       let userId = AuthFactory.getUserId();
@@ -113,6 +113,16 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
       .then((trailData)=>{
         $scope.closeSidebar();
         getWishlistTrails();
+      });
+    };
+
+    $scope.addTrailToTrip = (trailObj)=>{
+      let modalInstance = $uibModal.open({
+        templateUrl: 'partials/AddToTripModal.html',
+        controller: 'AddToTripModalCtrl',
+        resolve:{
+          trailObj
+        }
       });
     };
 

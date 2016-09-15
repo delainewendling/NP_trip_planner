@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, AuthFactory, TripFactory){
+app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, $window){
 
   $scope.logout = function(){
     AuthFactory.logoutUser()
@@ -14,6 +14,10 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory){
       getTrips();
     }
   });
+
+  $scope.getTrips = ()=>{
+    getTrips();
+  };
 
   function getTrips (){
     let trips = [];
@@ -41,5 +45,13 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory){
     $event.stopPropagation();
     $scope.status.isopen = !$scope.status.isopen;
   };
+
+  $scope.openCreateTripView = ()=>{
+    // let modalInstance = $uibModal.open({
+    //   templateUrl: 'partials/CreateTripModal.html',
+    //   controller: 'CreateTripModalCtrl'
+    // });
+    $window.location.href = '#/parks/trips/create';
+  }
 
 });

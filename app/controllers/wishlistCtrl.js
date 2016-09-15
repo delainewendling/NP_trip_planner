@@ -21,7 +21,7 @@ app.controller("WishlistCtrl", function($scope, WishlistFactory, $uibModal, $mdD
   $scope.viewItem = (itemId)=>{
     console.log("itemId", itemId);
     $scope.showMoreInfo = itemId;
-  }
+  };
 
   $scope.wishlistDelete = (itemId)=>{
     WishlistFactory.deleteWishlistItem(itemId)

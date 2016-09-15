@@ -30,7 +30,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
       console.log("You logged in with your email", data);
       if (data){
         // AuthFactory.instagramAuth()
-        $window.location.href = '#/parks/explore'
+        $window.location.href = '#/parks/explore';
       }
     }, (error)=>{
       console.log(`Error logging in user ${error}`);
@@ -44,7 +44,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
       console.log("You logged in with google", data);
       if (data){
         // AuthFactory.instagramAuth()
-        $window.location.href = '#/parks/explore'
+        $window.location.href = '#/parks/explore';
       }
     }, (error)=>{
       console.log(`Error logging in user ${error}`);
@@ -57,7 +57,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
     .then((data)=>{
       console.log("You logged in with facebook", data);
       if (data){
-        $window.location.href = '#/parks/explore'
+        $window.location.href = '#/parks/explore';
       }
     }, (error)=>{
       console.log(`Error logging in user ${error}`);

@@ -8,8 +8,22 @@ var app = angular.module("NPApp", ["ngRoute", "uiGmapgoogle-maps", 'ngMaterial',
       v: '3.24',
       libraries: 'weather,geometry,visualization,places'
   });
-})
-.config(function($mdDateLocaleProvider){})
+});
+
+//Allows me to focus on an input after a button is clicked
+app.directive('focusMe', function($timeout) {
+  return {
+    scope: { trigger: '=focusMe' },
+    link: function(scope, element) {
+      scope.$watch('trigger', function(value) {
+        if(value === true) { 
+          element[0].focus();
+          scope.trigger = false;
+        }
+      });
+    }
+  };
+});
 
 let isAuth = (AuthFactory, $window)=> new Promise((resolve, reject)=>{
     //This will be a boolean and it will resolve if its true, meaning you can access the URLs below
@@ -40,6 +54,11 @@ app.config(function($routeProvider){
   .when('/parks/trips', {
     templateUrl: 'partials/Trips.html',
     controller: 'TripsCtrl',
+    resolve: {isAuth}
+  })
+  .when('/parks/trips/create', {
+    templateUrl: 'partials/CreateTripModal.html',
+    controller: 'CreateTripModalCtrl',
     resolve: {isAuth}
   })
   .when('/parks/trip/:tripId', {
