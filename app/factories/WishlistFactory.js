@@ -12,7 +12,7 @@ app.factory("WishlistFactory", function($q, $http, FirebaseURL, AuthFactory){
       })
       .error((error)=>{
         reject(error);
-      })
+      });
     });
   };
 

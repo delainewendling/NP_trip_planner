@@ -19,7 +19,7 @@ app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFa
   function getNumberOfDays (){
     let difference = endMilliseconds - startMilliseconds;
     return (Math.round(difference/oneDay)+1);
-  };
+  }
 
   //For each day of the trip I want to have a day number, corresponding date, and id. This uses the number of days and creates an array of objects with the desired properties.
   function createDayArray (){
@@ -31,9 +31,9 @@ app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFa
         startDate,
         id: i
       });
-    };
+    }
     return days;
-  };
+  }
 
   //The following are the properties on the trip object saved to firebase
   $scope.trip = {
@@ -46,7 +46,7 @@ app.controller('CreateTripModalCtrl', function($scope, $uibModalInstance, AuthFa
     imgUrl: '',
     numberOfDays: getNumberOfDays(),
     days: createDayArray()
-  }
+  };
 
   //A trip is created and added to firebase using the create button 
   $scope.create = () => {

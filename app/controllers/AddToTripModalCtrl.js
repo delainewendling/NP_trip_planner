@@ -29,7 +29,7 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
       startDate: '',
       notes: '',
       uid: trailObj.uid
-  }
+  };
 
   //We need to get available days from the trip chosen in the dropdown menu
   $scope.getDaysAndLogTrip= (tripId)=>{
@@ -45,7 +45,7 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
     console.log("day id", dayId);
     $scope.trailObj.dayId= dayId;
 
-  }
+  };
 
   $scope.status = {
     isTripOpen: false,
@@ -74,7 +74,7 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
 
   //Closes the Trips dropdown
   $scope.closeTrips = function() {
-    console.log("closing?", $scope.status.isTripOpen)
+    console.log("closing?", $scope.status.isTripOpen);
     //not working
     $scope.status.isTripOpen = false;
     //working
@@ -112,8 +112,8 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
     .then((trailData)=>{
       console.log("successfully added trail to trip");
       $scope.closeModal();
-    })
-  }
+    });
+  };
 
   //Closes Modal (nothing is saved)
   $scope.closeModal = () => {

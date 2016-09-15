@@ -51,7 +51,19 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
     });
   };
 
+  let updateTrailNote = (textPatch, trailId)=>{
+    return $q((resolve, reject)=>{
+      $http.patch(`${FirebaseURL}trails/${trailId}.json`, JSON.stringify(textPatch))
+      .success((trailData)=>{
+        resolve(trailData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
 
 
-  return {getTrailInfo, addTrailToTrip, getTrailsFromWishlist, getTrailsInTrip};
+
+  return {getTrailInfo, addTrailToTrip, getTrailsFromWishlist, getTrailsInTrip, updateTrailNote};
 });

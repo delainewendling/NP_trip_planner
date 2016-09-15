@@ -13,7 +13,7 @@ app.controller("TripDatesCtrl", function($scope, $uibModal){
   $scope.updateEndDate = ()=>{
     console.log("hello");
     $scope.minEndDate = $scope.startDate;
-  }
+  };
 
   $scope.getTripDates = ()=>{
     let modalInstance = $uibModal.open({

@@ -34,7 +34,7 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
 
   let getSingleTrip = (tripId)=>{
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/trips/${tripId}.json`)
+      $http.get(`${FirebaseURL}trips/${tripId}.json`)
       .success((tripData)=>{
         resolve(tripData);
       })
@@ -46,7 +46,7 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
 
   let deleteTrip = (tripId)=>{
     return $q((resolve, reject)=>{
-      $http.delete(`${FirebaseURL}/trips/${tripId}.json`)
+      $http.delete(`${FirebaseURL}trips/${tripId}.json`)
       .success((tripData)=>{
         resolve(tripData);
       })
@@ -58,7 +58,7 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
 
   let deleteTrailFromTrip = (trailId)=>{
     return $q((resolve, reject)=>{
-      $http.delete(`${FirebaseURL}/trails/${trailId}.json`)
+      $http.delete(`${FirebaseURL}trails/${trailId}.json`)
       .success((trailData)=>{
         resolve(trailData);
       })
@@ -66,7 +66,7 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
         reject(error);
       });
     });
-  }
+  };
 
   return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip};
 });

@@ -34,7 +34,7 @@ app.factory('NoteFactory', ($q, $http, FirebaseURL)=>{
         resolve(noteData);
       })
       .error((error)=>{
-        reject(noteData);
+        reject(error);
       });
     });
   };
@@ -46,7 +46,7 @@ app.factory('NoteFactory', ($q, $http, FirebaseURL)=>{
         resolve(newNote);
       })
       .error((error)=>{
-        reject(noteData);
+        reject(error);
       });
     });
   };
@@ -58,7 +58,7 @@ app.factory('NoteFactory', ($q, $http, FirebaseURL)=>{
         resolve(deleted);
       })
       .error((error)=>{
-        reject(noteData);
+        reject(error);
       });
     });
   };
