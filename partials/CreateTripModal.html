@@ -1,7 +1,24 @@
-<div class="modal-header">
-  <h3 class="modal-title">{{isEditing ? 'Update Trip' : 'Create Trip'}}</h3>
-</div>
-<div class="modal-body">
+<!-- <div class="modal-header">
+  <h3 class="modal-title">{{isEditing ? 'Update Trip' : 'Create Trip'}}</h3> -->
+<!-- </div> -->
+<!-- <div class="modal-body"> -->
+<!-- <div ng-controller="TripDatesCtrl" ng-cloak> -->
+<div>
+<h3> Create a Trip </h3>
+  <form name="myForm" flex-gt-xs>
+    <div layout-gt-xs="row pickDatesContainer">
+      <div flex-gt-xs>
+        <div> <h4 class="pickDates title">Pick dates for your trip </h4></div>
+        <md-datepicker name="dateField" ng-model="startDate" md-placeholder="Enter start date" class="pickDates" md-min-date="minStartDate" required></md-datepicker>
+        <md-datepicker name="dateField" ng-model="endDate" md-placeholder="Enter end date" class="pickDates" md-min-date="minEndDate" ng-change="updateEndDate()" required></md-datepicker>
+        <div class="validation-messages" ng-messages="myForm.dateField.$error">
+          <div ng-message="valid">The entered value is not a date!</div>
+          <div ng-message="required">This date is required!</div>
+          <div ng-message="mindate">Date is too early!</div>
+        </div>
+      </div>
+    </div>
+  </form>
   <label for="tripName">Name:</label>
   <input type="text" class="form-control" name="tripName" ng-model="trip.name" required/>
 
@@ -21,11 +38,9 @@
       <input type="checkbox"> Driving
     </label>
   </div>
-  <h3> Start Date: </h3> {{startDt}}
-  <h3> End Date: </h3> {{endDt}}
-<div class="modal-footer">
+<!-- <div class="modal-footer"> -->
   <button class="btn btn-danger" ng-click="close()">Close</button>
   <button class="btn btn-success" ng-show="{{!isEditing}}" ng-click="create()">Create</button>
   <button class="btn btn-success" ng-show="{{isEditing}}" ng-click="update(pin, pin.id)">Update</button>
-</div>
+<!-- </div> -->
 <img ng-src="{{trip.imgUrl}}" class="img-thumbnail img-responsive">

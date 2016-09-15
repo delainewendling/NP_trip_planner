@@ -16,6 +16,7 @@
         <!-- <li ng-show="!$parent.isLoggedIn"><a ng-href="#/login"> Login </a></li> -->
         <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/explore" > Explore </a></li>
         <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/wishlist"> Wishlist </a></li>
+        <li ng-show="$parent.isLoggedIn"><a href ng-click="openCreateTripView()"> Plan a Trip </a></li>
         <!-- <li ><a ng-href="#/parks/trips"> Trips </a> -->
         <!-- Dropdown to select trip -->
         <li uib-dropdown on-toggle="toggled(open)" ng-show="$parent.isLoggedIn">
