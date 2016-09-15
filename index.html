@@ -10,7 +10,8 @@
 <body ng-app="NPApp" ng-cloak>
   <div ng-controller="TopCtrl">
     <div ng-include="'partials/navbar.html'"></div>
-    <div ng-view></div>
+    <!-- <div ng-view></div> -->
+    <div ui-view></div>
   </div>
 <!-- Third Party Libs -->
 <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
@@ -26,7 +27,8 @@
 <script src="lib/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="lib/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
 <script src="lib/bower_components/angular-material/angular-material.js"></script>
-<script src="lib/bower_components/angular-route/angular-route.min.js"></script>
+<script src="lib/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<!-- <script src="lib/bower_components/angular-route/angular-route.min.js"></script> -->
 <script src="lib/bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
 <script src="lib/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
 <script src="lib/bower_components/firebase/firebase.js"></script>

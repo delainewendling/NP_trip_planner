@@ -6,13 +6,13 @@
       <p> {{trip.description}} </p>
     </div>
     <div class="col-xs-4">
-      <md-button class="md-primary md-raised tripAdvice"> Average Temperature </md-button>
+      <md-button class="btn-primary md-raised tripAdvice"><a ui-sref=".averageTemp"> Average Temperature </a></md-button>
     </div>
     <div class="col-xs-4">
-      <md-button class="md-accent md-raised tripAdvice"> Suggested Packing List </md-button>
+      <md-button class="md-accent md-raised tripAdvice"><a ui-sref=".packing"> Suggested Packing List </a></md-button>
     </div>
     <div class="col-xs-4">
-      <md-button class="md-warn md-raised tripAdvice"> Warnings </md-button>
+      <md-button class="md-warn md-raised tripAdvice"> <a ui-sref=".warnings">Warnings </a></md-button>
       <span class="deleteTrip" ng-click="openDeleteModal()"> Delete Trip <span class="glyphicon glyphicon-remove-circle"></span></span>
     </div>
   </div>
