@@ -8,6 +8,12 @@
     </label>
     <span class="glyphicon glyphicon-remove deletePackingItem" ng-click="deleteItemFromList(item.id, $index)"></span>
   </div>
+  <div ng-show="isAdding">
+    <textarea type="text" ng-model="item.text" class="activityInput showOutline" value="{{item.text}}" ng-keypress="blurInput($event)" focus-me="focusInput">
+    </textarea>
+    <button class="btn btn-success" ng-click="addItem(item.text)"> Add </button>
+  </div>
+  <div class="addActivity" ng-click="showInput(); focusInput=true"> Add Item... </div>
 </div>
 </div>
 <div class="modal-footer">

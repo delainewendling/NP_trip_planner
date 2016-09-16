@@ -5,6 +5,28 @@ app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFacto
     $uibModalInstance.close();
   };
 
+  $scope.isAdding = false;
+  $scope.blurInput = (event)=>{
+    if (event.charCode == 13) {
+      let target = event.target;
+      target.blur();
+    }
+  };
+  $scope.showInput = ()=>{
+    $scope.isAdding = true;
+  };
+  $scope.addItem = (content)=>{
+    console.log("content", content);
+    let newItem = {
+      tripId: $routeParams.tripId,
+      item: content,
+      packed: false
+    }
+    $scope.items.push(newItem);
+    $scope.isAdding = false;
+    $scope.item.text = '';
+    TripFactory.addItemToPackingList(newItem);
+  };
   doesUserHavePackingList();
 
   function doesUserHavePackingList (){
