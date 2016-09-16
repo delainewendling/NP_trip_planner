@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h3 class="modal-title">Average Weather in Yosemite Valley during your Trip </h3>
+</div>
+<div class="modal-body">
+  <table class="table table-bordered">
+    <thead>
+      <th> Month </th>
+      <th> Avg. High </th>
+      <th> Avg. Low </th>
+      <th> Avg. Precipitation </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="month in months">
+        <!-- <td> {{month[key]}}</td> -->
+        <td> {{month[keys[$index]].month}} </td>
+        <td> {{month[keys[$index]].maxTemp}} &deg;F</td>
+        <td> {{month[keys[$index]].minTemp}} &deg;F</td>
+        <td> {{month[keys[$index]].avgPrecip}} in.</td>
+      </tr>
+    </tbody>
+</table>
+<div>
+  <strong> NOTE: </strong> The temperatures in Yosemite Valley are warmer than other regions of Yosemite National Park. If you are hiking or staying in a campground outside of the valley, prepare for slightly cooler weather. <strong><i> Nights can get especially cool outside of the valley, even in summer. Prepare accordingly. </i></strong>
+</div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-info" ng-click="close()">Close</button>
+</div>

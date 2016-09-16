@@ -68,5 +68,17 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
     });
   };
 
-  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip};
+  let getAverageTemp = (monthId)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}temperature.json?orderBy="monthId"&equalTo="${monthId}"`)
+      .success((tempData)=>{
+        resolve(tempData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, getAverageTemp};
 });

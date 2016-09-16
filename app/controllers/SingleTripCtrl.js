@@ -11,6 +11,31 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       $scope.trip = tripData;
     });
 
+    //Modal Views for user advice
+    $scope.openTempModal = ()=>{
+      let modalInstance = $uibModal.open({
+      templateUrl: 'partials/AverageTempModal.html',
+      controller: 'AverageTempModalCtrl',
+      resolve: {
+        trip: $scope.trip
+      }
+      });
+    };
+
+    $scope.openPackingModal = ()=>{
+      let modalInstance = $uibModal.open({
+      templateUrl: 'partials/PackingModal.html',
+      controller: 'PackingModalCtrl'
+      });
+    };
+
+    $scope.openWarningsModal = ()=>{
+      let modalInstance = $uibModal.open({
+      templateUrl: 'partials/WarningsModal.html',
+      controller: 'WarningsModalCtrl'
+      });
+    };
+
     //Opens a modal to make sure the user really wants to delete the trip
     $scope.openDeleteModal = ()=>{
       let modalInstance = $uibModal.open({
