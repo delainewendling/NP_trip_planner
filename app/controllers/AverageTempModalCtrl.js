@@ -11,7 +11,7 @@ app.controller('AverageTempModalCtrl', function($scope, $uibModalInstance, TripF
     $uibModalInstance.close();
   };
 
-  $scope.months = []
+  $scope.months = [];
   $scope.keys = [];
 
   tripMonths();
@@ -21,22 +21,22 @@ app.controller('AverageTempModalCtrl', function($scope, $uibModalInstance, TripF
       console.log("same month", startMonthId, endMonthId);
       getAverageTempForMonth(startMonthId);
     } else {
-      console.log("not the same start and end month")
+      console.log("not the same start and end month");
       var startMonth = parseInt(startMonthId,10);
       var endMonth = parseInt(endMonthId,10);
       if (startMonth < endMonth){
-        for (var i=startMonth; i<=endMonth; i++){
+        for (let i=startMonth; i<=endMonth; i++){
           //Need to convert the numbers back to strings to make a call to firebase
           let monthId = ("") + i;
           getAverageTempForMonth(monthId);
         }
       } else {
         //If the start month number is larger than the end month number then I need to loop through the months before December and then loop the months after January.
-        for (var i=startMonth; i<=12; i++){
+        for (let i=startMonth; i<=12; i++){
           let monthId = ("") + i;
           getAverageTempForMonth(monthId);
         }
-        for (var i=1; i<=endMonth; i++){
+        for (let i=1; i<=endMonth; i++){
           let monthId = ("") + i;
           getAverageTempForMonth(monthId);
         }

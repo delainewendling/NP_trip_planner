@@ -2,25 +2,11 @@
   <h3 class="modal-title">Suggested Packing List </h3>
 </div>
 <div class="modal-body">
-  <div class="checkbox packingList" ng-repeat="item in camping[0] track by $index">
-    <label class="packingItem">
-      <input type="checkbox"> {{item.item}}
+  <div class="checkbox packingList" ng-repeat="item in items track by $index">
+    <label class="packingItem done-{{item.packed}}">
+      <input type="checkbox" ng-model="item.packed" ng-checked="{{item.packed}}" ng-click="updatePacked(item.packed, item.id)"> {{item.item}}
     </label>
-  </div>
-  <div class="checkbox" ng-repeat="item in backpacking[0] track by $index">
-    <label class="packingItem">
-      <input type="checkbox"> {{item.item}}
-    </label>
-  </div>
-  <div class="checkbox" ng-repeat="item in all[0] track by $index">
-    <label class="packingItem">
-      <input type="checkbox"> {{item.item}}
-    </label>
-  </div>
-  <div class="checkbox" ng-repeat="item in roadtrip[0] track by $index">
-    <label class="packingItem">
-      <input type="checkbox"> {{item.item}}
-    </label>
+    <span class="glyphicon glyphicon-remove deletePackingItem" ng-click="deleteItemFromList(item.id)"></span>
   </div>
 </div>
 </div>
