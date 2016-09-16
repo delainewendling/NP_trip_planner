@@ -7,7 +7,9 @@ app.controller('CreateTripModalCtrl', function($scope, AuthFactory, TripFactory,
       startDate,
       endDate,
       startMonth,
-      endMonth;
+      endMonth,
+      startMonthNumber,
+      endMonthNumber;
 
   $scope.startDate = new Date();
 
@@ -64,6 +66,10 @@ app.controller('CreateTripModalCtrl', function($scope, AuthFactory, TripFactory,
   $scope.create = () => {
     startMonth = moment($scope.startDate).format('MMMM');
     endMonth = moment($scope.endDate).format('MMMM');
+    startMonthNumber = moment($scope.startDate).format('M');
+    endMonthNumber = moment($scope.endDate).format('M');
+    console.log("start month number", startMonthNumber);
+    console.log("end month number", endMonthNumber);
     startDate = $scope.startDate;
     endDate = $scope.endDate;
     calculateMilliseconds();
@@ -73,6 +79,8 @@ app.controller('CreateTripModalCtrl', function($scope, AuthFactory, TripFactory,
     $scope.trip.endMilliseconds = endMilliseconds;
     $scope.trip.startMonth = startMonth;
     $scope.trip.endMonth = endMonth;
+    $scope.trip.startMonthId = startMonthNumber;
+    $scope.trip.endMonthId = endMonthNumber;
     $scope.trip.numberOfDays = getNumberOfDays();
     $scope.trip.days = createDayArray();
     $scope.trip.uid = AuthFactory.getUserId();

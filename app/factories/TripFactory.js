@@ -68,9 +68,9 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
     });
   };
 
-  let getAverageTemp = (month)=>{
+  let getAverageTemp = (monthId)=>{
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}temperature.json?orderBy="month"&equalTo="${month}"`)
+      $http.get(`${FirebaseURL}temperature.json?orderBy="monthId"&equalTo="${monthId}"`)
       .success((tempData)=>{
         resolve(tempData);
       })
