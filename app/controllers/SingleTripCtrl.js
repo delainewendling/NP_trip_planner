@@ -25,14 +25,20 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     $scope.openPackingModal = ()=>{
       let modalInstance = $uibModal.open({
       templateUrl: 'partials/PackingModal.html',
-      controller: 'PackingModalCtrl'
+      controller: 'PackingModalCtrl',
+      resolve: {
+        trip: $scope.trip
+      }
       });
     };
 
     $scope.openWarningsModal = ()=>{
       let modalInstance = $uibModal.open({
       templateUrl: 'partials/WarningsModal.html',
-      controller: 'WarningsModalCtrl'
+      controller: 'WarningsModalCtrl',
+      resolve: {
+        trip: $scope.trip
+      }
       });
     };
 

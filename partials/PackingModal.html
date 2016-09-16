@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h3 class="modal-title">Suggested Packing List </h3>
+</div>
+<div class="modal-body">
+  <div class="checkbox packingList" ng-repeat="item in camping[0] track by $index">
+    <label class="packingItem">
+      <input type="checkbox"> {{item.item}}
+    </label>
+  </div>
+  <div class="checkbox" ng-repeat="item in backpacking[0] track by $index">
+    <label class="packingItem">
+      <input type="checkbox"> {{item.item}}
+    </label>
+  </div>
+  <div class="checkbox" ng-repeat="item in all[0] track by $index">
+    <label class="packingItem">
+      <input type="checkbox"> {{item.item}}
+    </label>
+  </div>
+  <div class="checkbox" ng-repeat="item in roadtrip[0] track by $index">
+    <label class="packingItem">
+      <input type="checkbox"> {{item.item}}
+    </label>
+  </div>
+</div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-info" ng-click="close()">Close</button>
+</div>

@@ -80,5 +80,17 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
     });
   };
 
-  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, getAverageTemp};
+  let getPackingList = (type)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}packingseason.json?orderBy="type"&equalTo="${type}"`)
+      .success((packingData)=>{
+        resolve(packingData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, getAverageTemp, getPackingList};
 });
