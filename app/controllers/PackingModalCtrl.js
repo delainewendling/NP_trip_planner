@@ -26,15 +26,15 @@ app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFacto
     });
   }
 
-  $scope.deleteItemFromList = (listId)=>{
+  $scope.deleteItemFromList = (listId, index)=>{
     TripFactory.deleteItemFromList(listId);
-    doesUserHavePackingList();
+    $scope.items.splice(index, 1);
   };
 
   $scope.updatePacked = (packedValue, itemId)=>{
     let packedObj = {packed: packedValue};
     TripFactory.updatePackingItem(packedObj, itemId);
-  }
+  };
 
   //The following commands should only happen the first time the Modal is opened. What this function does is it grabs the relevant packing list information for that particular trip type and posts each item to Firebase with the tripId and a property of packed as false. This creates a copy of the item so that the user can delete the item, check off the item as complete, and add items.
   function initializePackingList () {

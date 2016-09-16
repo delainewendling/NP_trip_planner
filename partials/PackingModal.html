@@ -6,7 +6,7 @@
     <label class="packingItem done-{{item.packed}}">
       <input type="checkbox" ng-model="item.packed" ng-checked="{{item.packed}}" ng-click="updatePacked(item.packed, item.id)"> {{item.item}}
     </label>
-    <span class="glyphicon glyphicon-remove deletePackingItem" ng-click="deleteItemFromList(item.id)"></span>
+    <span class="glyphicon glyphicon-remove deletePackingItem" ng-click="deleteItemFromList(item.id, $index)"></span>
   </div>
 </div>
 </div>
