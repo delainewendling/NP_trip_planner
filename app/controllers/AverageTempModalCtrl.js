@@ -21,12 +21,19 @@ app.controller('AverageTempModalCtrl', function($scope, $uibModalInstance, TripF
       getAverageTempForMonth(startMonthId);
     } else {
       console.log("not the same start and end month")
-      let startMonth = parseInt(startMonthId,10);
-      let endMonth = parseInt(endMonthId,10);
-      console.log("startmonth", startMonth);
-      console.log("endmonth", endMonth);
+      var startMonth = parseInt(startMonthId,10);
+      var endMonth = parseInt(endMonthId,10);
       if (startMonth < endMonth){
         for (var i=startMonth; i<=endMonth; i++){
+          let monthId = (i < 10 ? "0" : "") + i;
+          getAverageTempForMonth(monthId);
+        }
+      } else {
+        for (var i=startMonth; i<=12; i++){
+          let monthId = (i < 10 ? "0" : "") + i;
+          getAverageTempForMonth(monthId);
+        }
+        for (var i=1; i<=endMonth; i++){
           let monthId = (i < 10 ? "0" : "") + i;
           getAverageTempForMonth(monthId);
         }
