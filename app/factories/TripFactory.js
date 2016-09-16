@@ -80,5 +80,65 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
     });
   };
 
-  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, getAverageTemp};
+  let getPackingList = (type)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}packingseason.json?orderBy="type"&equalTo="${type}"`)
+      .success((packingData)=>{
+        resolve(packingData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  let getUserPackingList = (tripId)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}packinglist.json?orderBy="tripId"&equalTo="${tripId}"`)
+      .success((packingData)=>{
+        resolve(packingData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  let addItemToPackingList = (packingItemObj)=>{
+    return $q((resolve, reject)=>{
+      $http.post(`${FirebaseURL}packinglist.json`, JSON.stringify(packingItemObj))
+      .success((packingData)=>{
+        resolve(packingData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  let deleteItemFromList = (listId)=>{
+    return $q((resolve, reject)=>{
+      $http.delete(`${FirebaseURL}packinglist/${listId}.json`)
+      .success((packingData)=>{
+        resolve(packingData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  let updatePackingItem = (packingObj, itemId)=>{
+    return $q((resolve, reject)=>{
+      $http.patch(`${FirebaseURL}packinglist/${itemId}.json`, JSON.stringify(packingObj))
+      .success((packingData)=>{
+        resolve(packingData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem};
 });

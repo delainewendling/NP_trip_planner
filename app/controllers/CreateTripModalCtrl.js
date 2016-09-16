@@ -56,11 +56,15 @@ app.controller('CreateTripModalCtrl', function($scope, AuthFactory, TripFactory,
   function increaseByOne (index){
     return index+1;
   }
+
   //The following are the properties on the trip object saved to firebase
   $scope.trip = {
       name: '',
       description: '',
-      imgUrl: ''
+      imgUrl: '',
+      camping: false,
+      backpacking: false,
+      roadtrip: false
   };
   //A trip is created and added to firebase using the create button
   $scope.create = () => {
