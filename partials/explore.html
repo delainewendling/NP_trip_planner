@@ -1,5 +1,7 @@
-<!-- <div ng-include="'partials/TripDates.html'"></div> -->
-<section class="map">
+<div class="viewIcon">
+<span class="glyphicon glyphicon-th-list listIcon" ng-class="{'selectedIcon': !mapView}" ng-click="showList()"></span> <span class="glyphicon glyphicon-map-marker listIcon" ng-class="{'selectedIcon': mapView}" ng-click="showMap()"></span>
+</div>
+<section class="map" ng-if="mapView">
   <div id="map-canvas">
     <ui-gmap-google-map  center="map.center"
                     zoom="map.zoom"
@@ -50,12 +52,38 @@
     </div>
   </div>
 </section>
-<!-- <section>
-  <input type="text" name="searchTrails" ng-model="searchText" id="searchBox" placeholder="Search by park name...">
-  <div ng-repeat="trail in trails | filter: {park_name: searchText}">
-  <h3 ng-model="newTrail.name"><a ng-href="#/trails/trail/{{item.id}}"> {{trail.name}}</a></h3>
-  <p ng-model="newTrail.park_name"> {{trail.park_name}} </p>
-  <a href="{{trail.park_agency_website}}" target="_blank"> {{trail.park_name}} Website </a>
-</section> -->
-    <!-- Wire this up to add trails to firebase -->
-    <!-- <button type="submit" ng-click="addTrail()">Add to Trails</button> -->
+<section ng-if="!mapView">
+<h1> Hello List View! </h1>
+  <div ng-repeat="trail in trails.trails">
+    <div ng-click="viewItem(trail.id)" class="trailItem col-sm-6">
+      <div><button class="btn btn-primary addToTrip listViewItem" ng-click="addTrailToTrip(trailInfo)" ng-cloak>Add to Trip</button>
+      <button class="btn btn-info wishlist listViewItem" ng-click="addTrailToWishlist(trailInfo)" ng-show="!inWishlist" ng-cloak>Add to Wishlist</button></div>
+      <span ng-show="inWishlist" class="greyText listViewItem"" ng-cloak><i>Added to Wishlist</i></span>
+      <div><img src="{{trail.coverImgUrl}}" class="thumbnailImg"></div>
+      <div><h3> {{trail.name}} </h3></div>
+      <span class="listViewItem"><strong>Distance:</strong>{{trail.distance}}</span>
+      <span class="listViewItem"><strong>Difficulty:</strong>{{trail.difficulty}}</span>
+      <div ng-if="(showMoreInfo === trail.id)">
+        <div>
+          <div class="col-xs-3">
+            <strong> Est. Time: </strong> {{trail.estTime}}
+          </div>
+          <div class="col-xs-3">
+            <strong> Elevation Gain: </strong> {{trail.elevationGain}}
+          </div>
+          <div class="col-xs-3">
+            <strong> Scenery: </strong> {{trail.sceneryFactor}}/5
+          </div>
+          <div class="col-xs-3">
+            <strong> Crowd Factor: </strong> {{trail.crowdFactor}}/5
+          </div>
+        </div>
+        <div>
+          <p><strong>Why Visit: </strong>{{trail.whyVisit}}</>
+          <p> <strong> Description: </strong>{{trail.description}} </p>
+        </div>
+    </div>
+  </div>
+</section>
+
+

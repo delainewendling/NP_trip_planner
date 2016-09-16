@@ -13,7 +13,32 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $scope.inWishlist = false;
 
   $scope.trailNames = [];
+  $scope.mapView = true;
+  $scope.showMap=()=>{
+    $scope.mapView = true;
+  };
+  $scope.showList=()=>{
+    $scope.mapView = false;
+    getTrailsForListView();
+    getWishlistTrails();
+    inWishlist();
+  };
 
+  $scope.viewItem=(trailId)=>{
+    $scope.showMoreInfo = trailId;
+  };
+
+  function getTrailsForListView(){
+    TrailFactory.getTrailInfo()
+    .then((trailData)=>{
+      console.log("trail data", trailData);
+      Object.keys(trailData).forEach((key)=>{
+        trailData[key].id = key;
+      });
+      $scope.trails = trailData;
+      console.log("list view data", $scope.trails);
+    });
+  }
   //I need to get the trail information from firebase and create objects that will provide the necessary information to create a marker for each trail. I also want to print information in the sidebar about each trail so I need to create an object for each trail with that information.
     TrailFactory.getTrailInfo()
     .then((trailData)=>{

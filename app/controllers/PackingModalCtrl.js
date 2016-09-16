@@ -21,7 +21,7 @@ app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFacto
       tripId: $routeParams.tripId,
       item: content,
       packed: false
-    }
+    };
     $scope.items.push(newItem);
     $scope.isAdding = false;
     $scope.item.text = '';
