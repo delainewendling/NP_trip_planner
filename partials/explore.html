@@ -1,9 +1,12 @@
-<div class="filters">
-  <span class='topHikes filterBtn' ng-click="filterTrips('bestHike')">Top Hikes</span> <span class='familyFriendly filterBtn' ng-click="filterTrips('familyFriendly')">Family Friendly</span> <span class='backPacking filterBtn' ng-click="filterTrips('backpacking')">Backpacking</span>
-</div>
-<div class="viewIcon">
+<span class="filters">
+  <span class='campgrounds filterBtn' ng-click="showCampgrounds()" ng-class="{'selectedFilter': selectedCampground}">Campgrounds</span>
+  <span class='topHikes filterBtn' ng-click="filterTrips($event, 'bestHike')">Top Hikes</span>
+  <span class='familyFriendly filterBtn' ng-click="filterTrips($event,'familyFriendly')">Family Friendly</span>
+  <span class='backPacking filterBtn' ng-click="filterTrips($event,'backpacking')">Backpacking</span>
+</span>
+<span class="viewIcon">
   <span class="glyphicon glyphicon-th-list listIcon" ng-class="{'selectedIcon': !mapView}" ng-click="showList()"></span> <span class="glyphicon glyphicon-map-marker listIcon" ng-class="{'selectedIcon': mapView}" ng-click="showMap()"></span>
-</div>
+</span>
 <div class="exploreView">
   <img
 </div>
@@ -17,6 +20,9 @@
     <!-- other ui-gmap-directives here -->
       <ui-gmap-markers
             models="markers" coords="'self'" icon="'icon'" click="onClick" options="'options'" ng-cloak>
+      </ui-gmap-markers>
+      <ui-gmap-markers
+            models="campgrounds" coords="'self'" icon="'icon'" click="onClickCampgrounds" options="'options'" ng-cloak>
       </ui-gmap-markers>
     </ui-gmap-google-map>
     <div ng-show="beenClicked" class="sideBar" ng-cloak>
@@ -57,6 +63,43 @@
       <p ng-show="trailInfo.description"> {{trailInfo.description}} </p>
     </div>
   </div>
+  <div ng-show="campgroundBeenClicked" class="sideBar" ng-cloak>
+      <div><button class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
+      <div>
+        <h3 class="trailName"> {{campground.name}} </h3>
+      </div>
+      <img src="{{campground.imgUrl}}" alt="Picture of {{campground.name}}" class="trailImg img-responsive">
+      <div>
+        <strong> Open: </strong> {{campground.open}}
+      </div>
+      <div>
+        <strong> Elevation: </strong> {{campground.elevation}}
+      </div>
+      <div>
+        <strong> Max RV Length: </strong> {{campground.maxRV}}
+      </div>
+      <div>
+        <strong> Max Trailer Length: </strong> {{campground.maxTrailer}}
+      </div>
+      <div>
+        <strong> Reservations: </strong> {{campground.reserve}}
+      </div>
+      <div>
+        <strong> Daily Fee: </strong> {{campground.dailyFee}}
+      </div>
+      <div>
+        <strong> Number of Sites: </strong> {{campground.sites}}
+      </div>
+      <div>
+        <strong> Pets Allowed? </strong> {{campground.pets}}
+      </div>
+      <div>
+        <strong> Water Available: </strong> {{campground.water}}
+      </div>
+       <div>
+        <strong> More information and booking at: </strong> <span><a ng-href="{{campground.website}}" target="_blank">Campground Website</a></span>
+      </div>
+      </div>
 </section>
 <section ng-if="!mapView">
 <h1> Hello List View! </h1>

@@ -19,11 +19,12 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $scope.options = {mapTypeId: 'terrain'};
     //I want the sidebar to be closed when a marker hasn't been clicked
     $scope.beenClicked = false;
+    $scope.campgroundBeenClicked = false;
     $scope.inWishlist = false;
     $scope.trailType = false;
+    $scope.selectedCampgound = false;
 
   getTrailInfo('bestHike');
-  $scope.trailNames = [];
 
   $scope.mapView = true;
   $scope.showMap=()=>{
@@ -36,9 +37,16 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     inWishlist();
   };
 
-  $scope.filterTrips = (trailType)=>{
+  $scope.filterTrips = (event, trailType)=>{
+    $scope.closeSidebar();
+    $scope.selectedCampground = false;
+    let target = event.target;
+    console.log("target", target);
+    $('.filterBtn').removeClass('selectedFilter');
+    $(target).addClass('selectedFilter');
     getTrailInfo(trailType);
-  }
+    getCampgroundInfo(false);
+  };
 
   $scope.viewItem=(trailId)=>{
     $scope.showMoreInfo = trailId;
@@ -80,7 +88,6 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
           }
         });
       });
-      console.log("markers", $scope.markers);
     }
 
     //Creating objects with relevant information for each trail and pushing to an array
@@ -106,7 +113,60 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
       });
     }
 
+    function getCampgroundInfo (showCampground){
+    TrailFactory.getCampgroundInfo()
+    .then((campgroundInfo)=>{
+      Object.keys(campgroundInfo).forEach((key)=>{
+        campgroundInfo[key].id = key;
+        });
+        setCampgroundMarkers(campgroundInfo.campgrounds, showCampground);
+        setCampgroundInfo(campgroundInfo.campgrounds)
+      });
+    }
 
+    function setCampgroundMarkers(campgrounds, showCampground){
+      $scope.campgrounds = [];
+      campgrounds.forEach((campground)=>{
+        $scope.campgrounds.push({
+          id: campground.id,
+          latitude: campground.coords.latitude,
+          longitude: campground.coords.longitude,
+          icon: '../images/campgroundIcon.png',
+          name: campground.name,
+          options: {
+            visible: showCampground
+          }
+        });
+      });
+    }
+
+    function setCampgroundInfo(campgrounds){
+      $scope.campgroundsInfo = campgrounds;
+    }
+
+    getCampgroundInfo(false);
+
+    $scope.showCampgrounds = ()=>{
+      $scope.closeSidebar();
+      $('.filterBtn').removeClass('selectedFilter');
+      $scope.selectedCampground = true;
+      getTrailInfo('campground');
+      getCampgroundInfo(true);
+    };
+
+    $scope.onClickCampgrounds = function(instance, event, marker) {
+      console.log("marker", marker);
+      console.log("camgrounds", $scope.campgrounds[marker.id]);
+      $scope.campground = $scope.campgroundsInfo[marker.id];
+      showCampgroundInformation();
+    };
+
+    function showCampgroundInformation(){
+      $scope.campgroundBeenClicked = true;
+      $scope.$apply();
+    }
+
+    $scope.trailNames = [];
     function getWishlistTrails () {
       TrailFactory.getTrailsFromWishlist(AuthFactory.getUserId())
       .then((trailData)=>{
@@ -115,7 +175,6 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         Object.keys(trailData).forEach((key)=>{
           $scope.trailNames.push(trailData[key].name);
         });
-        console.log("trail Names in wishlist", $scope.trailNames);
       });
     }
 
@@ -150,6 +209,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     //Since each marker calls the onClick function it is difficult to open and close the sidebar by resetting the beenClicked property using clicks. Therefore, I created a button that will make the beenClicked property false so that the user can close the sidebar when he/she is done looking at trail information.
     $scope.closeSidebar = ()=>{
       $scope.beenClicked = false;
+      $scope.campgroundBeenClicked = false;
     };
     //The user should be able to add a trail to his/her wishlist if there are no trips planned
     $scope.addTrailToWishlist = (trailInfo)=>{
@@ -172,12 +232,5 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         }
       });
     };
-
-  // ApiFactory.getActivities("Yosemite+National+Park", "hiking", "25")
-  // .then((trailCollection)=>{
-  //   console.log("trails from explore call", trailCollection);
-  //   $scope.trails = trailCollection;
-  // });
-
 
 });
