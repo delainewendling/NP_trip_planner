@@ -69,12 +69,10 @@ app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFacto
       if (trip.camping || trip.backpacking && !trip.camping){
         //The camping list is a packing list that corresponds to ONLY camping
         getPackingList("camping");
-      }
-      if (trip.backpacking){
+      } else if (trip.backpacking){
         //The backpacking list is a packing list that corresponds to ONLY backpacking
         getPackingList("backpacking");
-      }
-      if (trip.roadtrip){
+      } else if (trip.roadtrip){
         //The roadtrip list is a packing list that corresponds to ONLY roadtrips
         getPackingList("roadtrip");
       }

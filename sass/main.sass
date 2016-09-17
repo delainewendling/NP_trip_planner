@@ -1,12 +1,24 @@
+*
+  box-sizing: border-box
+
+html
+  height: 100%
+
+body
+  min-height: 100%
+  position: relative
+
+.wrapperDiv
+  min-height: 100%
 
 .loginBtn
   margin: 10px
 
 .angular-google-map-container
-  position: absolute
-  top: 18%
+  position: relative
+  margin-bottom: 10%
   height: 500px
-  left: 5%
+  margin-left: 5%
   width: 90%
 
 .map, #map_canvas
@@ -22,7 +34,7 @@
   height: 500px
   overflow: scroll
   position: absolute
-  top: 18%
+  top: 19.5%
   left: 60%
   width: 40%
   background-color: white
@@ -53,7 +65,7 @@
 
 .pickDatesContainer
   margin: 0
-  position: absolute
+  // position: absolute
   top: 10%
 
 .title
@@ -133,7 +145,7 @@ ul[dnd-list] li
 
 .deleteTrailIcon
   z-index: 1500
-  position: absolute
+  // position: absolute
   top: 80%
   left: 85%
   cursor: pointer
@@ -142,7 +154,7 @@ ul[dnd-list] li
 
 .deleteNoteIcon
   z-index: 1500
-  position: absolute
+  // position: absolute
   top: 40%
   left: 88%
   cursor: pointer
@@ -159,7 +171,7 @@ ul[dnd-list] li
   border-radius: 15px
   display: inline-block
   padding: 8px
-  margin-left: 10%
+  margin-left: 5%
   background-color: #E2E4E6
 
 .deleteTrip:focus
@@ -214,6 +226,7 @@ ul[dnd-list] li
 .viewIcon
   margin-left: 85%
   font-size: 20px
+  display: inline-block
 
 .selectedIcon
   color: #aaa
@@ -238,6 +251,16 @@ ul[dnd-list] li
 
 .trailItem:hover
   background-color: #EAEAEA
+
+.singleTripView
+  background: url(https://galengray.files.wordpress.com/2013/08/the-mist-trail.jpg) no-repeat center center fixed
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  background-repeat: no-repeat
+  z-index: -5
+  width: 100%
 
 
 

@@ -1,5 +1,11 @@
+<div class="filters">
+  <span class='topHikes filterBtn' ng-click="filterTrips('bestHike')">Top Hikes</span> <span class='familyFriendly filterBtn' ng-click="filterTrips('familyFriendly')">Family Friendly</span> <span class='backPacking filterBtn' ng-click="filterTrips('backpacking')">Backpacking</span>
+</div>
 <div class="viewIcon">
-<span class="glyphicon glyphicon-th-list listIcon" ng-class="{'selectedIcon': !mapView}" ng-click="showList()"></span> <span class="glyphicon glyphicon-map-marker listIcon" ng-class="{'selectedIcon': mapView}" ng-click="showMap()"></span>
+  <span class="glyphicon glyphicon-th-list listIcon" ng-class="{'selectedIcon': !mapView}" ng-click="showList()"></span> <span class="glyphicon glyphicon-map-marker listIcon" ng-class="{'selectedIcon': mapView}" ng-click="showMap()"></span>
+</div>
+<div class="exploreView">
+  <img
 </div>
 <section class="map" ng-if="mapView">
   <div id="map-canvas">
@@ -10,7 +16,7 @@
 
     <!-- other ui-gmap-directives here -->
       <ui-gmap-markers
-            models="markers" coords="'self'" icon="'icon'" click="onClick" ng-cloak>
+            models="markers" coords="'self'" icon="'icon'" click="onClick" options="'options'" ng-cloak>
       </ui-gmap-markers>
     </ui-gmap-google-map>
     <div ng-show="beenClicked" class="sideBar" ng-cloak>

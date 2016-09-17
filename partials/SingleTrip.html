@@ -12,12 +12,10 @@
       <md-button class="md-accent md-raised tripAdvice" ng-click="openPackingModal()"> Suggested Packing List </md-button>
     </div>
     <div class="col-xs-4">
-      <md-button class="md-warn md-raised tripAdvice" ng-click="openWarningsModal()"> Warnings </md-button>
+      <md-button class="md-warn md-raised tripAdvice" ng-click="openWarningsModal()"> Before You Go </md-button>
       <span class="deleteTrip" ng-click="openDeleteModal()"> Delete Trip <span class="glyphicon glyphicon-remove-circle"></span></span>
     </div>
-  </div>
   <img src="{{trip.imgUrl}}" class="tripImg">
-  </div>
   <div ng-repeat="day in trip.days">
     <div class="clearfix" ng-if="$index % 3 == 0"></div>
       <div class="col-xs-4">
@@ -64,9 +62,11 @@
                 </textarea>
                 <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="optionsNote" ng-click="deleteNoteFromTrip(note.id)"></span>
               </li>
+            </ul>
         </div>
         <div class="addActivity" ng-click="addNote(day.id); focusInput=true"> Add Note or Activity... </div>
       </div>
+    </div>
   </div>
 </div>
 </section>

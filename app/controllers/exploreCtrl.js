@@ -4,15 +4,27 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //The map that shows up when the user goes to the Yosemite view should be centered on Yosemite National Park. Below are the coordinates for Yosemite.
     $scope.map = {
       center: {latitude: 37.8651, longitude: -119.5383 },
-      zoom: 9,
-      bounds: {}
+      zoom: 10,
+      bounds: {
+        southwest: {
+          latitude: 36.778259,
+          longitude: -119.417931
+        },
+        northeast: {
+          latitude: 39.2878,
+          longitude: -118.0256
+        }
+      }
     };
-    $scope.options = {scrollwheel: false};
+    $scope.options = {mapTypeId: 'terrain'};
     //I want the sidebar to be closed when a marker hasn't been clicked
     $scope.beenClicked = false;
     $scope.inWishlist = false;
+    $scope.trailType = false;
 
+  getTrailInfo('bestHike');
   $scope.trailNames = [];
+
   $scope.mapView = true;
   $scope.showMap=()=>{
     $scope.mapView = true;
@@ -23,6 +35,10 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     getWishlistTrails();
     inWishlist();
   };
+
+  $scope.filterTrips = (trailType)=>{
+    getTrailInfo(trailType);
+  }
 
   $scope.viewItem=(trailId)=>{
     $scope.showMoreInfo = trailId;
@@ -40,15 +56,17 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     });
   }
   //I need to get the trail information from firebase and create objects that will provide the necessary information to create a marker for each trail. I also want to print information in the sidebar about each trail so I need to create an object for each trail with that information.
+  function getTrailInfo(trailType){
     TrailFactory.getTrailInfo()
     .then((trailData)=>{
       let trails = trailData.trails;
-      setMarkers(trails);
+      setMarkers(trails, trailType);
       setTrailInfo(trails);
     });
+  }
 
     //Creating objects with relevant information for each marker and pushing to an array
-    function setMarkers(trails){
+    function setMarkers(trails, trailType){
       $scope.markers = [];
       trails.forEach((trail)=>{
         $scope.markers.push({
@@ -56,9 +74,13 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
           latitude: trail.coords.latitude,
           longitude: trail.coords.longitude,
           icon: '../images/hikerLogo.png',
-          name: trail.name
+          name: trail.name,
+          options: {
+            visible: trail[trailType]
+          }
         });
       });
+      console.log("markers", $scope.markers);
     }
 
     //Creating objects with relevant information for each trail and pushing to an array
