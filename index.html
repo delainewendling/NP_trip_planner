@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body ng-app="NPApp" ng-cloak>
-  <div ng-controller="TopCtrl">
+  <div ng-controller="TopCtrl" class="wrapperDiv">
     <div ng-include="'partials/navbar.html'"></div>
     <div ng-view></div>
   </div>
@@ -33,7 +33,7 @@
 <!-- Root File -->
 <script type="text/javascript" src="app/app.js"></script>
 <!-- Providers -->
-<script type="text/javascript" src="app/factories/key-getter.js"></script>
+<script type="text/javascript" src="app/factories/Key-getter.js"></script>
 <script type="text/javascript" src="app/factories/ApiFactory.js"></script>
 <script type="text/javascript" src="app/factories/WishlistFactory.js"></script>
 <script type="text/javascript" src="app/factories/AuthFactory.js"></script>
@@ -46,8 +46,7 @@
 <script type="text/javascript" src="app/controllers/PackingModalCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/WarningsModalCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/SingleTripCtrl.js"></script>
-<script type="text/javascript" src="app/controllers/TripDatesCtrl.js"></script>
-<script type="text/javascript" src="app/controllers/CreateTripModalCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/CreateTripViewCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/DeleteTripModalCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/WishlistCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/TopCtrl.js"></script>

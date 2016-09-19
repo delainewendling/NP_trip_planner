@@ -4,7 +4,7 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
 
   let getTrailInfo = ()=>{
     return $q((resolve, reject)=>{
-      $http.get('../../data/test.json')
+      $http.get('../../data/trailData.json')
       .success((trailData)=>{
         resolve(trailData);
       })
@@ -13,6 +13,19 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
       });
     });
   };
+
+  let getCampgroundInfo = ()=>{
+    return $q((resolve, reject)=>{
+      $http.get('../../data/campgrounds.json')
+      .success((campgroundData)=>{
+        resolve(campgroundData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
 
   let getTrailsFromWishlist = (userId)=>{
      return $q((resolve, reject)=>{
@@ -65,5 +78,5 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
 
 
 
-  return {getTrailInfo, addTrailToTrip, getTrailsFromWishlist, getTrailsInTrip, updateTrailNote};
+  return {getTrailInfo, addTrailToTrip, getTrailsFromWishlist, getTrailsInTrip, updateTrailNote, getCampgroundInfo};
 });

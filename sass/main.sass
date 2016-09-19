@@ -1,13 +1,29 @@
+*
+  box-sizing: border-box
+
+html
+  height: 100%
+
+body
+  min-height: 100%
+  position: relative
+
+.wrapperDiv
+  min-height: 100%
 
 .loginBtn
   margin: 10px
 
 .angular-google-map-container
   position: absolute
-  top: 10%
-  height: 500px
+  margin-bottom: 10%
+  height: 450px
+  top: 20%
   left: 5%
   width: 90%
+
+.newMap
+  width: 55%
 
 .map, #map_canvas
   height: 100%
@@ -19,10 +35,10 @@
 
 .sideBar
   z-index: 1000
-  height: 500px
+  max-height: 450px
   overflow: scroll
   position: absolute
-  top: 10%
+  top: 20%
   left: 60%
   width: 40%
   background-color: white
@@ -42,7 +58,7 @@
 
 .close
   display: block
-  margin-left: 50%
+  // margin-left: 50%
 
 .wishlist
   display: block
@@ -60,10 +76,9 @@
   margin-left: 10px
 
 .tripImg
-  max-width: 90%
+  margin-left: 30%
   display: inline-block
-  margin: 0 auto
-  max-height: 200px
+  max-height: 60px
 
 .greyText
   color: #aaa
@@ -159,14 +174,11 @@ ul[dnd-list] li
   border-radius: 15px
   display: inline-block
   padding: 8px
-  margin-left: 10%
+  margin-left: 5%
   background-color: #E2E4E6
 
 .deleteTrip:focus
   outline: 0
-
-.tripInformation
-  text-align: center
 
 .trailNote
   width: 100%
@@ -204,11 +216,167 @@ ul[dnd-list] li
 .deletePackingItem:hover
   color: #C70039
 
+.deletePackingItem:focus
+  outline: 0
+
 .done-true
   text-decoration: line-through
   color: grey
 
 .showOutline
   border: 1px solid #aaa
+
+.viewIcon
+  margin-left: 25%
+  font-size: 20px
+  display: inline-block
+
+.selectedIcon
+  color: #aaa
+
+.listIcon:hover
+  color: #5F9F9F
+
+.listIcon:focus
+  outline: 0
+
+.thumbnailImg
+  height: 60px
+  width: auto
+  display: block
+  margin: 3% auto
+
+.listViewItem
+  display: inline-block
+
+.trailItem:focus
+  outline: 0
+
+.trailItem:hover
+  background-color: #EAEAEA
+
+// .singleTripView
+//   background: url(https://galengray.files.wordpress.com/2013/08/the-mist-trail.jpg) no-repeat center center fixed
+//   -webkit-background-size: cover
+//   -moz-background-size: cover
+//   -o-background-size: cover
+//   background-size: cover
+//   background-repeat: no-repeat
+//   z-index: -5
+//   width: 100%
+
+.filterBtn
+  display: inline-block
+  padding: 8px
+  border: 1px solid #313131
+  margin: 2px
+  margin-bottom: 15px
+
+.filterBtn:first-child
+  margin-left: 10%
+
+.filterBtn:focus
+  outline: 0
+
+.filterBtn:hover
+  background-color: #6FAFAF
+  color: white
+
+.selectedFilter
+  background-color: #6FAFAF
+  color: white
+
+.listViewTrail
+  padding: 2px 0px 5px 10px
+  background-color: #313131
+  color: white
+  margin: 3px 3%
+
+.listViewTrail:hover
+  background-color: #B8B3AF
+  cursor: pointer
+
+.listViewTrail:focus
+  outline: 0
+
+.listViewSide
+  margin: 3px 0 3px 3%
+  width: 57%
+
+.selectedListItem
+  background-color: #98939F
+
+.thumbnailImg
+  height: 50px
+  margin-top: 15%
+
+.list-sideBar
+  height: auto
+  margin-top: 19.5%
+  margin-left: 60%
+  width: 40%
+  background-color: white
+  padding: 15px
+
+.addBtn,
+.wishlistBtn
+  margin: 5px
+  padding: 5px
+  border: 0.5px solid #313131
+  display: inline-block
+
+.wishlistBtn:hover
+  background-color: #56C0DE
+  color: white
+
+.addBtn:hover
+  background-color: #337AB7
+  color: white
+
+.addBtn:focus,
+.wishlistBtn:focus
+  outline: 0
+
+.permit
+  display: inline-block
+  margin-right: 3px
+
+.tripPhoto
+  height: 90px
+  max-width: 100%
+  margin: 5px
+
+.tripPhoto:focus
+  border: 2px solid #313131
+  outline: 0
+
+.tripPhotoRow:nth-child(2)
+  margin-top: 15px
+
+.createTripView
+  width: 90%
+  margin: 0 auto
+  padding: 3%
+
+.asterisk
+  color: red
+
+.createTripBtn
+  margin-left: 85%
+
+.tripAdvice
+  display: block
+  margin: 10px auto
+
+.tripDescription
+  text-align: center
+
+.dropdownTrip
+  display: inline-block
+  margin: 10px
+
+.alert
+  display: inline-block
+
 
 

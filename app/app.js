@@ -52,8 +52,8 @@ app.config(function($routeProvider){
     resolve: {isAuth}
   })
   .when('/parks/trips/create', {
-    templateUrl: 'partials/CreateTripModal.html',
-    controller: 'CreateTripModalCtrl',
+    templateUrl: 'partials/CreateTripView.html',
+    controller: 'CreateTripViewCtrl',
     resolve: {isAuth}
   })
   .when('/parks/trip/:tripId', {

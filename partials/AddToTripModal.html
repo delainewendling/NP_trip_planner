@@ -4,30 +4,32 @@
 <div class="modal-body">
   <div class="col-xs-12">
     <!-- Dropdown to select trip -->
-    <div uib-dropdown is-open="status.isTripOpen">
-      <button id="single-button" type="button" class="btn btn-secondary" ng-disabled="disabled" ng-click="openTrips($event)">
+    <div uib-dropdown is-open="status.isTripOpen" class="dropdownTrip">
+      <button id="single-button" type="button" class="btn btn-primary" ng-disabled="disabled" ng-click="openTrips($event)">
         Choose Trip <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-        <li role="menuitem" ng-repeat="trip in trips" ng-click="getDaysAndLogTrip(trip.id)"><a ng-click="closeTrips()">{{trip.name}}</a></li>
+        <li role="menuitem" ng-repeat="trip in trips" ng-click="getDaysAndLogTrip(trip.id); showTripName(trip.name)"><a ng-click="closeTrips()">{{trip.name}}</a></li>
       </ul>
     </div>
     <!-- TODO: Add functionality to show chosen trip -->
-    <span> Selected Trip: </span>
+    <span ng-if="tripName"> <strong> Selected Trip: </strong> {{tripName}} </span>
   </div>
+  <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" ng-show="showTripAlert" close="closeTripAlert()">{{tripAlert.msg}}</div>
   <!-- Days of that particular trip -->
   <div class="col-xs-12">
-    <div uib-dropdown is-open="status.isDayOpen">
-      <button id="single-button" type="button" class="btn btn-secondary" ng-disabled="status.isDayDisabled" ng-click="openDays($event)">
+    <div uib-dropdown is-open="status.isDayOpen" class="dropdownTrip">
+      <button id="single-button" type="button" class="btn btn-primary" ng-disabled="status.isDayDisabled" ng-click="openDays($event)">
         Choose Day <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-        <li role="menuitem" ng-repeat="day in trip.days" ng-click="logDay(day.id)"><a ng-click="closeDays(day.startDate)">{{day.date}}</a></li>
+        <li role="menuitem" ng-repeat="day in trip.days" ng-click="logDay(day.id); getDay(day.date)"><a ng-click="closeDays(day.startDate)">{{day.date}}</a></li>
       </ul>
     </div>
     <!-- TODO: Add functionality to show chosen day -->
-    <span> Selected Day: </span>
+    <span ng-if="tripDay"> <strong> Selected Day: </strong> {{tripDay}} </span>
   </div>
+  <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" ng-show="showDayAlert" close="closeDayAlert()">{{dayAlert.msg}}</div>
   <!-- Any notes user wants to add about the trail -->
   <div class="col-xs-12 input-group">
     <label for="notes" class="col-form-label">Notes</label>
@@ -38,26 +40,4 @@
   <button class="btn btn-danger" ng-click="closeModal()">Close</button>
   <button class="btn btn-success" ng-click="addTrail()">Add Trail</button>
 </div>
-<!-- Start and End Times for Trail -->
-  <!-- <div class="col-xs-12">
-    <span> Start Time: </span>
-    <div uib-timepicker ng-model="startTime" ng-change="updateStart()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-    <span> End Time: </span>
-    <div uib-timepicker ng-model="endTime" ng-change="updateEnd()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-  </div> -->
-<!-- <img ng-src="{{trip.imgUrl}}" class="img-thumbnail img-responsive"> -->
-    <!-- Angular-Material Way -->
-  <!-- <div layout-align="center center" layout="column">
-    <h2 class="md-title">Trip</h2>
-    <md-menu>
-      <md-button ng-click="openMenu($mdOpenMenu, $event)" class="md-icon-button" >
-         <p md-menu-origin=''> Trips</p>
-      </md-button>
-      <md-menu-content width="4" ng-repeat="trip in trips">
-        <md-menu-item md-menu-align-target=''>
-          <md-button >
-            {{trip.name}}
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu> -->
+
