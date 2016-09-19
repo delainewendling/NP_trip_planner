@@ -15,6 +15,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     maxZoom: 18,
     minZoom: 8
   };
+  let trailMarkerId = 0;
+  let campgroundMarkerId = 0;
   //I want the sidebar to be closed when a marker hasn't been clicked
   $scope.beenClicked = false;
   $scope.campgroundBeenClicked = false;
@@ -37,6 +39,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   };
   $scope.showList=()=>{
     $scope.mapView = false;
+    $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
     $scope.closeSidebar();
     getWishlistTrails();
     inWishlist();
@@ -46,6 +49,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   $scope.filterTrails = (event, trailType)=>{
     $scope.map.center = {latitude: 37.8651, longitude: -119.5383};
     $scope.map.zoom = 10;
+    $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
+    $scope.markers[campgroundMarkerId].icon = '../images/campgroundIcon.png';
     //The sidebar should close if a different view is being selected.
     $scope.closeSidebar();
     $scope.selectedCampground = false;
@@ -123,6 +128,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   }
 
   $scope.showCampgrounds = ()=>{
+    $scope.map.center = {latitude: 37.8651, longitude: -119.5383};
+    $scope.map.zoom = 10;
     $scope.closeSidebar();
     $('.filterBtn').removeClass('selectedFilter');
     $scope.selectedCampground = true;
@@ -131,12 +138,14 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   };
 
   $scope.onClickCampgrounds = function(instance, event, marker) {
+    campgroundMarkerId = marker.id;
     $scope.map.center = {
         latitude: marker.latitude,
         longitude: marker.longitude
     };
     $scope.map.zoom = 11;
-    $scope.campground = $scope.campgroundsInfo[marker.id];
+    $scope.campgrounds[campgroundMarkerId].icon = '../images/starIcon.png';
+    $scope.campground = $scope.campgroundsInfo[campgroundMarkerId];
     showCampgroundInformation();
   };
 
@@ -162,11 +171,13 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //When a marker is clicked I want to make sure that the user does not add a trail to his/her wishlist when it has already been added.
   $scope.onClick = function(instance, event, marker) {
     $(".angular-google-map-container").addClass("newMap");
+    trailMarkerId = marker.id
     $scope.map.center = {
         latitude: marker.latitude,
         longitude: marker.longitude
     };
-    $scope.trailInfo = $scope.trailsInfo[marker.id];
+    $scope.trailInfo = $scope.trailsInfo[trailMarkerId];
+    $scope.markers[trailMarkerId].icon = '../images/starIcon.png';
     $scope.inWishlist = inWishlist(marker.name);
     showInformation();
   };
@@ -209,6 +220,10 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //Since each marker calls the onClick function it is difficult to open and close the sidebar by resetting the beenClicked property using clicks. Therefore, I created a button that will make the beenClicked property false so that the user can close the sidebar when he/she is done looking at trail information.
   $scope.closeSidebar = ()=>{
     $(".angular-google-map-container").removeClass("newMap");
+    $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
+    $scope.campgrounds[campgroundMarkerId].icon = '../images/campgroundIcon.png';
+    $scope.map.center = {latitude: 37.8651, longitude: -119.5383 };
+    $scope.map.zoom = 10;
     $scope.beenClicked = false;
     $scope.campgroundBeenClicked = false;
   };
