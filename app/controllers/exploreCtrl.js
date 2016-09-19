@@ -23,7 +23,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   $scope.campgroundBeenClicked = false;
   $scope.inWishlist = false;
   $scope.trailType = false;
-  $scope.selectedCampgound = false;
+  $scope.selectedCampground = false;
 
   //When a user navigates to the explore page they should be shown the top hikes on the map. Afterward they can navigate to other view using filters and the map and list view icons.
   getTrailInfo('bestHike');
@@ -168,6 +168,12 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $scope.inWishlist = inWishlist(trail.name);
     console.log("trailInfo", $scope.trailInfo);
   }
+
+  $scope.onListClickCampground = function(event, campground) {
+    console.log("camgrounds", $scope.campgroundsInfo[campground.id]);
+    $scope.campground = $scope.campgroundsInfo[campground.id];
+    $scope.campgroundBeenClicked = true;
+  };
 
   function inWishlist(trailName){
     let counter = 0;
