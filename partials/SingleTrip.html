@@ -1,5 +1,5 @@
 <section>
-  <div class="singleTripView">
+  <div class="singleTripView" style="background-color: {{trip.color}}; height: 100vh;">
   <!-- Add icons here -->
     <div class="row tripDetails">
       <div class="col-xs-offset-3 col-xs-2">
@@ -17,13 +17,13 @@
       </div>
     </div>
     <div class="col-xs-4">
-      <md-button class="md-primary md-raised tripAdvice" ng-click="openTempModal()"> Average Weather </md-button>
+      <button class="btn btn-default tripAdvice" ng-click="openTempModal()"> Average Weather </button>
     </div>
     <div class="col-xs-4">
-      <md-button class="md-accent md-raised tripAdvice" ng-click="openPackingModal()"> Suggested Packing List </md-button>
+      <button class="btn btn-default  tripAdvice" ng-click="openPackingModal()"> Suggested Packing List </button>
     </div>
     <div class="col-xs-4">
-      <md-button class="md-warn md-raised tripAdvice" ng-click="openWarningsModal()"> Before You Go </md-button>
+      <button class="btn btn-default  tripAdvice" ng-click="openWarningsModal()"> Before You Go </button>
     </div>
 <div class="row">
   <div ng-repeat="day in trip.days">

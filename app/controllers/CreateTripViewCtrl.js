@@ -10,7 +10,8 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
       endMonth,
       startMonthNumber,
       endMonthNumber,
-      tripPhoto;
+      tripPhoto,
+      color;
 
   $scope.startDate = null;
 
@@ -60,6 +61,11 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
     tripPhoto = imgUrl;
   }
 
+  $scope.setTripColor = (event, tripColor)=>{
+    $('.tripBackgroundColor').removeClass('selectedColor');
+    $(event.target).addClass('selectedColor');
+    color = tripColor;
+  }
   //The following are the properties on the trip object saved to firebase
   $scope.trip = {
       name: '',
@@ -92,6 +98,7 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
       $scope.trip.days = createDayArray();
       $scope.trip.imgUrl = tripPhoto;
       $scope.trip.uid = AuthFactory.getUserId();
+      $scope.trip.color = color;
       console.log("$scope.trip", $scope.trip);
       TripFactory.createTrip($scope.trip)
       .then(()=>{

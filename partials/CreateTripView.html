@@ -62,5 +62,15 @@
       </div>
     </div>
   </div>
+  <div>
+    <p> <strong> Trip Color </strong></p>
+    <span class="tripBackgroundColor blueBackground" ng-click="setTripColor($event, '#4D95E5')"></span>
+    <span class="tripBackgroundColor greenBackground" ng-click="setTripColor($event, '#4BBF6B')"></span>
+    <span class="tripBackgroundColor yellowBackground" ng-click="setTripColor($event, '#FFC72E')"></span>
+    <span class="tripBackgroundColor purpleBackground" ng-click="setTripColor($event, '#89609E')"></span>
+    <span class="tripBackgroundColor redBackground" ng-click="setTripColor($event, '#B04632')"></span>
+    <span class="tripBackgroundColor greyBackground" ng-click="setTripColor($event, '#83878D')"></span>
+    <span class="tripBackgroundColor whiteBackground" ng-click="setTripColor($event, '#FFF')"></span>
+  </div>
   <button class="btn btn-success createTripBtn" ng-show="{{!isEditing}}" ng-click="create()">Create Trip</button>
 </div>

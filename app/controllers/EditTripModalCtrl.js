@@ -58,7 +58,9 @@ app.controller('EditTripModalCtrl', function($scope, trip, $uibModalInstance, Tr
     $uibModalInstance.close();
   };
 
-  $scope.updateTripColor = (color)=>{
+  $scope.updateTripColor = (event, color)=>{
+    $('.tripBackgroundColor').removeClass('selectedColor');
+    $(event.target).addClass('selectedColor');
     $scope.trip.color = color;
 
   };
