@@ -30,6 +30,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
 
   //Boolean values to change what is shown on the screen when the user clicks the map and list view icons
   $scope.showMap=()=>{
+    $scope.closeSidebar();
+    $scope.map.control.refresh();
     $scope.mapView = true;
   };
   $scope.showList=()=>{
@@ -42,7 +44,6 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //The trail filters all call this function
   $scope.filterTrails = (event, trailType)=>{
     //The sidebar should close if a different view is being selected.
-    $scope.map.control.refresh();
     $scope.closeSidebar();
     $scope.selectedCampground = false;
     let target = event.target;
