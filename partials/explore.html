@@ -15,7 +15,10 @@
     <ui-gmap-google-map  center="map.center"
                     zoom="map.zoom"
                     options="options",
-                    bounds="map.bounds">
+                    bounds="map.bounds",
+                    control="map.control",
+                    ng-class="{newMap: beenClicked}"
+                    ng-cloak>
 
     <!-- Map markers here -->
       <ui-gmap-markers
@@ -54,11 +57,11 @@
 <section>
   <!-- Here is the sidebar with information about the trails in the list AND map view -->
   <div ng-show="beenClicked" class="sideBar" ng-cloak>
-    <div><button class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
-    <div><button class="btn btn-info wishlist" ng-click="addTrailToWishlist(trailInfo)" ng-show="!inWishlist" ng-cloak>Add to Wishlist</button></div>
-    <div ng-show="inWishlist" class="greyText" ng-cloak><i>Added to Wishlist</i></div>
-    <div><button class="btn btn-primary addToTrip" ng-click="addTrailToTrip(trailInfo)" ng-cloak>Add to Trip</button></div>
+    <span class="wishlist wishlistBtn" ng-click="addTrailToWishlist(trailInfo)" ng-show="!inWishlist" ng-cloak>Add to Wishlist</span>
+    <span ng-show="inWishlist" class="greyText" ng-cloak><i>Added to Wishlist</i></span>
+    <span class="addToTrip addBtn" ng-click="addTrailToTrip(trailInfo)" ng-cloak>Add to Trip </span>
     <!-- <div ng-show="!hasTrips" class="greyText" ng-cloak><i>Added to Wishlist</i></div> -->
+    <span><button class="btn btn-default close" ng-click="closeSidebar()">X</button></span>
     <h3 class="trailName"> {{trailInfo.name}} </h3>
     <img src="{{trailInfo.coverImgUrl}}" alt="Picture of {{trailInfo.name}}" class="trailImg img-responsive">
     <div class="col-xs-12">
@@ -85,10 +88,18 @@
          <strong>Elevation Gain: </strong> {{trailInfo.elevationGain}} ft.
       </div>
     </div>
-    <h4 class="whyVisit"> Why Visit? </h4>
-    <p> {{trailInfo.whyVisit}} </p>
-    <h4 ng-show="trailInfo.description"> Description </h4>
-    <p ng-show="trailInfo.description"> {{trailInfo.description}} </p>
+    <div>
+      <h4 class="whyVisit"> Why Visit? </h4>
+      <p> {{trailInfo.whyVisit}} </p>
+    </div>
+    <div>
+      <h4 ng-show="trailInfo.description"> Description </h4>
+      <p ng-show="trailInfo.description"> {{trailInfo.description}} </p>
+    </div>
+    <div>
+      <span ng-if='trailInfo.permit == "none"'> <h4 class="permit"> Permit: </h4><span>{{trailInfo.permit}}</span></span>
+      <span ng-if='trailInfo.permit != "none"'> <h4 class="permit"> Permit: </h4> Yes <a href="{{trailInfo.permit}}" target="_blank"> Click here to get a permit for this trail </a></span>
+    </div>
   </div>
 </div>
 <!-- Here is the sidebar about campground information -->
