@@ -23,6 +23,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   $scope.campgroundBeenClicked = false;
   $scope.inWishlist = false;
   $scope.trailType = false;
+  $scope.listTrailType = 'bestHike';
   $scope.selectedCampground = false;
 
   //When a user navigates to the explore page they should be shown the top hikes on the map. Afterward they can navigate to other view using filters and the map and list view icons.
@@ -45,6 +46,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //The trail filters all call this function
   $scope.filterTrails = (event, trailType)=>{
     //The sidebar should close if a different view is being selected.
+    console.log("what is the trail type?", trailType);
     $scope.closeSidebar();
     $scope.selectedCampground = false;
     let target = event.target;
@@ -53,6 +55,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $(target).addClass('selectedFilter');
     getTrailInfo(trailType);
     getCampgroundInfo(false);
+    $scope.listTrailType = trailType;
   };
 
   //I need to get the trail information from firebase and create objects that will provide the necessary information to create a marker for each trail. I also want to print information in the sidebar about each trail so I need to create an object for each trail with that information.

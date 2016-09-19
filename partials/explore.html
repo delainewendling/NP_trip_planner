@@ -29,9 +29,9 @@
 <!-- Here is the information in the list view -->
 <section ng-if="!mapView">
   <div ng-repeat="trail in trailsInfo" ng-show="!selectedCampground">
-    <div ng-class="{listViewTrail: true, listViewSide: beenClicked, row: true}" ng-click="onListClick($event, trail)">
+    <div ng-class="{listViewTrail: true, listViewSide: beenClicked, row: true}" ng-click="onListClick($event, trail)" ng-show="{{trail[listTrailType]}}">
       <div class="col-xs-2">
-        <img src="{{trail.coverImgUrl}}" class="thumbnailImg"> 
+        <img src="{{trail.coverImgUrl}}" class="thumbnailImg">
       </div>
       <div class="col-xs-10">
         <h3> {{trail.name}} </h3>
@@ -53,7 +53,7 @@
 </section>
 <section>
   <!-- Here is the sidebar with information about the trails in the list AND map view -->
-  <div ng-show="beenClicked" class="sideBar" ng-class="{list-sideBar: !mapView, sideBar: true}" ng-cloak>
+  <div ng-show="beenClicked" class="sideBar" ng-cloak>
     <div><button class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
     <div><button class="btn btn-info wishlist" ng-click="addTrailToWishlist(trailInfo)" ng-show="!inWishlist" ng-cloak>Add to Wishlist</button></div>
     <div ng-show="inWishlist" class="greyText" ng-cloak><i>Added to Wishlist</i></div>
@@ -92,7 +92,7 @@
   </div>
 </div>
 <!-- Here is the sidebar about campground information -->
-<div ng-show="campgroundBeenClicked" class="sideBar" ng-class="{list-sideBar: !mapView, sideBar: mapView}" ng-cloak>
+<div ng-show="campgroundBeenClicked" class="sideBar" ng-cloak>
     <div><button class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
     <div>
       <h3 class="trailName"> {{campground.name}} </h3>
