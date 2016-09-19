@@ -1,9 +1,19 @@
 <section>
   <div class="singleTripView">
   <!-- Add icons here -->
-    <div class="col-xs-12 tripInformation">
-      <h4> {{trip.name}} </h4>
-      <p> {{trip.description}} </p>
+    <div class="row">
+      <div class="col-xs-offset-3 col-xs-2">
+        <img src="{{trip.imgUrl}}" class="tripImg">
+      </div>
+      <div class="col-xs-3">
+        <h4> {{trip.name}} </h4>
+      </div>
+      <div class="col-xs-offset-2 col-xs-2">
+        <span class="deleteTrip" ng-click="openDeleteModal()"> Delete Trip <span class="glyphicon glyphicon-remove-circle"></span></span>
+      </div>
+      <div class="col-xs-12">
+        <p class="tripDescription"> {{trip.description}} </p>
+      </div>
     </div>
     <div class="col-xs-4">
       <md-button class="md-primary md-raised tripAdvice" ng-click="openTempModal()"> Average Weather </md-button>
@@ -13,9 +23,7 @@
     </div>
     <div class="col-xs-4">
       <md-button class="md-warn md-raised tripAdvice" ng-click="openWarningsModal()"> Before You Go </md-button>
-      <span class="deleteTrip" ng-click="openDeleteModal()"> Delete Trip <span class="glyphicon glyphicon-remove-circle"></span></span>
     </div>
-  <img src="{{trip.imgUrl}}" class="tripImg">
   <div ng-repeat="day in trip.days">
     <div class="clearfix" ng-if="$index % 3 == 0"></div>
       <div class="col-xs-4">

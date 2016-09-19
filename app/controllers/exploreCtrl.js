@@ -6,7 +6,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     center: {latitude: 37.8651, longitude: -119.5383 },
     zoom: 10,
     bounds: {},
-    control: {}
+    control: {},
+    pan: true
   };
   //The terrain view of the map should show up
   $scope.options = {
@@ -43,6 +44,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
 
   //The trail filters all call this function
   $scope.filterTrails = (event, trailType)=>{
+    $scope.map.center = {latitude: 37.8651, longitude: -119.5383};
+    $scope.map.zoom = 10;
     //The sidebar should close if a different view is being selected.
     $scope.closeSidebar();
     $scope.selectedCampground = false;
@@ -128,8 +131,11 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   };
 
   $scope.onClickCampgrounds = function(instance, event, marker) {
-    console.log("marker", marker);
-    console.log("camgrounds", $scope.campgrounds[marker.id]);
+    $scope.map.center = {
+        latitude: marker.latitude,
+        longitude: marker.longitude
+    };
+    $scope.map.zoom = 11;
     $scope.campground = $scope.campgroundsInfo[marker.id];
     showCampgroundInformation();
   };
@@ -156,6 +162,10 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //When a marker is clicked I want to make sure that the user does not add a trail to his/her wishlist when it has already been added.
   $scope.onClick = function(instance, event, marker) {
     $(".angular-google-map-container").addClass("newMap");
+    $scope.map.center = {
+        latitude: marker.latitude,
+        longitude: marker.longitude
+    };
     $scope.trailInfo = $scope.trailsInfo[marker.id];
     $scope.inWishlist = inWishlist(marker.name);
     showInformation();

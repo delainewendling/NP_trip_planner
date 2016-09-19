@@ -31,10 +31,16 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
       uid: trailObj.uid
   };
 
+  $scope.showTripName = (tripName)=>{
+    $scope.tripName = tripName;
+  }
+  $scope.getDay = (day)=>{
+    $scope.tripDay = day;
+  }
   //We need to get available days from the trip chosen in the dropdown menu
   $scope.getDaysAndLogTrip= (tripId)=>{
+    $scope.showTripAlert = false;
     $scope.trailObj.tripId = tripId;
-    console.log("trip id is: ", tripId);
     TripFactory.getSingleTrip(tripId)
     .then((tripData)=>{
       $scope.trip = tripData;
@@ -42,7 +48,7 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
   };
 
   $scope.logDay = (dayId)=>{
-    console.log("day id", dayId);
+    $scope.showDayAlert = false;
     $scope.trailObj.dayId= dayId;
 
   };
@@ -88,33 +94,30 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
     $scope.status.isDayOpen = false;
   };
 
-    // $scope.startTime = new Date(`${startDate} 7:00:00`);
-    // $scope.endTime = new Date(`${startDate} 7:00:00`);
-  //Want to set the hour step to one hour and minute step to 15 minutes
-  // $scope.hstep = 1;
-  // $scope.mstep = 15;
-
-  // $scope.ismeridian = true;
-  // $scope.toggleMode = function() {
-  //   $scope.ismeridian = !$scope.ismeridian;
-  // };
-
-  // $scope.updateStart = function() {
-  //   $scope.trailObj.startTime = $scope.startTime;
-  // };
-
-  // $scope.updateEnd = function() {
-  //   $scope.trailObj.endTime = $scope.endTime;
-  // };
-
+  $scope.showTripAlert = false;
+  $scope.showDayAlert = false;
   $scope.addTrail = ()=>{
-    TrailFactory.addTrailToTrip($scope.trailObj)
-    .then((trailData)=>{
-      console.log("successfully added trail to trip");
-      $scope.closeModal();
-    });
+    if ($scope.trailObj.tripId && $scope.trailObj.startDate){
+      TrailFactory.addTrailToTrip($scope.trailObj)
+      .then((trailData)=>{
+        console.log("successfully added trail to trip");
+        $scope.closeModal();
+      });
+    } else if (!$scope.trailObj.tripId){
+      $scope.showTripAlert = true;
+    } else if (!$scope.trailObj.startDate){
+      $scope.showDayAlert = true;
+    }
   };
 
+  $scope.tripAlert = { type: 'danger', msg: 'Make sure you choose a trip!' };
+  $scope.dayAlert = { type: 'danger', msg: 'Make sure you choose a day!' };
+  $scope.closeTripAlert = function() {
+    $scope.showTripAlert = false;
+  };
+  $scope.closeDayAlert = function() {
+    $scope.showDayAlert = false;
+  };
   //Closes Modal (nothing is saved)
   $scope.closeModal = () => {
     $uibModalInstance.close();
