@@ -1,16 +1,27 @@
+<div class="wishlistPic">
+  <h1 class="wishlistTitle"> Your Wishlist </h1>
+</div>
 <div class="container">
   <div ng-repeat="wishlist in wishlistItems">
     <div class="clearfix" ng-if="$index % 4 == 0"></div>
-      <div class="col-xs-3 wishlistCard">
-        <div ng-click="viewItem(wishlist.id)">
-            <h3> {{wishlist.name}} </h3>
+      <div class="row wishlistCard">
+        <div class="col-xs-2">
+          <img src="{{wishlist.coverImgUrl}}" alt="Picture of {{wishlist.name}}" class="thumbnailImg">
         </div>
-        <div ng-if="(showMoreInfo === wishlist.id)">
-          <h5>{{wishlist.park}}</h5>
-          <img src="{{wishlist.coverImgUrl}}" alt="Picture of {{wishlist.name}}" class="wishlistImg">
-          <!-- <p> <strong> Description: </strong>{{wishlist.description}} </p> -->
+        <div class="col-xs-4">
+          <h3> {{wishlist.name}} </h3>
         </div>
-        <button class="btn btn-primary" ng-click="addToTrip(wishlist)">Add to trip</button>
-        <button class="btn btn-danger" ng-click="wishlistDelete(wishlist.fbId)">X</button>
+        <div class="col-xs-3 wishlistDetails">
+          <p> {{wishlist.distance}} </p>
+        </div>
+        <div class="col-xs-2 wishlistDetails">
+          <button class="btn btn-secondary" ng-click="addToTrip(wishlist)">Add to trip</button>
+        </div>
+        <div class="col-xs-1">
+          <div class="deleteWishlist">
+            <span class="glyphicon glyphicon-trash" ng-click="wishlistDelete(wishlist.fbId)"></span>
+          </div>
+        </div>
       </div>
+    </div>
   </div>

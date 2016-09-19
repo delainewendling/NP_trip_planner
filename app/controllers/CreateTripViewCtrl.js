@@ -20,6 +20,7 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
 
   $scope.updateEndDate = ()=>{
     console.log("hello - start date", $scope.startDate);
+    $scope.endDate = $scope.startDate;
     $scope.minEndDate = $scope.startDate;
   };
 
