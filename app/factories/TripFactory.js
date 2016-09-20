@@ -56,6 +56,18 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
     });
   };
 
+  let updateTrip = (tripId, patchedTrip)=>{
+    return $q((resolve, reject)=>{
+      $http.patch(`${FirebaseURL}trips/${tripId}.json`, JSON.stringify(patchedTrip))
+      .success((tripData)=>{
+        resolve(tripData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
   let deleteTrailFromTrip = (trailId)=>{
     return $q((resolve, reject)=>{
       $http.delete(`${FirebaseURL}trails/${trailId}.json`)
@@ -140,5 +152,5 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
     });
   };
 
-  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem};
+  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem};
 });

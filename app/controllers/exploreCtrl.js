@@ -138,6 +138,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   };
 
   $scope.onClickCampgrounds = function(instance, event, marker) {
+    $scope.campgrounds[campgroundMarkerId].icon = '../images/campgroundIcon.png';
     campgroundMarkerId = marker.id;
     $scope.map.center = {
         latitude: marker.latitude,
@@ -171,6 +172,7 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //When a marker is clicked I want to make sure that the user does not add a trail to his/her wishlist when it has already been added.
   $scope.onClick = function(instance, event, marker) {
     $(".angular-google-map-container").addClass("newMap");
+    $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
     trailMarkerId = marker.id
     $scope.map.center = {
         latitude: marker.latitude,

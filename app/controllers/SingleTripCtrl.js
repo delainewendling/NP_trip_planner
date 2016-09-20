@@ -42,6 +42,16 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       });
     };
 
+    $scope.openEditTripModal = ()=>{
+      let modalInstance = $uibModal.open({
+      templateUrl: 'partials/EditTripModal.html',
+      controller: 'EditTripModalCtrl',
+      resolve: {
+        trip: $scope.trip
+      }
+      });
+    };
+
     //Opens a modal to make sure the user really wants to delete the trip
     $scope.openDeleteModal = ()=>{
       let modalInstance = $uibModal.open({
