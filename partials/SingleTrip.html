@@ -1,5 +1,5 @@
 <section>
-  <div class="singleTripView" style="background-color: {{trip.color}}; height: 100vh;">
+  <div class="singleTripView" style="background-color: {{trip.color}}; height: 100%;">
   <!-- Add icons here -->
     <div class="row tripDetails">
       <div class="col-xs-offset-3 col-xs-2">
@@ -63,7 +63,7 @@
                   dnd-draggable="note"
                   dnd-moved="notes.splice($index, 1)"
                   dnd-effect-allowed="move"
-                  dnd-selected="notes.selected = note"
+                  dnd-selected="selected = note"
                   ng-class="{'selected': selected === note}"
                   class="activityCard"
                   ng-mouseenter="optionsNote=true" ng-mouseleave="optionsNote=false"
@@ -71,7 +71,8 @@
                 <textarea type="text" ng-model="note.text" class="activityInput" value="{{note.text}}" ng-keypress="updateNote($event, note.id, note.text); blurInput($event)" focus-me="focusInput">
                 </textarea>
                 <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="optionsNote" ng-click="deleteNoteFromTrip(note.id)"></span>
-              </li>
+             </li>
+              <li class="dndPlaceholder"></li>
             </ul>
         </div>
         <div class="addActivity" ng-click="addNote(day.id); focusInput=true"> Add Note or Activity...
