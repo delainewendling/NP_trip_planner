@@ -11,8 +11,8 @@
       <button class="btn btn-default  tripAdvice" ng-click="openWarningsModal()"> Before You Go </button>
     </div>
     <div class="col-xs-offset-1 col-xs-2 tripDetails">
-      <span class="glyphicon glyphicon-pencil editTrip" ng-click="openEditTripModal()"></span>
-      <span class="deleteTrip" ng-click="openDeleteModal()"> Delete Trip <span class="glyphicon glyphicon-remove-circle"></span></span>
+      <span tooltip-placement="top" uib-tooltip="Edit Trip" class="glyphicon glyphicon-pencil editTrip" ng-click="openEditTripModal()"></span>
+      <span tooltip-placement="top" uib-tooltip="Delete Trip" ng-click="openDeleteModal()"> <span class="glyphicon glyphicon-remove-circle deleteTripIcon"></span></span>
     </div>
   </div>
   <!-- Add icons here -->
@@ -54,7 +54,7 @@
                   <p> <strong> Est. Time: </strong> {{trail.estTime}} </p>
                   <p> <strong> Elevation Gain: </strong> {{trail.elevationGain}} </p>
                   <label for="trailNotes" class="trailNote"> Notes: </label>
-                  <textarea type="text" id="trailNotes" class="activityInput" ng-model="trail.notes" value="{{trail.notes}}" ng-keypress="updateTrailNote($event, trail.id, trail.notes); blurInput($event)"></textarea>
+                  <textarea tooltip-placement="right" uib-tooltip="Delete Trail From Trip" type="text" id="trailNotes" class="activityInput" ng-model="trail.notes" value="{{trail.notes}}" ng-keypress="updateTrailNote($event, trail.id, trail.notes); blurInput($event)"></textarea>
                   <span class="glyphicon glyphicon-trash deleteTrailIcon" ng-show="optionsTrail" ng-click="deleteTrailFromTrip(trail.id)"></span>
                 </span>
               </li>
@@ -70,9 +70,9 @@
                   class="activityCard"
                   ng-mouseenter="optionsNote=true" ng-mouseleave="optionsNote=false"
                   >
-                <textarea type="text" ng-model="note.text" class="activityInput" value="{{note.text}}" ng-keypress="updateNote($event, note.id, note.text); blurInput($event)" focus-me="focusInput">
+                <textarea type="text" ng-model="note.text" class="activityInput" value="{{note.text}}" id="noteInput" ng-keypress="updateNote($event, note.id, note.text); blurInput($event)" focus-me="focusInput">
                 </textarea>
-                <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="optionsNote" ng-click="deleteNoteFromTrip(note.id)"></span>
+                <span tooltip-placement="right" uib-tooltip="Delete Note" class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="optionsNote" ng-click="deleteNoteFromTrip(note.id)"></span>
              </li>
               <li class="dndPlaceholder"></li>
             </ul>
