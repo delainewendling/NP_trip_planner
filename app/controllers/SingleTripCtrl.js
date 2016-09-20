@@ -134,13 +134,11 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     };
 
     $scope.updateTrailNote = (event, trailId, text)=>{
-      if (event.charCode == 13) {
-        let textPatch = { notes: text };
-        TrailFactory.updateTrailNote(textPatch, trailId)
-        .then(()=>{
-          console.log("patched!", textPatch);
-        })
-      }
+      let textPatch = { notes: text };
+      TrailFactory.updateTrailNote(textPatch, trailId)
+      .then(()=>{
+        console.log("patched!", textPatch);
+      });
     };
 
     $scope.addNote= (dayId)=>{
@@ -161,12 +159,23 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     };
 
     $scope.updateNote = (event, noteId, text)=>{
+      let textPatch = { text };
+      NoteFactory.updateNote(textPatch, noteId)
+      .then(()=>{
+        console.log(textPatch);
+      })
+    };
+
+    $scope.enterNote = (event, noteId, text)=>{
+      let textPatch = { text };
       if (event.charCode == 13) {
         $scope.blurInput(event);
+        NoteFactory.updateNote(textPatch, noteId)
+        .then(()=>{
+          console.log(textPatch);
+        })
       }
-      let textPatch = { text };
-      NoteFactory.updateNote(textPatch, noteId);
-    };
+    }
 
     //This takes the focus off of a note after hitting enter.
     $scope.blurInput = (event)=>{

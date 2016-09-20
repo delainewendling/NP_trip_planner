@@ -54,7 +54,7 @@
                   <p> <strong> Est. Time: </strong> {{trail.estTime}} </p>
                   <p> <strong> Elevation Gain: </strong> {{trail.elevationGain}} </p>
                   <label for="trailNotes" class="trailNote"> Notes: </label>
-                  <textarea tooltip-placement="right" uib-tooltip="Delete Trail From Trip" type="text" id="trailNotes" class="activityInput" ng-model="trail.notes" value="{{trail.notes}}" ng-keypress="updateTrailNote($event, trail.id, trail.notes); blurInput($event)"></textarea>
+                  <textarea tooltip-placement="right" uib-tooltip="Delete Trail From Trip" type="text" id="trailNotes" class="activityInput" ng-model="trail.notes" value="{{trail.notes}}" ng-keyup="updateTrailNote($event, trail.id, trail.notes)" ng-keydown="blurInput($event)"></textarea>
                   <span class="glyphicon glyphicon-trash deleteTrailIcon" ng-show="optionsTrail" ng-click="deleteTrailFromTrip(trail.id)"></span>
                 </span>
               </li>
@@ -70,7 +70,7 @@
                   class="activityCard"
                   ng-mouseenter="optionsNote=true" ng-mouseleave="optionsNote=false"
                   >
-                <textarea type="text" ng-model="note.text" class="activityInput" value="{{note.text}}" id="noteInput" ng-keypress="updateNote($event, note.id, note.text); blurInput($event)" focus-me="focusInput">
+                <textarea type="text" ng-model="note.text" class="activityInput" value="{{note.text}}" id="noteInput" ng-keyup="updateNote($event, note.id, note.text)" ng-keydown="enterNote($event, note.id, note.text)" focus-me="focusInput">
                 </textarea>
                 <span tooltip-placement="right" uib-tooltip="Delete Note" class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="optionsNote" ng-click="deleteNoteFromTrip(note.id)"></span>
              </li>
