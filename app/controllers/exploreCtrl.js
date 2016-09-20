@@ -97,10 +97,10 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   }
 
   function getCampgroundInfo (showCampground){
-  TrailFactory.getCampgroundInfo()
-  .then((campgroundInfo)=>{
-    Object.keys(campgroundInfo).forEach((key)=>{
-      campgroundInfo[key].id = key;
+    TrailFactory.getCampgroundInfo()
+    .then((campgroundInfo)=>{
+      Object.keys(campgroundInfo).forEach((key)=>{
+        campgroundInfo[key].id = key;
       });
       setCampgroundMarkers(campgroundInfo.campgrounds, showCampground);
       setCampgroundInfo(campgroundInfo.campgrounds)
@@ -192,7 +192,6 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   }
 
   $scope.onListClickCampground = function(event, campground) {
-    console.log("camgrounds", $scope.campgroundsInfo[campground.id]);
     $scope.campground = $scope.campgroundsInfo[campground.id];
     $scope.campgroundBeenClicked = true;
   };

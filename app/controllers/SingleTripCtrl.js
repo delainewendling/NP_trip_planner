@@ -1,14 +1,59 @@
 "use strict";
 
-app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, NoteFactory, $uibModal){
+app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, ActivityFactory, $uibModal){
 
   //This is where the trails that have been added to this trip are located.
-  $scope.trails = [];
+  // $scope.trails = [];
 
-    TripFactory.getSingleTrip($routeParams.tripId)
-    .then((tripData)=>{
-      $scope.trip = tripData;
+  getActivitiesForTrip();
+  function getActivitiesForTrip (){
+    console.log("running?");
+    ActivityFactory.getActivities($routeParams.tripId)
+    .then((activityData)=>{
+      console.log("activityData", activityData);
+      $scope.activities = activityData;
+      $scope.$watch('activities', function handleActivityIndexChange(newValue, oldValue) {
+        ActivityFactory.updateAllActivitiesInView($scope.activities);
+      }, true);
+      $scope.$watch('activities.dayId', function handleActivityIndexChange(newValue, oldValue) {
+        console.log('newValue', newValue);
+        // ActivityFactory.updateAllActivitiesInView($scope.activities);
+      }, true);
     });
+  }
+
+  $scope.checkDayId = function(day) {
+    console.log('day id is:', day.id);
+  };
+
+  $scope.dragoverCallback = function(event, index, dayId) {
+    console.log('dragged over', event, index, dayId);
+    // Disallow dropping in the third row. Could also be done with dnd-disable-if.
+  };
+
+ $scope.addNote = (dayId)=>{
+    //Need to create a noteObj to add to Firebase. Even though there is no text in this note the note instance needs to be added so that the user is updating the note when pressing enter rather than creating a whole new note everytime the enter key is pressed.
+    var noteObj = {
+      text: '',
+      dayId,
+      tripId: $routeParams.tripId,
+      type: 'note'
+    };
+    //A new note needs to be added to $scope.notes so that the user sees a card show up on the screen. This instance of the note will be replaced with the note in firebase when the user navigates away from this page.
+    //The note is added to firebase
+    ActivityFactory.addActivity(noteObj)
+    .then((note)=>{
+      console.log("added note!", note.name);
+        let newNote = noteObj;
+        newNote.id = note.name;
+        $scope.activities.push(newNote);
+    });
+  };
+
+  TripFactory.getSingleTrip($routeParams.tripId)
+  .then((tripData)=>{
+    $scope.trip = tripData;
+  });
 
     //Modal Views for user advice
     $scope.openTempModal = ()=>{
@@ -59,73 +104,8 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       });
     };
 
-    showNotes();
-    showTrails();
-    $scope.notes = [];
-
-    function showNotes(){
-      NoteFactory.getNotes($routeParams.tripId)
-      .then((noteData)=>{
-        Object.keys(noteData).forEach((key)=>{
-          noteData[key].id =key;
-          $scope.notes.push(noteData[key]);
-        });
-        addNotesToNotes($scope.notes);
-      });
-    }
-
-    function addNotesToNotes(notes){
-      Object.keys(notes).forEach((key)=>{
-        $scope.notes.push({
-          text: notes[key].text,
-          day: notes[key].dayId,
-          id: notes[key].id,
-          wishlist: false
-        });
-      });
-    }
-
-    function showTrails(){
-      TrailFactory.getTrailsInTrip($routeParams.tripId)
-      .then((trailData)=>{
-        let trails = [];
-        Object.keys(trailData).forEach((key)=>{
-          trailData[key].id =key;
-          trails.push(trailData[key]);
-        });
-        addTrailsToTrailsArr(trails);
-      });
-    }
-
-    function addTrailsToTrailsArr(trails){
-      Object.keys(trails).forEach((key)=>{
-        $scope.trails.push({
-          name: trails[key].name,
-          dayId: trails[key].dayId,
-          id: trails[key].id,
-          distance: trails[key].distance,
-          estTime: trails[key].estTime,
-          elevationGain: trails[key].elevationGain,
-          difficulty: trails[key].difficulty,
-          startTime: trails[key].startTime,
-          endTime: trails[key].endTime,
-          notes: trails[key].notes,
-          wishlist: true
-        });
-      });
-    }
-
-    $scope.deleteTrailFromTrip = (trailId)=>{
-      TripFactory.deleteTrailFromTrip(trailId)
-      .then(()=>{
-        console.log("successfully deleted");
-        //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
-        $route.reload();
-      });
-    };
-
-    $scope.deleteNoteFromTrip = (noteId)=>{
-      NoteFactory.deleteNoteFromTrip(noteId)
+    $scope.deleteActivityFromTrip = (activityId)=>{
+      ActivityFactory.deleteActivityFromTrip(activityId)
       .then(()=>{
         console.log("successfully deleted");
         //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
@@ -135,32 +115,15 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
 
     $scope.updateTrailNote = (event, trailId, text)=>{
       let textPatch = { notes: text };
-      TrailFactory.updateTrailNote(textPatch, trailId)
+      ActivityFactory.updateActivity(textPatch, trailId)
       .then(()=>{
         console.log("patched!", textPatch);
       });
     };
 
-    $scope.addNote= (dayId)=>{
-      //Need to create a noteObj to add to Firebase. Even though there is no text in this note the note instance needs to be added so that the user is updating the note when pressing enter rather than creating a whole new note everytime the enter key is pressed.
-      var noteObj = {
-        text: '',
-        day: dayId,
-        tripId: $routeParams.tripId
-      };
-      //A new note needs to be added to $scope.notes so that the user sees a card show up on the screen. This instance of the note will be replaced with the note in firebase when the user navigates away from this page.
-      //The note is added to firebase
-      NoteFactory.addNote(noteObj)
-      .then((note)=>{
-        let newNote = noteObj;
-        newNote.id = note.name;
-        $scope.notes.push(newNote);
-      });
-    };
-
     $scope.updateNote = (event, noteId, text)=>{
       let textPatch = { text };
-      NoteFactory.updateNote(textPatch, noteId)
+      ActivityFactory.updateActivity(textPatch, noteId)
       .then(()=>{
         console.log(textPatch);
       })
@@ -170,7 +133,7 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       let textPatch = { text };
       if (event.charCode == 13) {
         $scope.blurInput(event);
-        NoteFactory.updateNote(textPatch, noteId)
+        ActivityFactory.updateActivity(textPatch, noteId)
         .then(()=>{
           console.log(textPatch);
         })
