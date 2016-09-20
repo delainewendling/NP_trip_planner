@@ -31,7 +31,6 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
      return $q((resolve, reject)=>{
       $http.get(`${FirebaseURL}/wishlist.json?orderBy="uid"&equalTo="${userId}"`)
       .success((trailData)=>{
-        console.log("trail data", trailData);
         resolve(trailData);
       })
       .error((error)=>{

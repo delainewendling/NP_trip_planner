@@ -18,11 +18,12 @@ app.factory("WishlistFactory", function($q, $http, FirebaseURL, AuthFactory){
 
   let addToWishlist = (trailObj)=>{
     return $q((resolve,reject)=>{
-      $http.post(`${FirebaseURL}/wishlist.json`, JSON.stringify(trailObj))
+      $http.post(`${FirebaseURL}wishlist.json`, angular.toJson(trailObj))
       .success((trailData)=>{
         resolve(trailData);
       })
       .error((error)=>{
+        console.log(error);
         reject(error);
       });
     });

@@ -20,7 +20,6 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
   $scope.minStartDate = new Date();
 
   $scope.updateEndDate = ()=>{
-    console.log("hello - start date", $scope.startDate);
     $scope.endDate = $scope.startDate;
     $scope.minEndDate = $scope.startDate;
   };
@@ -99,7 +98,6 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
       $scope.trip.imgUrl = tripPhoto;
       $scope.trip.uid = AuthFactory.getUserId();
       $scope.trip.color = color;
-      console.log("$scope.trip", $scope.trip);
       TripFactory.createTrip($scope.trip)
       .then(()=>{
         $scope.trip = {};

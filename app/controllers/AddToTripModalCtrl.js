@@ -80,8 +80,6 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
 
   //Closes the Trips dropdown
   $scope.closeTrips = function() {
-    console.log("closing?", $scope.status.isTripOpen);
-    //not working
     $scope.status.isTripOpen = false;
     //working
     $scope.status.isDayDisabled = false;
@@ -90,7 +88,6 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
   //Closes the days dropdown
   $scope.closeDays = function(startDate) {
     $scope.trailObj.startDate = startDate;
-    console.log("what is the start date?", startDate);
     $scope.status.isDayOpen = false;
   };
 
