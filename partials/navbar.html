@@ -22,6 +22,7 @@
         <li uib-dropdown on-toggle="toggled(open)" ng-show="$parent.isLoggedIn">
             <a href id="simple-dropdown" uib-dropdown-toggle ng-click="getTrips()" ng-class="{'selected':$parent.trips}"> Trips <span class="caret"></span></a>
           <ul class="dropdown-menu tripsMenu" uib-dropdown-menu>
+          <li ng-show="trips.length === 0" class="tripMsg" ng-cloak> No Trips Yet. <a href="#/parks/trips/create"> Plan a Trip </a> </li>
             <li ng-repeat="trip in trips"><a href='#/parks/trip/{{trip.id}}'>{{trip.name}}</a></li>
           </ul>
         </li>
