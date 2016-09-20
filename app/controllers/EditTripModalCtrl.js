@@ -13,13 +13,13 @@ app.controller('EditTripModalCtrl', function($scope, trip, $uibModalInstance, Tr
     description: trip.description,
     startDate: new Date(trip.startDate),
     endDate: new Date(trip.endDate),
-    color: ''
+    color: trip.color
   }
 
   $scope.minStartDate = $scope.trip.startDate;
 
   $scope.updateEndDate = ()=>{
-    console.log("hello - start date", $scope.startDate);
+    $scope.endDat = $scope.startDate;
     $scope.minEndDate = $scope.trip.startDate;
   };
 
@@ -58,10 +58,10 @@ app.controller('EditTripModalCtrl', function($scope, trip, $uibModalInstance, Tr
     $uibModalInstance.close();
   };
 
-  $scope.updateTripColor = (event, color)=>{
+  $scope.updateTripColor = (event, newColor)=>{
     $('.tripBackgroundColor').removeClass('selectedColor');
     $(event.target).addClass('selectedColor');
-    $scope.trip.color = color;
+    $scope.trip.color = newColor;
 
   };
 
@@ -75,12 +75,10 @@ app.controller('EditTripModalCtrl', function($scope, trip, $uibModalInstance, Tr
     $scope.trip.startMilliseconds = startMilliseconds;
     $scope.trip.endMilliseconds = endMilliseconds;
     $scope.trip.days = days;
-    console.log("what's the trip now", $scope.trip);
     TripFactory.updateTrip($routeParams.tripId, $scope.trip)
     .then((tripData)=>{
       $scope.close();
       $route.reload();
-      console.log("updatedTrip!", tripData);
     });
   };
 

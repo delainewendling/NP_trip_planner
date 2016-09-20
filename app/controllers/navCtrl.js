@@ -3,10 +3,7 @@
 app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, $window){
 
   $scope.logout = function(){
-    AuthFactory.logoutUser()
-    .then(()=>{
-      console.log("user logged out");
-    });
+    AuthFactory.logoutUser();
   };
 
   firebase.auth().onAuthStateChanged(function(user){
@@ -31,13 +28,8 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
     });
   }
 
-
   $scope.status = {
     isTripOpen: false
-  };
-
-  $scope.toggled = function(open) {
-    console.log('Dropdown is now: ', open);
   };
 
   $scope.toggleDropdown = function($event) {

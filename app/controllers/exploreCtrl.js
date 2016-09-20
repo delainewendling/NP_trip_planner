@@ -84,7 +84,8 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         icon: '../images/hikerLogo.png',
         name: trail.name,
         options: {
-          visible: trail[trailType]
+          visible: trail[trailType],
+          title: trail.name
         }
       });
     });
@@ -93,7 +94,6 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //Putting the array of trails on the scope.
   function setTrailInfo(trails){
     $scope.trailsInfo = trails;
-    console.log("trail info", $scope.trailsInfo);
   }
 
   function getCampgroundInfo (showCampground){
@@ -159,7 +159,6 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   function getWishlistTrails () {
     TrailFactory.getTrailsFromWishlist(AuthFactory.getUserId())
     .then((trailData)=>{
-      console.log("what are the wishlist trails?", trailData);
       //I want to create an array of trail names from the wishlist so that I can compare the names in the wishlist to the names on the markers and see if that trail has been added to the wishlist of not.
       Object.keys(trailData).forEach((key)=>{
         $scope.trailNames.push(trailData[key].name);
@@ -185,13 +184,11 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   };
 
   $scope.onListClick = (event, trail)=>{
-    console.log("trail clicked", trail);
     $('.selectedListItem').removeClass('selectedListItem');
     $(event.currentTarget).addClass('selectedListItem');
     $scope.trailInfo = $scope.trailsInfo[trail.id];
     $scope.beenClicked = true;
     $scope.inWishlist = inWishlist(trail.name);
-    console.log("trailInfo", $scope.trailInfo);
   }
 
   $scope.onListClickCampground = function(event, campground) {
@@ -233,7 +230,6 @@ app.controller("ExploreCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   $scope.addTrailToWishlist = (trailInfo)=>{
     let userId = AuthFactory.getUserId();
     trailInfo.uid = userId;
-    console.log("trail info", trailInfo);
     WishlistFactory.addToWishlist(trailInfo)
     .then((trailData)=>{
       $scope.closeSidebar();

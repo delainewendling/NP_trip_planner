@@ -18,10 +18,8 @@ app.controller('AverageTempModalCtrl', function($scope, $uibModalInstance, TripF
 
   function tripMonths (){
     if (startMonthId === endMonthId){
-      console.log("same month", startMonthId, endMonthId);
       getAverageTempForMonth(startMonthId);
     } else {
-      console.log("not the same start and end month");
       var startMonth = parseInt(startMonthId,10);
       var endMonth = parseInt(endMonthId,10);
       if (startMonth < endMonth){

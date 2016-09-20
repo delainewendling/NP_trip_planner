@@ -12,7 +12,6 @@ app.controller("WishlistCtrl", function($scope, WishlistFactory, $uibModal, $mdD
         wishlist[key].fbId = key;
         $scope.wishlistItems.push(wishlist[key]);
       });
-      console.log("we got the wishlist", $scope.wishlistItems);
     });
   }
 
@@ -26,7 +25,6 @@ app.controller("WishlistCtrl", function($scope, WishlistFactory, $uibModal, $mdD
   $scope.wishlistDelete = (itemId)=>{
     WishlistFactory.deleteWishlistItem(itemId)
     .then(()=>{
-      console.log("item deleted");
       showWishlistItems();
     });
   };

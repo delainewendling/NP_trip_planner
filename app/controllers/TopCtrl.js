@@ -11,7 +11,6 @@ app.controller("TopCtrl", function($scope, $window, $route){
       $route.reload();
     } else {
       currentUser = null;
-      console.log("no user from event listener");
       $scope.isLoggedIn = false;
       $window.location.href = '#/';
     }
@@ -25,7 +24,6 @@ app.controller("TopCtrl", function($scope, $window, $route){
     $scope.plan = false;
 
     if ($window.location.href == '#/parks/explore'){
-      console.log("explore!");
       $scope.explore = true;
       $scope.wishlist = false;
       $scope.plan = false;

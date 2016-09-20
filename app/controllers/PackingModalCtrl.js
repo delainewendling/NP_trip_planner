@@ -16,7 +16,6 @@ app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFacto
     $scope.isAdding = true;
   };
   $scope.addItem = (content)=>{
-    console.log("content", content);
     let newItem = {
       tripId: $routeParams.tripId,
       item: content,
@@ -39,7 +38,6 @@ app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFacto
           packingData[key].id = key;
           $scope.items.push(packingData[key]);
         });
-        console.log("items", $scope.items);
       } else {
         //If the user doesn't have a packing list then one needs to be created.
         console.log("there is no packing data");
@@ -86,10 +84,7 @@ app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFacto
           packingList[key].topack.forEach((item)=>{
             item.tripId = $routeParams.tripId;
             item.packed = false;
-            TripFactory.addItemToPackingList(item)
-            .then((key)=>{
-              console.log("key?", key);
-            });
+            TripFactory.addItemToPackingList(item);
           });
         });
         doesUserHavePackingList();

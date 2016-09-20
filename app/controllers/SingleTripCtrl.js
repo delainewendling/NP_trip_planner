@@ -2,12 +2,11 @@
 
 app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, NoteFactory, $uibModal){
 
-  //This is where the trails that have been added to this trip are located. 
+  //This is where the trails that have been added to this trip are located.
   $scope.trails = [];
 
     TripFactory.getSingleTrip($routeParams.tripId)
     .then((tripData)=>{
-      console.log("trip data", tripData);
       $scope.trip = tripData;
     });
 
@@ -67,7 +66,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     function showNotes(){
       NoteFactory.getNotes($routeParams.tripId)
       .then((noteData)=>{
-        console.log("note data", noteData);
         Object.keys(noteData).forEach((key)=>{
           noteData[key].id =key;
           $scope.notes.push(noteData[key]);
@@ -85,7 +83,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
           wishlist: false
         });
       });
-      console.log("notes", $scope.notes);
     }
 
     function showTrails(){
@@ -101,7 +98,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     }
 
     function addTrailsToTrailsArr(trails){
-      console.log("trails", trails);
       Object.keys(trails).forEach((key)=>{
         $scope.trails.push({
           name: trails[key].name,
@@ -117,7 +113,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
           wishlist: true
         });
       });
-      console.log("activities", $scope.trails);
     }
 
     $scope.deleteTrailFromTrip = (trailId)=>{
@@ -126,7 +121,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
         console.log("successfully deleted");
         //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
         $route.reload();
-        // showTrails();
       });
     };
 
@@ -136,18 +130,13 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
         console.log("successfully deleted");
         //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
         $route.reload();
-        // showTrails();
       });
     };
 
     $scope.updateTrailNote = (event, trailId, text)=>{
       if (event.charCode == 13) {
-        console.log("note will be updated", trailId);
         let textPatch = { notes: text };
-        TrailFactory.updateTrailNote(textPatch, trailId)
-        .then((note)=>{
-          console.log("updated trail note!");
-        });
+        TrailFactory.updateTrailNote(textPatch, trailId);
       }
     };
 
@@ -162,21 +151,16 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       //The note is added to firebase
       NoteFactory.addNote(noteObj)
       .then((note)=>{
-        console.log("added note!", note.name);
-          let newNote = noteObj;
-          newNote.id = note.name;
-          $scope.notes.push(newNote);
+        let newNote = noteObj;
+        newNote.id = note.name;
+        $scope.notes.push(newNote);
       });
     };
 
     $scope.updateNote = (event, noteId, text)=>{
       if (event.charCode == 13) {
-        console.log("note will be updated", noteId);
         let textPatch = { text };
-        NoteFactory.updateNote(textPatch, noteId)
-        .then((note)=>{
-          console.log("updated note!");
-        });
+        NoteFactory.updateNote(textPatch, noteId);
       }
     };
 
@@ -187,16 +171,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
         target.blur();
       }
     };
-
-    // $scope.autoExpand = function(e) {
-    //     var element = typeof e === 'object' ? e.target : document.getElementById(e);
-    //     var scrollHeight = element.scrollHeight -60; // replace 60 by the sum of padding-top and padding-bottom
-    //     element.style.height =  scrollHeight + "px";
-    // };
-
-    // function expand() {
-    //   $scope.autoExpand('TextArea');
-    // }
 
 });
 
