@@ -76,7 +76,7 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
   };
   //A trip is created and added to firebase using the create button
   $scope.create = () => {
-    //Make sure the trip has a name! Otherwise, a trip will be created and 
+    //Make sure the trip has a name! Otherwise, a trip will be created and now show up in the dropdown menu
     if ($scope.trip.name !== ""){
       startMonth = moment($scope.startDate).format('MMMM');
       endMonth = moment($scope.endDate).format('MMMM');
@@ -99,10 +99,11 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
       $scope.trip.uid = AuthFactory.getUserId();
       $scope.trip.color = color;
       TripFactory.createTrip($scope.trip)
-      .then(()=>{
-        $scope.trip = {};
-        $window.location.href = '#/parks/explore';
-      });
+      .then((tripData)=>{
+        //The double quotes around the trip id are messing up the routing so I needed to replace any double quotes with nothing
+        let tripId = tripData.name.replace('"', "");
+        $window.location.href = `#/parks/trip/${tripId}`;
+      })
     } else {
       $scope.showAlert = true;
     }

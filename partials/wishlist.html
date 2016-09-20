@@ -19,7 +19,7 @@
         </div>
         <div class="col-xs-1">
           <div class="deleteWishlist">
-            <span class="glyphicon glyphicon-trash" ng-click="wishlistDelete(wishlist.fbId)"></span>
+          <button tooltip-placement="top-right" uib-tooltip="Remove {{wishlist.name}} from Wishlist" class="btn btn-default close" ng-click="wishlistDelete(wishlist.fbId)">X</button>
           </div>
         </div>
       </div>

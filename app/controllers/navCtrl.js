@@ -25,6 +25,7 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
         trips.push(tripData[key]);
       });
       $scope.trips = trips;
+      console.log("trips", $scope.trips);
     });
   }
 

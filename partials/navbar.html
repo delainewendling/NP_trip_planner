@@ -22,6 +22,7 @@
         <li uib-dropdown on-toggle="toggled(open)" ng-show="$parent.isLoggedIn">
             <a href id="simple-dropdown" uib-dropdown-toggle ng-click="getTrips()" ng-class="{'selected':$parent.trips}"> Trips <span class="caret"></span></a>
           <ul class="dropdown-menu tripsMenu" uib-dropdown-menu>
+          <li ng-show="trips.length === 0" class="tripMsg" ng-cloak> No Trips Yet. <a href="#/parks/trips/create"> <strong> Plan a Trip </strong> </a> </li>
             <li ng-repeat="trip in trips"><a href='#/parks/trip/{{trip.id}}'>{{trip.name}}</a></li>
           </ul>
         </li>
@@ -30,13 +31,3 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <!-- search -->
-   <!--  <div class="col-xs-6 searchBox" ng-show="isActive('/items/list')">
-      <div class="input-group">
-        <span class="input-group-btn">
-          <button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
-        </span>
-     TODO: Bind the input to our todo list. When we place ng-model directly on an input it gets added to the controller scope-->
-        <!-- <input type="text" class="form-control" placeholder="Search tasks..." ng-model="searchText.search">
-      </div>  -->
-    <!-- </div> End search -->

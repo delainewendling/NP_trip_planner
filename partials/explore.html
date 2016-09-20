@@ -6,7 +6,7 @@
   <span class='backPacking filterBtn' ng-click="filterTrails($event,'backpacking')">Backpacking</span>
 </span>
 <span class="viewIcon">
-  <span class="glyphicon glyphicon-th-list listIcon" ng-class="{'selectedIcon': !mapView}" ng-click="showList()"></span> <span class="glyphicon glyphicon-map-marker listIcon" ng-class="{'selectedIcon': mapView}" ng-click="showMap()"></span>
+  <span tooltip-placement="left" uib-tooltip="List View" class="glyphicon glyphicon-th-list listIcon" ng-class="{'selectedIcon': !mapView}" ng-click="showList()"></span> <span tooltip-placement="right" uib-tooltip="Map View" class="glyphicon glyphicon-map-marker listIcon" ng-class="{'selectedIcon': mapView}" ng-click="showMap()"></span>
 </span>
 <!-- This is the map with information about trails and campgrounds on it -->
 <div class="exploreView">
@@ -57,11 +57,10 @@
 <section>
   <!-- Here is the sidebar with information about the trails in the list AND map view -->
   <div ng-show="beenClicked" class="sideBar" ng-cloak>
-    <span class="wishlist wishlistBtn" ng-click="addTrailToWishlist(trailInfo)" ng-show="!inWishlist" ng-cloak>Add to Wishlist</span>
+    <span class="wishlist wishlistBtn" ng-click="addTrailToWishlist(trailInfo); showWishlistToast(trailInfo.name)" ng-show="!inWishlist" ng-cloak>Add to Wishlist</span>
     <span ng-show="inWishlist" class="greyText" ng-cloak><i>Added to Wishlist</i></span>
     <span class="addToTrip addBtn" ng-click="addTrailToTrip(trailInfo)" ng-cloak>Add to Trip </span>
-    <!-- <div ng-show="!hasTrips" class="greyText" ng-cloak><i>Added to Wishlist</i></div> -->
-    <span><button class="btn btn-default close" ng-click="closeSidebar()">X</button></span>
+    <span><button tooltip-placement="bottom" uib-tooltip="Close" class="btn btn-default close" ng-click="closeSidebar()">X</button></span>
     <h3 class="trailName"> {{trailInfo.name}} </h3>
     <img src="{{trailInfo.coverImgUrl}}" alt="Picture of {{trailInfo.name}}" class="trailImg img-responsive">
     <div class="col-xs-12">
@@ -104,7 +103,7 @@
 </div>
 <!-- Here is the sidebar about campground information -->
 <div ng-show="campgroundBeenClicked" class="sideBar" ng-cloak>
-    <div><button class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
+    <div><button tooltip-placement="bottom" uib-tooltip="Close" class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
     <div>
       <h3 class="trailName"> {{campground.name}} </h3>
     </div>
