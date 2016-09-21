@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('DeleteTripModalCtrl', function($scope, $uibModalInstance, TripFactory, $routeParams, $window, TrailFactory, NoteFactory){
+app.controller('DeleteTripModalCtrl', function($scope, $uibModalInstance, TripFactory, $routeParams, $window, ActivityFactory){
 
   let tripId = $routeParams.tripId;
 
@@ -15,19 +15,12 @@ app.controller('DeleteTripModalCtrl', function($scope, $uibModalInstance, TripFa
       console.log("trip was deleted");
       $scope.close();
       $window.location.href='#/parks/explore';
-      return TrailFactory.getTrailsInTrip(tripId)
+      return ActivityFactory.getActivities(tripId)
     })
-    .then((trailData)=>{
-      console.log("trails in trip", trailData);
-      Object.keys(trailData).forEach((trailId)=>{
-        TripFactory.deleteTrailFromTrip(trailId);
-      });
-      return NoteFactory.getNotes(tripId)
-    })
-    .then((noteData)=>{
-      console.log("notes in trip", noteData);
-      Object.keys(noteData).forEach((noteId)=>{
-        NoteFactory.deleteNoteFromTrip(noteId);
+    .then((activityData)=>{
+      console.log("activities in trip", activityData);
+      Object.keys(activityData).forEach((activityId)=>{
+        ActivityFactory.deleteActivityFromTrip(activityId);
       });
       return TripFactory.getUserPackingList(tripId)
     })

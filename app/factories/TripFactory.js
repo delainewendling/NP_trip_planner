@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory)=>{
+app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory, TrailFactory)=>{
 
   let createTrip = (tripObj)=>{
     return $q((resolve, reject)=>{

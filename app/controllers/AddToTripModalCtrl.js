@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory, $uibModalInstance, trailObj, AuthFactory, $window){
+app.controller("AddToTripModalCtrl", function ($scope, ActivityFactory, TripFactory, $uibModalInstance, trailObj, AuthFactory, $window){
 
   //Get the Trips from a user's firebase and use them to populate the trips dropdown menu
   function getTrips (){
@@ -28,7 +28,8 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
       dayId: '',
       startDate: '',
       notes: '',
-      uid: trailObj.uid
+      uid: trailObj.uid,
+      type: 'trail'
   };
 
   $scope.planATrip = ()=>{
@@ -100,7 +101,7 @@ app.controller("AddToTripModalCtrl", function ($scope, TrailFactory, TripFactory
   $scope.showDayAlert = false;
   $scope.addTrail = ()=>{
     if ($scope.trailObj.tripId && $scope.trailObj.startDate){
-      TrailFactory.addTrailToTrip($scope.trailObj)
+      ActivityFactory.addActivity($scope.trailObj)
       .then((trailData)=>{
         console.log("successfully added trail to trip");
         $scope.closeModal();
