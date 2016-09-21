@@ -14,11 +14,23 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory
     });
   };
 
+  let addTripToUser = (userId, tripObj)=>{
+    return $q((resolve, reject)=>{
+      $http.patch(`${FirebaseURL}users/${userId}/trips.json`, JSON.stringify(tripObj))
+      .success((tripData)=>{
+        resolve(tripData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  }
+
   let getTrips = ()=>{
     let trips = [];
     let userId = AuthFactory.getUserId();
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}trips.json?orderBy="uid"&equalTo="${userId}"`)
+      $http.get(`${FirebaseURL}trips.json`)
       .success((tripData)=>{
         Object.keys(tripData).forEach((key)=>{
           tripData[key].id = key;
@@ -152,5 +164,41 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory
     });
   };
 
-  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem};
+  let createInvitation = (invitation)=>{
+    return $q((resolve, reject)=>{
+      $http.post(`${FirebaseURL}/invitations.json`, angular.toJson(invitation))
+      .success((invite)=>{
+        resolve(invite);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  let getInvitations = ()=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}invitations.json?orderBy="uid"&equalTo="${AuthFactory.getUserId()}"`)
+      .success((invitations)=>{
+        resolve(invitations);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  let deleteInvitation = (invitationId)=>{
+    return $q((resolve, reject)=>{
+      $http.delete(`${FirebaseURL}invitations/${invitationId}.json`)
+      .success((invitationDelete)=>{
+        resolve(invitationDelete);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem, createInvitation, getInvitations, deleteInvitation, addTripToUser};
 });

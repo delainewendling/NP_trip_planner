@@ -1,7 +1,31 @@
 "use strict";
 
-app.controller("TopCtrl", function($scope, $window, $route){
+app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
   let currentUser = null;
+  $scope.isReady = false;
+
+  var DATABASEREF = firebase.database().ref();
+  DATABASEREF.on("value", (snapshot)=>{
+    let invitations = snapshot.val().invitations;
+    console.log("invitations from Firebase", snapshot.val().invitations);
+    if (invitations){
+      Object.keys(invitations).forEach((key)=>{
+        let userId = AuthFactory.getUserId();
+        if (invitations[key].uid === userId){
+          let userInvitations = [];
+          $scope.hasInvitations = true;
+          userInvitations.push(invitations[key]);
+          $scope.numberOfInvitations = userInvitations.length
+        }
+        else {
+          $scope.hasInvitations = false;
+        }
+      })
+    } else {
+      $scope.hasInvitations = false;
+    }
+  })
+
   firebase.auth().onAuthStateChanged(function(user){
     if (user){
       currentUser = user.uid;
@@ -9,7 +33,10 @@ app.controller("TopCtrl", function($scope, $window, $route){
       $scope.isLoggedIn = true;
       // checkRoute();
       $route.reload();
+      $scope.isReady = true;
     } else {
+      $scope.isReady = false;
+      console.log("no user", $scope.isReady);
       currentUser = null;
       $scope.isLoggedIn = false;
       $window.location.href = '#/';

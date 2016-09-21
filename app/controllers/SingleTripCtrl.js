@@ -55,7 +55,17 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     $scope.trip = tripData;
   });
 
-    //Modal Views for user advice
+    //Modal Views for invite and user advice
+    $scope.openInviteModal = ()=>{
+      let modalInstance = $uibModal.open({
+      templateUrl: 'partials/InviteFriendModal.html',
+      controller: 'InviteFriendModalCtrl',
+      resolve: {
+        trip: $scope.trip
+      }
+      });
+    };
+
     $scope.openTempModal = ()=>{
       let modalInstance = $uibModal.open({
       templateUrl: 'partials/AverageTempModal.html',
@@ -76,15 +86,15 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       });
     };
 
-    $scope.openWarningsModal = ()=>{
-      let modalInstance = $uibModal.open({
-      templateUrl: 'partials/WarningsModal.html',
-      controller: 'WarningsModalCtrl',
-      resolve: {
-        trip: $scope.trip
-      }
-      });
-    };
+    // $scope.openWarningsModal = ()=>{
+    //   let modalInstance = $uibModal.open({
+    //   templateUrl: 'partials/WarningsModal.html',
+    //   controller: 'WarningsModalCtrl',
+    //   resolve: {
+    //     trip: $scope.trip
+    //   }
+    //   });
+    // };
 
     $scope.openEditTripModal = ()=>{
       let modalInstance = $uibModal.open({

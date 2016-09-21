@@ -75,7 +75,10 @@ app.run((ImportantKeys)=>{
   let creds = ImportantKeys;
   let authConfig = {
     apiKey: creds.fbKey,
-    authDomain: creds.fbAuth
+    authDomain: creds.fbAuth,
+    databaseURL: creds.databaseURL,
+    storageBucket: creds.storageBucket,
+    messageSenderId: creds.messageSenderId
   };
 
   firebase.initializeApp(authConfig);
