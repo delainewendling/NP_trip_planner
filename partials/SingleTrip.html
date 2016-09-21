@@ -48,8 +48,8 @@
           dnd-draggable="activity"
           dnd-effect-allowed="move"
           dnd-dragstart="checkDayId(day)"
-          dnd-moved="activities.splice($index, 1)"
-          dnd-dragend="changeDayId(day)"
+          dnd-moved="changeDayId(activities[$index], ); activities.splice($index, 1)"
+          dnd-dragend="checkDayId(day)"
           ng-include="activity.type + '.html'",
           ng-show='activity.dayId == day.id',
           ng-mouseenter="options=true" ng-mouseleave="options=false">
