@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('DeleteTripModalCtrl', function($scope, $uibModalInstance, TripFactory, $routeParams, $window, ActivityFactory){
+app.controller('DeleteTripModalCtrl', function($scope, $uibModalInstance, TripFactory, $routeParams, $window, ActivityFactory, MemberFactory){
 
   let tripId = $routeParams.tripId;
 
@@ -28,6 +28,13 @@ app.controller('DeleteTripModalCtrl', function($scope, $uibModalInstance, TripFa
       console.log("user packing list", packingData);
       Object.keys(packingData).forEach((listId)=>{
         TripFactory.deleteItemFromList(listId);
+      });
+      return MemberFactory.getMembersOfTrip(tripId)
+    })
+    .then((members)=>{
+      console.log("members", members);
+      Object.keys(members).forEach((memberId)=>{
+        MemberFactory.deleteMember(memberId);
       });
     });
   };

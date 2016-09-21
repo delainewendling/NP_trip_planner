@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, $window, MemberFactory){
+app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, $window, MemberFactory, $timeout){
 
   $scope.logout = function(){
     AuthFactory.logoutUser();
@@ -12,23 +12,22 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
     }
   });
 
-  $scope.invitations = [];
-  var invitationsFromFirebase = {};
-
-  console.log("repository of invitations", $scope.invitations);
-
   //We cannot grab the invitations for a user if the webpage does not recognize that a user is logged in. Therefore, we need to watch the state - isReady to make sure it is true before checking for notifications. We also want to watch the length of the notifications
   $scope.$watch('isReady', function isReadyChange(newValue, oldValue) {
     console.log("new value", newValue);
     if ($scope.isReady){
       getInvitations();
+      // getTrips();
       $scope.$watch('numberOfInvitations', function isReadyChange(newValue, oldValue) {
-        if (newValue !== 0){
-          getInvitations();
-        }
+        getInvitations();
       }, true);
     }
   }, true);
+
+  // $scope.$watch('membersArr', function isReadyChange(newValue, oldValue) {
+  //   getTrips();
+  // }, true);
+
 
   $scope.getInvitations = ()=>{
     getInvitations();
@@ -70,8 +69,10 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
         let tripId = memberData[key].tripId
         TripFactory.getSingleTrip(tripId)
         .then((tripData)=>{
-          tripData.id = tripId;
-          trips.push(tripData);
+          if (tripData){
+            tripData.id = tripId;
+            trips.push(tripData);
+          }
         });
       });
       $scope.trips = trips;
@@ -80,12 +81,6 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
 
   $scope.status = {
     isTripOpen: false
-  };
-
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
   };
 
   $scope.openCreateTripView = ()=>{

@@ -4,18 +4,18 @@ app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
   let currentUser = null;
   $scope.isReady = false;
 
-  var DATABASEREF = firebase.database().ref();
+  let DATABASEREF = firebase.database().ref();
   DATABASEREF.on("value", (snapshot)=>{
     let invitations = snapshot.val().invitations;
-    console.log("invitations from Firebase", snapshot.val().invitations);
     if (invitations){
       Object.keys(invitations).forEach((key)=>{
         let userId = AuthFactory.getUserId();
         if (invitations[key].uid === userId){
           let userInvitations = [];
-          $scope.hasInvitations = true;
           userInvitations.push(invitations[key]);
           $scope.numberOfInvitations = userInvitations.length
+          console.log("number of invitations", $scope.numberOfInvitations);
+          $scope.hasInvitations = true;
         }
         else {
           $scope.hasInvitations = false;
@@ -24,7 +24,18 @@ app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
     } else {
       $scope.hasInvitations = false;
     }
+    let members = snapshot.val().members;
+    if (members){
+      $scope.membersArr = [];
+      Object.keys(members).forEach((key)=>{
+        let userId = AuthFactory.getUserId();
+        if (members[key].uid === userId){
+          $scope.membersArr.push(members[key]);
+        }
+      })
+    }
   })
+
 
   firebase.auth().onAuthStateChanged(function(user){
     if (user){
