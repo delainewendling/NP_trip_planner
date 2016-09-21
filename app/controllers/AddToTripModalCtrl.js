@@ -1,20 +1,24 @@
 'use strict';
 
-app.controller("AddToTripModalCtrl", function ($scope, ActivityFactory, TripFactory, $uibModalInstance, trailObj, AuthFactory, $window){
+app.controller("AddToTripModalCtrl", function ($scope, ActivityFactory, TripFactory, $uibModalInstance, trailObj, AuthFactory, $window, MemberFactory){
 
-  //Get the Trips from a user's firebase and use them to populate the trips dropdown menu
   function getTrips (){
     let trips = [];
-    TripFactory.getTrips()
-    .then((tripData)=>{
-      Object.keys(tripData).forEach((key)=>{
-        tripData[key].id = key;
-        trips.push(tripData[key]);
+    MemberFactory.getMembers(AuthFactory.getUserId())
+    .then((memberData)=>{
+      Object.keys(memberData).forEach((key)=>{
+        let tripId = memberData[key].tripId
+        TripFactory.getSingleTrip(tripId)
+        .then((tripData)=>{
+          if (tripData){
+            tripData.id = tripId;
+            trips.push(tripData);
+          }
+        });
       });
       $scope.trips = trips;
     });
   }
-
   getTrips();
 
   $scope.trailObj = {

@@ -1,9 +1,26 @@
 "use strict";
 
-app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, ActivityFactory, $uibModal){
+app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, ActivityFactory, $uibModal, MemberFactory, $q, AuthFactory){
 
-  //This is where the trails that have been added to this trip are located.
-  // $scope.trails = [];
+  MemberFactory.getMembersOfTrip($routeParams.tripId)
+  .then((memberData)=>{
+  $scope.memberNames = [];
+    console.log("memberData", memberData);
+      return $q.all(
+        Object.keys(memberData).map((key)=>{
+          return AuthFactory.getUser(memberData[key].uid)
+      }))
+      .then((memberData)=>{
+        console.log("memberData", memberData);
+        memberData.forEach((member)=>{
+          Object.keys(member).forEach((key)=>{
+            console.log(member[key]);
+            $scope.memberNames.push(member[key].displayName)
+          });
+        });
+        console.log("member names", $scope.memberNames)
+      })
+  });
 
   getActivitiesForTrip();
   function getActivitiesForTrip (){
@@ -26,10 +43,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     console.log('day id is:', day.id);
   };
 
-  $scope.dragoverCallback = function(event, index, dayId) {
-    console.log('dragged over', event, index, dayId);
-    // Disallow dropping in the third row. Could also be done with dnd-disable-if.
-  };
 
  $scope.addNote = (dayId)=>{
     //Need to create a noteObj to add to Firebase. Even though there is no text in this note the note instance needs to be added so that the user is updating the note when pressing enter rather than creating a whole new note everytime the enter key is pressed.
@@ -55,7 +68,17 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     $scope.trip = tripData;
   });
 
-    //Modal Views for user advice
+    //Modal Views for invite and user advice
+    $scope.openInviteModal = ()=>{
+      let modalInstance = $uibModal.open({
+      templateUrl: 'partials/InviteFriendModal.html',
+      controller: 'InviteFriendModalCtrl',
+      resolve: {
+        trip: $scope.trip
+      }
+      });
+    };
+
     $scope.openTempModal = ()=>{
       let modalInstance = $uibModal.open({
       templateUrl: 'partials/AverageTempModal.html',
@@ -76,15 +99,15 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       });
     };
 
-    $scope.openWarningsModal = ()=>{
-      let modalInstance = $uibModal.open({
-      templateUrl: 'partials/WarningsModal.html',
-      controller: 'WarningsModalCtrl',
-      resolve: {
-        trip: $scope.trip
-      }
-      });
-    };
+    // $scope.openWarningsModal = ()=>{
+    //   let modalInstance = $uibModal.open({
+    //   templateUrl: 'partials/WarningsModal.html',
+    //   controller: 'WarningsModalCtrl',
+    //   resolve: {
+    //     trip: $scope.trip
+    //   }
+    //   });
+    // };
 
     $scope.openEditTripModal = ()=>{
       let modalInstance = $uibModal.open({

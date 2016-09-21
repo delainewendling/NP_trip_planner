@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, $route, $window) {
+app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, $route, $window, MemberFactory) {
 
   let startMilliseconds,
       endMilliseconds,
@@ -11,7 +11,9 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
       startMonthNumber,
       endMonthNumber,
       tripPhoto,
-      color;
+      color,
+      tripId,
+      userId;
 
   $scope.startDate = null;
 
@@ -96,14 +98,23 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
       $scope.trip.numberOfDays = getNumberOfDays();
       $scope.trip.days = createDayArray();
       $scope.trip.imgUrl = tripPhoto;
-      $scope.trip.uid = AuthFactory.getUserId();
       $scope.trip.color = color;
       TripFactory.createTrip($scope.trip)
       .then((tripData)=>{
         //The double quotes around the trip id are messing up the routing so I needed to replace any double quotes with nothing
-        let tripId = tripData.name.replace('"', "");
+        tripId = tripData.name.replace('"', "");
         $window.location.href = `#/parks/trip/${tripId}`;
+        let memberObj = {
+          uid: AuthFactory.getUserId(),
+          role: 'creator',
+          tripId: tripId
+        }
+        return MemberFactory.addMember(memberObj)
       })
+      .then((success)=>{
+        console.log("member created successfully");
+      })
+
     } else {
       $scope.showAlert = true;
     }

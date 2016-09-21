@@ -3,6 +3,7 @@
     <div class="col-xs-offset-3">
       <h3> Welcome! </h3> <p> Login or Register Below </p>
       <div class="col-xs-6">
+          <input type="text" name="username" placeholder="Username" ng-model="account.username">
           <input type="email" name="email" placeholder="Email" ng-model="account.email">
           <input type="password" name="password" placeholder="Password" ng-model="account.password">
           <button class="btn btn-info loginBtn" ng-click="register()"> Register </button>
