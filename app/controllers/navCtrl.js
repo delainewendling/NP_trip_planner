@@ -9,6 +9,13 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
   firebase.auth().onAuthStateChanged(function(user){
     if (user){
       getTrips();
+      getInvitations();
+      AuthFactory.getUser(AuthFactory.getUserId())
+      .then((userData)=>{
+        Object.keys(userData).forEach((key)=>{
+          $scope.userName = userData[key].displayName;
+        })
+      })
     }
   });
 
@@ -19,14 +26,11 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
       getInvitations();
       // getTrips();
       $scope.$watch('numberOfInvitations', function isReadyChange(newValue, oldValue) {
+        console.log("new value, oldValue", newValue, oldValue)
         getInvitations();
       }, true);
     }
   }, true);
-
-  // $scope.$watch('membersArr', function isReadyChange(newValue, oldValue) {
-  //   getTrips();
-  // }, true);
 
 
   $scope.getInvitations = ()=>{
@@ -35,14 +39,19 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
 
   function getInvitations (){
     let invitationsArr = [];
+    console.log("get invitations is running");
     TripFactory.getInvitations()
     .then((invitations)=>{
-      if(invitations){
+      console.log("invitations to you", invitations);
+      if(Object.keys(invitations).length){
+        $scope.hasInvitations = true;
         Object.keys(invitations).forEach((key)=>{
           invitations[key].id = key;
           invitationsArr.push(invitations[key]);
         })
         $scope.invitations = invitations
+      } else {
+        $scope.hasInvitations = false;
       }
     });
   }

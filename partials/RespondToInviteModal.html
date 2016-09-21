@@ -1,12 +1,12 @@
 <div class="modal-header">
-  <h3 class="modal-title">Would you like to join {{invitation.tripName}}?</h3>
+  <h3 class="modal-title">{{invitation.from}} would you like to join the trip: {{invitation.tripName}}?</h3>
 </div>
 <div class="modal-body">
   <button class="btn btn-success" ng-click="accept()">
-    Yes
+    Accept
   </button>
   <button class="btn btn-danger" ng-click="decline()">
-    No
+   Decline
   </button>
 <div class="modal-footer">
   <button class="btn btn-info" ng-click="close()">Close</button>

@@ -22,7 +22,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
       let userObj = {
         email: userData.email,
         uid: userData.uid,
-        username: userData.username
+        displayName: $scope.account.username
       }
       AuthFactory.saveUserToFirebase(userObj)
       .then(()=>{
@@ -69,13 +69,15 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
     AuthFactory.getAllUsers()
     .then((users)=>{
       console.log("here's the user data", userData);
-      Object.keys(users).forEach((key)=>{
-        if (currentUserId === users[key].uid) {
-          console.log("this user has already been saved");
-          count ++;
-        }
-      });
-      if (count === 0){
+      if (users){
+        Object.keys(users).forEach((key)=>{
+          if (currentUserId === users[key].uid) {
+            console.log("this user has already been saved");
+            count ++;
+          }
+        });
+      }
+      if (count === 0 || !users){
         let userObj = {
           email: userData.email,
           uid: userData.uid,

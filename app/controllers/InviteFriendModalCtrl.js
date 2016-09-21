@@ -20,7 +20,10 @@ app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactor
     AuthFactory.getAllUsers()
     .then((userData)=>{
       Object.keys(userData).forEach((key)=>{
-        $scope.users.push(userData[key]);
+        let userId = AuthFactory.getUserId();
+        if(userId !== userData[key].uid){
+          $scope.users.push(userData[key]);
+        }
       });
     });
   }
@@ -55,15 +58,23 @@ app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactor
 
   $scope.sendInvitation = ()=>{
     $scope.addedFriends.forEach((friend)=>{
-      //Add the username of who it's from eventually
-      let invitation = {
-        uid: friend.uid,
-        tripId: $routeParams.tripId,
-        tripName: trip.name
-      }
-      TripFactory.createInvitation(invitation)
+      let name = '';
+      AuthFactory.getUser(AuthFactory.getUserId())
+      .then((userData)=>{
+        Object.keys(userData).forEach((key)=>{
+          name = userData[key].displayName;
+        });
+        let invitation = {
+          uid: friend.uid,
+          tripId: $routeParams.tripId,
+          tripName: trip.name,
+          email: friend.email,
+          from: name
+        }
+        return TripFactory.createInvitation(invitation)
+      })
       .then((data)=>{
-        console.log("invitation created");
+          console.log("invitation created");
       });
     });
     $scope.close();

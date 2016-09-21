@@ -6,9 +6,9 @@ app.factory("AuthFactory", function($window, ImportantKeys, $q, $http, FirebaseU
     return firebase.auth().currentUser.uid;
   };
 
-  let getUser = ()=>{
+  let getUser = (userId)=>{
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}users.json?orderBy="uid"&equalTo="${getUserId()}"`)
+      $http.get(`${FirebaseURL}users.json?orderBy="uid"&equalTo="${userId}"`)
       .success((userData)=>{
         resolve(userData);
       })

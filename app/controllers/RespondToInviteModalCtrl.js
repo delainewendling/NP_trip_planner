@@ -13,7 +13,8 @@ app.controller("RespondToInviteModalCtrl", function($scope, invitation, MemberFa
     let memberObj = {
       role: 'member',
       uid: invitation.uid,
-      tripId: invitation.tripId
+      tripId: invitation.tripId,
+      email: invitation.email
     }
     MemberFactory.addMember(memberObj)
     .then((data)=>{

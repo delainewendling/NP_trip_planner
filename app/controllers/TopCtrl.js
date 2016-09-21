@@ -8,18 +8,23 @@ app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
   DATABASEREF.on("value", (snapshot)=>{
     let invitations = snapshot.val().invitations;
     if (invitations){
+      $scope.numberOfInvitations = Object.keys(invitations).length;
       Object.keys(invitations).forEach((key)=>{
         let userId = AuthFactory.getUserId();
         if (invitations[key].uid === userId){
-          let userInvitations = [];
-          userInvitations.push(invitations[key]);
-          $scope.numberOfInvitations = userInvitations.length
-          console.log("number of invitations", $scope.numberOfInvitations);
+          // let userInvitations = [];
+          // userInvitations.push(invitations[key]);
+          // $scope.numberOfInvitations = userInvitations.length
+          // console.log("number of invitations", $scope.numberOfInvitations);
           $scope.hasInvitations = true;
+          $scope.$apply();
         }
-        else {
-          $scope.hasInvitations = false;
-        }
+      else {
+        $scope.hasInvitations = false;
+        $scope.numberOfInvitations = 0;
+        console.log("there are no invitations". $scope.hasInvitations);
+        $scope.$apply();
+      }
       })
     } else {
       $scope.hasInvitations = false;

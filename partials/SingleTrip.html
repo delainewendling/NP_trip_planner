@@ -30,6 +30,11 @@
         <p class="tripDescription"> {{trip.description}} </p>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-9">
+        <h5 class="memberDetails"> Members: </h5> <span class="memberNames" ng-repeat="name in memberNames"> {{name}} </span>
+      </div>
+    </div>
 <div class="row">
   <div ng-repeat="day in trip.days track by $index">
     <div class="clearfix" ng-if="$index % 3 == 0"></div>
