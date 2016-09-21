@@ -1,6 +1,9 @@
 'use strict';
 
-app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFactory, trip, AuthFactory, $routeParams) {
+app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFactory, trip, AuthFactory, $routeParams, $q) {
+
+  let packingTypes = [];
+
   $scope.close = () => {
     $uibModalInstance.close();
   };
@@ -59,36 +62,56 @@ app.controller('PackingModalCtrl', function($scope, $uibModalInstance, TripFacto
   //The following commands should only happen the first time the Modal is opened. What this function does is it grabs the relevant packing list information for that particular trip type and posts each item to Firebase with the tripId and a property of packed as false. This creates a copy of the item so that the user can delete the item, check off the item as complete, and add items.
   function initializePackingList () {
     //There is a packing list for all trip types so this should be called regardless of the trip type. No packing list has a duplicate with another packing list
-    getPackingList("all");
     getTypes();
 
     function getTypes(){
       //If a user does not check camping and hiking as a type but selects backpacking, they should still get the camping packing list because it contains tent, etc.
+      //Clear the packing types each time through
+      packingTypes = [];
       if (trip.camping || trip.backpacking && !trip.camping){
-        //The camping list is a packing list that corresponds to ONLY camping
-        getPackingList("camping");
-      } else if (trip.backpacking){
-        //The backpacking list is a packing list that corresponds to ONLY backpacking
-        getPackingList("backpacking");
-      } else if (trip.roadtrip){
-        //The roadtrip list is a packing list that corresponds to ONLY roadtrips
-        getPackingList("roadtrip");
+        packingTypes.push('camping');
       }
+      if (trip.backpacking){
+        packingTypes.push('backpacking');
+      }
+      if (trip.roadtrip) {
+        packingTypes.push('roadtrip');
+      }
+      if (!trip.roadtrip && !trip.camping && !trip.backpacking){
+        packingTypes.push('all');
+      }
+
+      console.log("packing types", packingTypes);
+      getPackingList();
     }
 
-    function getPackingList (type){
-      TripFactory.getPackingList(type)
-      .then((packingList)=>{
-        Object.keys(packingList).forEach((key)=>{
-          //Digging into the object to grab just the items. Then loop through that array and post that item, with some added properties to Firebase.
-          packingList[key].topack.forEach((item)=>{
-            item.tripId = $routeParams.tripId;
-            item.packed = false;
-            TripFactory.addItemToPackingList(item);
+    function getPackingList (){
+      return $q.all(
+        packingTypes.map((type)=> {
+          return TripFactory.getPackingList(type);
+        })
+      )
+      .then((packingData)=>{
+        let packingList = [];
+        packingData.forEach((packingObject)=>{
+          Object.keys(packingObject).forEach((key)=>{
+            packingObject[key].topack.forEach((item)=>{
+              item.tripId = $routeParams.tripId;
+              item.packed = false;
+              packingList.push(item);
+            });
           });
         });
-        doesUserHavePackingList();
-      });
+        return $q.all(
+          packingList.map((item)=>{
+            return TripFactory.addItemToPackingList(item);
+          })
+        )
+        .then((packingData)=>{
+          console.log("all successfully added?", packingData);
+          doesUserHavePackingList();
+        })
+      })
     }
   }
 

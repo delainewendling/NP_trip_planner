@@ -26,24 +26,6 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory
     });
   }
 
-  let getTrips = ()=>{
-    let trips = [];
-    let userId = AuthFactory.getUserId();
-    return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}trips.json`)
-      .success((tripData)=>{
-        Object.keys(tripData).forEach((key)=>{
-          tripData[key].id = key;
-          trips.push(tripData[key]);
-        });
-        resolve(tripData);
-      })
-      .error((error)=>{
-        reject(error);
-      });
-    });
-  };
-
   let getSingleTrip = (tripId)=>{
     return $q((resolve, reject)=>{
       $http.get(`${FirebaseURL}trips/${tripId}.json`)
@@ -200,5 +182,5 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory
     });
   };
 
-  return {createTrip, getTrips, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem, createInvitation, getInvitations, deleteInvitation, addTripToUser};
+  return {createTrip, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem, createInvitation, getInvitations, deleteInvitation, addTripToUser};
 });
