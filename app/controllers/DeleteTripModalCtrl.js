@@ -36,7 +36,14 @@ app.controller('DeleteTripModalCtrl', function($scope, $uibModalInstance, TripFa
       Object.keys(members).forEach((memberId)=>{
         MemberFactory.deleteMember(memberId);
       });
-    });
+      return TripFactory.getInvitationsInTrip(tripId)
+    })
+    .then((invitations)=>{
+      console.log("invitations", invitations);
+      Object.keys(invitations).forEach((invitationId)=>{
+        TripFactory.deleteInvitation(invitationId);
+      });
+    })
   };
 
 });

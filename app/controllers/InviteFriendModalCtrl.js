@@ -1,9 +1,7 @@
 'user strict';
 
-app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactory, $uibModalInstance, $routeParams, trip){
+app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactory, $uibModalInstance, $routeParams, trip, members){
 
-  $scope.users=[];
-  $scope.alreadyMembers = [];
   $scope.addedFriends = [];
   $scope.searchMode = false;
   $scope.friendsAdded = false;
@@ -18,26 +16,26 @@ app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactor
   };
 
   function getAllUsers (){
+    $scope.users=[];
+    $scope.alreadyMembers = [];
     AuthFactory.getAllUsers()
     .then((userData)=>{
-      console.log("userData". userData);
+      let userId = AuthFactory.getUserId();
       Object.keys(userData).forEach((key)=>{
-        let userId = AuthFactory.getUserId();
         if (userId !== userData[key].uid){
           $scope.users.push(userData[key]);
         }
-      //   members.forEach((member)=>{
-      //     console.log("members", member);
-      //     if(userId !== userData[key].uid && userData[key].uid !== member.uid){
-      //       $scope.users.push(userData[key]);
-      //     } else if (userId !== userData[key].uid && userData[key].uid === member.uid){
-      //       $scope.alreadyMembers.push(userData[key]);
-      //     }
-      //   })
-      // });
-      console.log("users who are not members", $scope.users);
-      // console.log("already members", $scope.alreadyMembers);
       });
+      members.forEach((member)=>{
+        $scope.users.forEach((user, index)=>{
+          if(member.uid === user.uid){
+            $scope.alreadyMembers.push(user);
+            $scope.users.splice(index, 1);
+          }
+        });
+      });
+      console.log("users who are not members", $scope.users);
+      console.log("already members", $scope.alreadyMembers);
     });
   }
   getAllUsers();
@@ -87,7 +85,7 @@ app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactor
         return TripFactory.createInvitation(invitation)
       })
       .then((data)=>{
-          console.log("invitation created");
+        console.log("invitation created");
       });
     });
     $scope.close();

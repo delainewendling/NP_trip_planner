@@ -2,13 +2,13 @@
 <div class="singleTripView" style="background-color: {{trip.color}}; height: 100%;">
   <div class="row">
     <div class="col-xs-3">
-      <button class="btn btn-default tripAdvice" ng-click="openInviteModal()"> Invite Friends </button>
+      <button class="btn btn-default tripAdvice" ng-click="openInviteModal()"> Invite Friends to your Trip </button>
     </div>
     <div class="col-xs-3">
-      <button class="btn btn-default tripAdvice" ng-click="openTempModal()"> Average Weather </button>
+      <button class="btn btn-default tripAdvice" ng-click="openTempModal()"> What Will the Weather be like? </button>
     </div>
     <div class="col-xs-3">
-      <button class="btn btn-default  tripAdvice" ng-click="openPackingModal()"> Suggested Packing List </button>
+      <button class="btn btn-default  tripAdvice" ng-click="openPackingModal()"> What Should you Pack? </button>
     </div>
     <!-- <div class="col-xs-3">
       <button class="btn btn-default  tripAdvice" ng-click="openWarningsModal()"> Before You Go </button>
@@ -24,7 +24,7 @@
         <img src="{{trip.imgUrl}}" class="tripImg">
       </div>
       <div class="col-xs-3">
-        <h4> {{trip.name}} </h4>
+        <h4> {{trip.name}} Itinerary</h4>
       </div>
       <div class="col-xs-12">
         <p class="tripDescription"> {{trip.description}} </p>
@@ -62,7 +62,7 @@
           ng-show='activity.dayId == day.id',
           ng-mouseenter="options=true" ng-mouseleave="options=false">
       </li>
-      <li class="dndPlaceholder"> {{day.id}} </li>
+      <li class="dndPlaceholder"> </li>
     </ul>
   </script>
   <script type="text/ng-template" id="trail.html">

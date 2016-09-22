@@ -74,7 +74,12 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
         templateUrl: 'partials/InviteFriendModal.html',
         controller: 'InviteFriendModalCtrl',
         resolve: {
-          trip: $scope.trip
+          trip: function() {
+            return $scope.trip
+          },
+          members: function (){
+            return $scope.members
+          }
         }
       });
     };
@@ -98,16 +103,6 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
       }
       });
     };
-
-    // $scope.openWarningsModal = ()=>{
-    //   let modalInstance = $uibModal.open({
-    //   templateUrl: 'partials/WarningsModal.html',
-    //   controller: 'WarningsModalCtrl',
-    //   resolve: {
-    //     trip: $scope.trip
-    //   }
-    //   });
-    // };
 
     $scope.openEditTripModal = ()=>{
       let modalInstance = $uibModal.open({

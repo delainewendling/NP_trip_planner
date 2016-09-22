@@ -170,6 +170,18 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory
     });
   };
 
+   let getInvitationsInTrip = (tripId)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}invitations.json?orderBy="tripId"&equalTo="${tripId}"`)
+      .success((invitations)=>{
+        resolve(invitations);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
   let deleteInvitation = (invitationId)=>{
     return $q((resolve, reject)=>{
       $http.delete(`${FirebaseURL}invitations/${invitationId}.json`)
@@ -182,5 +194,5 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory
     });
   };
 
-  return {createTrip, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem, createInvitation, getInvitations, deleteInvitation, addTripToUser};
+  return {createTrip, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem, createInvitation, getInvitations, deleteInvitation, addTripToUser, getInvitationsInTrip};
 });

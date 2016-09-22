@@ -7,8 +7,10 @@ app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
   let DATABASEREF = firebase.database().ref();
   DATABASEREF.on("value", (snapshot)=>{
     let invitations = snapshot.val().invitations;
+    console.log("invitations changed", invitations)
     $scope.numberOfInvitations = '';
     if (invitations){
+      console.log("you have invitations");
       $scope.numberOfInvitations = Object.keys(invitations).length;
       Object.keys(invitations).forEach((key)=>{
         let userId = AuthFactory.getUserId();
@@ -17,13 +19,14 @@ app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
           $scope.$apply();
         }
       else {
+        console.log("none of the invitations are for you");
         $scope.hasInvitations = false;
         $scope.numberOfInvitations = 0;
-        console.log("there are no invitations". $scope.hasInvitations);
         $scope.$apply();
       }
       })
     } else {
+      console.log("no invitations");
       $scope.hasInvitations = false;
     }
     let members = snapshot.val().members;

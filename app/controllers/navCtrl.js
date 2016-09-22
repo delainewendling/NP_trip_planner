@@ -25,7 +25,7 @@ app.controller("NavCtrl", function($scope, AuthFactory, TripFactory, $uibModal, 
     if ($scope.isReady){
       getInvitations();
       // getTrips();
-      $scope.$watch('numberOfInvitations', function isReadyChange(newValue, oldValue) {
+      $scope.$watch('numberOfInvitations', function numberOfInvitationsChange(newValue, oldValue) {
         console.log("new value, oldValue", newValue, oldValue)
         getInvitations();
       }, true);
