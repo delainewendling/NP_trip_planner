@@ -4,7 +4,7 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
 
   MemberFactory.getMembersOfTrip($routeParams.tripId)
   .then((memberData)=>{
-  $scope.memberNames = [];
+  $scope.members = [];
     console.log("memberData", memberData);
       return $q.all(
         Object.keys(memberData).map((key)=>{
@@ -15,10 +15,10 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
         memberData.forEach((member)=>{
           Object.keys(member).forEach((key)=>{
             console.log(member[key]);
-            $scope.memberNames.push(member[key].displayName)
+            $scope.members.push(member[key])
           });
         });
-        console.log("member names", $scope.memberNames)
+        console.log("member names", $scope.members)
       })
   });
 
@@ -71,11 +71,11 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     //Modal Views for invite and user advice
     $scope.openInviteModal = ()=>{
       let modalInstance = $uibModal.open({
-      templateUrl: 'partials/InviteFriendModal.html',
-      controller: 'InviteFriendModalCtrl',
-      resolve: {
-        trip: $scope.trip
-      }
+        templateUrl: 'partials/InviteFriendModal.html',
+        controller: 'InviteFriendModalCtrl',
+        resolve: {
+          trip: $scope.trip
+        }
       });
     };
 
