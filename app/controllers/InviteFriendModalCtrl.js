@@ -3,6 +3,7 @@
 app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactory, $uibModalInstance, $routeParams, trip){
 
   $scope.users=[];
+  $scope.alreadyMembers = [];
   $scope.addedFriends = [];
   $scope.searchMode = false;
   $scope.friendsAdded = false;
@@ -19,11 +20,23 @@ app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactor
   function getAllUsers (){
     AuthFactory.getAllUsers()
     .then((userData)=>{
+      console.log("userData". userData);
       Object.keys(userData).forEach((key)=>{
         let userId = AuthFactory.getUserId();
-        if(userId !== userData[key].uid){
+        if (userId !== userData[key].uid){
           $scope.users.push(userData[key]);
         }
+      //   members.forEach((member)=>{
+      //     console.log("members", member);
+      //     if(userId !== userData[key].uid && userData[key].uid !== member.uid){
+      //       $scope.users.push(userData[key]);
+      //     } else if (userId !== userData[key].uid && userData[key].uid === member.uid){
+      //       $scope.alreadyMembers.push(userData[key]);
+      //     }
+      //   })
+      // });
+      console.log("users who are not members", $scope.users);
+      // console.log("already members", $scope.alreadyMembers);
       });
     });
   }

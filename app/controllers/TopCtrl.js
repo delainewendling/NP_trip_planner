@@ -7,15 +7,12 @@ app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
   let DATABASEREF = firebase.database().ref();
   DATABASEREF.on("value", (snapshot)=>{
     let invitations = snapshot.val().invitations;
+    $scope.numberOfInvitations = '';
     if (invitations){
       $scope.numberOfInvitations = Object.keys(invitations).length;
       Object.keys(invitations).forEach((key)=>{
         let userId = AuthFactory.getUserId();
         if (invitations[key].uid === userId){
-          // let userInvitations = [];
-          // userInvitations.push(invitations[key]);
-          // $scope.numberOfInvitations = userInvitations.length
-          // console.log("number of invitations", $scope.numberOfInvitations);
           $scope.hasInvitations = true;
           $scope.$apply();
         }
