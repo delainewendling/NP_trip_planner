@@ -7,13 +7,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#/parks/explore">Discover Yosemite</a>
+      <a class="navbar-brand" href="#/parks/explore">Discover America</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <!-- TODO: Use Angular to loop through nav items -->
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li ng-show="!$parent.isLoggedIn"><a ng-href="#/login"> Login </a></li> -->
+        <li ng-show="!$parent.isLoggedIn"><a ng-href="#/login"> Login </a></li>
         <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/explore" ng-class="{'selected':$parent.explore}"> Explore </a></li>
         <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/wishlist" ng-class="{'selected':$parent.wishlist}"> Wishlist </a></li>
         <li ng-show="$parent.isLoggedIn"><a href ng-click="openCreateTripView()"> Plan a Trip </a></li>

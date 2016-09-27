@@ -55,32 +55,31 @@
       <li ng-repeat="activity in activities"
           dnd-draggable="activity"
           dnd-effect-allowed="move"
-          dnd-dragstart="checkDayId(day)"
-          dnd-moved="changeDayId(activities[$index], ); activities.splice($index, 1)"
-          dnd-dragend="checkDayId(day)"
+          dnd-moved="activities.splice($index, 1)"
           ng-include="activity.type + '.html'",
           ng-show='activity.dayId == day.id',
           ng-mouseenter="options=true" ng-mouseleave="options=false">
       </li>
+      <!-- ng-if="activity.dayId == day.id" -->
       <li class="dndPlaceholder"> </li>
     </ul>
   </script>
   <script type="text/ng-template" id="trail.html">
-      <span ng-if="activity.dayId == day.id" class="trailInfo">
+      <span  class="trailInfo">
         <h3> {{activity.name}}</h3>
         <p> <strong> Distance: </strong> {{activity.distance}} </p>
         <p> <strong> Est. Time: </strong> {{activity.estTime}} </p>
         <p> <strong> Elevation Gain: </strong> {{activity.elevationGain}} </p>
         <label for="trailNotes" class="trailNote"> Notes: </label>
-        <textarea type="text" id="trailNotes" class="activityInput" ng-model="activity.notes" value="{{activity.notes}}" ng-keypress="updateTrailNote($event, activity.id, activity.notes); blurInput($event)"></textarea>
-        <span class="glyphicon glyphicon-trash deleteTrailIcon" ng-show="options" ng-click="deleteActivityFromTrip(activity.id)"></span>
+        <textarea data-adaptheight type="text" id="trailNotes" class="activityInput" ng-model="activity.notes" value="{{activity.notes}}" ng-keypress="updateTrailNote($event, activity.id, activity.notes); blurInput($event)" rows="1"></textarea>
+        <span class="glyphicon glyphicon-trash deleteTrailIcon" ng-show="options" ng-click="deleteActivityFromTrip($event, activity.id)"></span>
         <p style="display:none">Index: {{activity.index = activities.indexOf(activity)}}</p>
       </span>
   </script>
   <script type="text/ng-template" id="note.html">
-       <textarea type="text" ng-model="activity.text" class="activityInput" value="{{activity.text}}" ng-keypress="updateNote($event, activity.id, activity.text); blurInput($event)" focus-me="focusInput">
+       <textarea data-adaptheight type="text" ng-model="activity.text" class="activityInput" value="{{activity.text}}" ng-keypress="updateNote($event, activity.id, activity.text); blurInput($event)" focus-me="focusInput" rows="1">
       </textarea>
-      <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="options" ng-click="deleteActivityFromTrip(activity.id)"></span>
+      <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="options" ng-click="deleteActivityFromTrip($event, activity.id)"></span>
       <p style="display:none">Index: {{activity.index = activities.indexOf(activity)}}</p>
   </script>
 </section>

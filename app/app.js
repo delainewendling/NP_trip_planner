@@ -39,8 +39,8 @@ let isAuth = (AuthFactory, $window)=> new Promise((resolve, reject)=>{
 app.config(function($routeProvider){
   $routeProvider
   .when('/', {
-    templateUrl: 'partials/Login.html',
-    controller: 'LoginCtrl'
+    templateUrl: 'partials/LandingPage.html',
+    controller: 'LandingPageCtrl'
   })
   .when('/login', {
     templateUrl: 'partials/Login.html',
@@ -49,6 +49,16 @@ app.config(function($routeProvider){
   .when('/parks/explore', {
     templateUrl: 'partials/Explore.html',
     controller: 'ExploreCtrl',
+    resolve: {isAuth}
+  })
+  .when('/parks/explore/yosemite', {
+    templateUrl: 'partials/Yosemite.html',
+    controller: 'YosemiteCtrl',
+    resolve: {isAuth}
+  })
+  .when('/parks/explore/glacier', {
+    templateUrl: 'partials/Glacier.html',
+    controller: 'GlacierCtrl',
     resolve: {isAuth}
   })
   .when('/parks/trips/create', {
