@@ -178,6 +178,7 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         latitude: marker.latitude,
         longitude: marker.longitude
     };
+    $scope.map.zoom = 10;
     $scope.trailInfo = $scope.trailsInfo[trailMarkerId];
     $scope.markers[trailMarkerId].icon = '../images/starIcon.png';
     $scope.inWishlist = inWishlist(marker.name);
