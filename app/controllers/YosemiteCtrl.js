@@ -65,7 +65,7 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
 
   //I need to get the trail information from firebase and create objects that will provide the necessary information to create a marker for each trail. I also want to print information in the sidebar about each trail so I need to create an object for each trail with that information.
   function getTrailInfo(trailType){
-    TrailFactory.getTrailInfo()
+    TrailFactory.getYosemiteTrailInfo()
     .then((trailData)=>{
       let trails = trailData.trails;
       setMarkers(trails, trailType);
@@ -97,7 +97,7 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
   }
 
   function getCampgroundInfo (showCampground){
-    TrailFactory.getCampgroundInfo()
+    TrailFactory.getYosemiteCampgroundInfo()
     .then((campgroundInfo)=>{
       Object.keys(campgroundInfo).forEach((key)=>{
         campgroundInfo[key].id = key;

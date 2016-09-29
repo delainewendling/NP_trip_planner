@@ -65,7 +65,7 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
 
   //I need to get the trail information from firebase and create objects that will provide the necessary information to create a marker for each trail. I also want to print information in the sidebar about each trail so I need to create an object for each trail with that information.
   function getTrailInfo(trailType){
-    TrailFactory.getTrailInfo()
+    TrailFactory.getGlacierTrailInfo()
     .then((trailData)=>{
       let trails = trailData.trails;
       setMarkers(trails, trailType);
@@ -97,8 +97,9 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   }
 
   function getCampgroundInfo (showCampground){
-    TrailFactory.getCampgroundInfo()
+    TrailFactory.getGlacierCampgroundInfo()
     .then((campgroundInfo)=>{
+      console.log("glacier campgrounds", campgroundInfo);
       Object.keys(campgroundInfo).forEach((key)=>{
         campgroundInfo[key].id = key;
       });
@@ -128,8 +129,8 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   }
 
   $scope.showCampgrounds = ()=>{
-    $scope.map.center = {latitude: 37.8651, longitude: -119.5383};
-    $scope.map.zoom = 10;
+    $scope.map.center = {latitude: 48.58, longitude: -113.2};
+    $scope.map.zoom = 9;
     $scope.closeSidebar();
     $('.filterBtn').removeClass('selectedFilter');
     $scope.selectedCampground = true;
@@ -144,7 +145,7 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         latitude: marker.latitude,
         longitude: marker.longitude
     };
-    $scope.map.zoom = 11;
+    $scope.map.zoom = 10;
     $scope.campgrounds[campgroundMarkerId].icon = '../images/starIcon.png';
     $scope.campground = $scope.campgroundsInfo[campgroundMarkerId];
     showCampgroundInformation();
@@ -220,8 +221,8 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $(".angular-google-map-container").removeClass("newMap");
     $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
     $scope.campgrounds[campgroundMarkerId].icon = '../images/campgroundIcon.png';
-    $scope.map.center = {latitude: 37.8651, longitude: -119.5383 };
-    $scope.map.zoom = 10;
+    $scope.map.center = {latitude: 48.654, longitude: -113.782};
+    $scope.map.zoom = 9;
     $scope.beenClicked = false;
     $scope.campgroundBeenClicked = false;
   };
