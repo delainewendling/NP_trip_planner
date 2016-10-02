@@ -74,9 +74,21 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory
     });
   };
 
-  let getAverageTemp = (monthId)=>{
+  let getAverageYosemiteTemp = (monthId)=>{
     return $q((resolve, reject)=>{
       $http.get(`${FirebaseURL}temperature.json?orderBy="monthId"&equalTo="${monthId}"`)
+      .success((tempData)=>{
+        resolve(tempData);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
+
+  let getAverageGlacierTemp = (monthId)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}glacierTemperatures.json?orderBy="monthId"&equalTo="${monthId}"`)
       .success((tempData)=>{
         resolve(tempData);
       })
@@ -194,5 +206,5 @@ app.factory("TripFactory", ($q, $http, FirebaseURL, AuthFactory, ActivityFactory
     });
   };
 
-  return {createTrip, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem, createInvitation, getInvitations, deleteInvitation, addTripToUser, getInvitationsInTrip};
+  return {createTrip, deleteTrip, getSingleTrip, deleteTrailFromTrip, updateTrip, getAverageYosemiteTemp, getAverageGlacierTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem, createInvitation, getInvitations, deleteInvitation, addTripToUser, getInvitationsInTrip};
 });
