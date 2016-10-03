@@ -13,6 +13,8 @@ app.controller('EditTripModalCtrl', function($scope, trip, $uibModalInstance, Tr
     description: trip.description,
     startDate: new Date(trip.startDate),
     endDate: new Date(trip.endDate),
+    yosemite: trip.yosemite,
+    glacier: trip.glacier,
     color: trip.color
   }
 

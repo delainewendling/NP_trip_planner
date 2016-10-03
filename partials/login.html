@@ -1,17 +1,30 @@
 <div class="container">
+  <h3> Welcome! </h3> 
   <div class="row loginScreen">
-    <div class="col-xs-offset-3">
-      <h3> Welcome! </h3> <p> Login or Register Below </p>
+    <div class="col-xs-offset-2">
+      <p> Login or Register Below </p>
       <div class="col-xs-6">
-          <input type="text" name="username" placeholder="Username" ng-model="account.username">
-          <input type="email" name="email" placeholder="Email" ng-model="account.email">
-          <input type="password" name="password" placeholder="Password" ng-model="account.password">
-          <button class="btn btn-info loginBtn" ng-click="register()"> Register </button>
-          <button class="btn btn-info loginBtn" ng-click="loginWithEmail()"> Login </button>
+        <div class="inputBox">
+          <input type="text" name="username" placeholder="Username" class="form-control" ng-model="account.username">
+        </div>
+        <div class="inputBox">
+          <input type="email" name="email" placeholder="Email" class="form-control" ng-model="account.email">
+        </div>
+        <div class="inputBox">
+          <input type="password" name="password" placeholder="Password" class="form-control" ng-model="account.password">
+        </div>
+          <span class="btn btn-info inputBox" ng-click="register()"> Register </span>
+          <span class="btn btn-info inputBox" ng-click="loginWithEmail()"> Login </span>
       </div>
-      <div class="col-xs-6">
-          <button class="btn btn-danger loginBtn" ng-click="loginWithGoogle()"> Login with Google </button>
-          <button class="btn btn-primary loginBtn" ng-click="loginWithFacebook()"> Login with Facebook </button>
+      <div class="col-xs-1 wrapper">
+        <div class="line"></div>
+        <div class="wordwrapper">
+          <div class="word">or</div>
+        </div>
+      </div>
+      <div class="col-xs-5">
+          <span class="loginGoogleBtn" ng-click="loginWithGoogle()"><img src="../images/googleIcon.png" class="loginIcon"> Login with Google </span>
+          <span class="loginFacebookBtn" ng-click="loginWithFacebook()"> <img src="../images/facebookIcon.png" class="loginIcon">Login with Facebook </span>
       </div>
     </div>
   </div>

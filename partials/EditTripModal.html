@@ -21,6 +21,15 @@
       </div>
     </div>
   </form>
+  <div class="checkbox tripType">
+    <h4> Where are you going?  <small> (select all parks that apply) </small></h4>
+    <label>
+      <input type="checkbox" ng-model="trip.yosemite" ng-checked="{{trip.yosemite}}" class="tripTypeCheck"> Yosemite National Park
+    </label>
+    <label>
+      <input type="checkbox" ng-model="trip.glacier" ng-checked="{{trip.glacier}}" class="tripTypeCheck"> Glacier National Park
+    </label>
+  </div>
   <div>
     <p> <strong> Background Color </strong></p>
     <span class="tripBackgroundColor blueBackground" ng-click="updateTripColor($event, '#4D95E5')"></span>

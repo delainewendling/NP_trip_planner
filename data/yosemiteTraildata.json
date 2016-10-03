@@ -259,7 +259,7 @@
       "whyVisit": "Hike through one of Yosemite's most breathtaking backcountry river canyons. Traverse the famous Tuolumne River from the high country to the lower valley. Pass several impressive waterfalls and box canyon sections. Follow in the footsteps of John Muir, who pioneered this route in the 1800's. Soak up rejuvenating solitude in remote sections of this hike. Have good potential to see wildlife. Enjoy savings and convenience with included pre-trip dinner and camping. Enjoy our exceptional backcountry cuisine and expert guides",
       "description": "This is a rugged overnight backpack into the North country of Yosemite dropping in from Tuolumne Meadows into the Grand Canyon of the Tuolumne. Done at the beginning of Spring is best due to the high volume of water but be ready for some river fording through some very icy temperatures. It begins at an elevation just under 9,000' and drops to a low elevation of 4,500' almost 19 miles later at Pate Valley. Coming up out of Pate Valley heading towards Harden Lake is an elevation gain of almost 4,550' in just under 8 or so miles, be prepared for some thigh quivering demands. During the hike you'll pass a series of waterfalls starting with White Cascade Falls followed by Tuolumne Falls, California Falls, Le Conte Falls and finally the geological wonder, Waterwhell Falls, where the water flows down over a series of grooves in the rocks that can propel the water close to 20' into the air in a counter clock wise wheel, really spectacular.",
       "hazards": "Bring plenty of water and make sure you are in shape!",
-      "permit": "none",
+      "permit": "https://www.nps.gov/yose/planyourvisit/wildpermits.htm",
       "trailhead": "Tuolumne Meadows",
       "bestHike": false,
       "backpacking": true,
@@ -319,6 +319,31 @@
       "estTime": "15-30 minutes",
       "sceneryFactor": 4,
       "crowdFactor": 5,
+      "park": "Yosemite National Park"
+    },
+    {
+      "id": 12,
+      "name": "PCT: Tuolumne Meadow to Sonora Pass",
+      "coords": {
+        "latitude": 37.873,
+        "longitude": -119.35
+      },
+      "distance": "74.8 miles roundtrip",
+      "difficulty": "moderate",
+      "familyFriendly": false,
+      "elevationGain": "1350 ft",
+      "campground": false,
+      "whyVisit": "Hike through one of Yosemite's most breathtaking backcountry river canyons. Traverse the famous Tuolumne River from the high country to the lower valley. Pass several impressive waterfalls and box canyon sections. Follow in the footsteps of John Muir, who pioneered this route in the 1800's. Soak up rejuvenating solitude in remote sections of this hike. Have good potential to see wildlife. Enjoy savings and convenience with included pre-trip dinner and camping. Enjoy our exceptional backcountry cuisine and expert guides",
+      "description": "This is a rugged overnight backpack into the North country of Yosemite dropping in from Tuolumne Meadows into the Grand Canyon of the Tuolumne. Done at the beginning of Spring is best due to the high volume of water but be ready for some river fording through some very icy temperatures. It begins at an elevation just under 9,000' and drops to a low elevation of 4,500' almost 19 miles later at Pate Valley. Coming up out of Pate Valley heading towards Harden Lake is an elevation gain of almost 4,550' in just under 8 or so miles, be prepared for some thigh quivering demands. During the hike you'll pass a series of waterfalls starting with White Cascade Falls followed by Tuolumne Falls, California Falls, Le Conte Falls and finally the geological wonder, Waterwhell Falls, where the water flows down over a series of grooves in the rocks that can propel the water close to 20' into the air in a counter clock wise wheel, really spectacular.",
+      "hazards": "Bring plenty of water and make sure you are in shape!",
+      "permit": "https://www.nps.gov/yose/planyourvisit/wildpermits.htm",
+      "trailhead": "Tuolumne Meadows",
+      "bestHike": false,
+      "backpacking": true,
+      "coverImgUrl": "../images/tuolumneSonora.jpg",
+      "estTime": "4-6 days",
+      "sceneryFactor": 5,
+      "crowdFactor": 2,
       "park": "Yosemite National Park"
     }
   ]

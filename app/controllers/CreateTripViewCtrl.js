@@ -74,7 +74,9 @@ app.controller('CreateTripViewCtrl', function($scope, AuthFactory, TripFactory, 
       imgUrl: '',
       camping: false,
       backpacking: false,
-      roadtrip: false
+      roadtrip: false,
+      yosemite: false,
+      glacier: false
   };
   //A trip is created and added to firebase using the create button
   $scope.create = () => {

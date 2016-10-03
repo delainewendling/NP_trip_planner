@@ -2,16 +2,28 @@
 
 app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, ActivityFactory, $uibModal, MemberFactory, $q, AuthFactory){
 
+  // let DATABASEREF = firebase.database().ref();
+  // DATABASEREF.on("value", (snapshot)=>{
+  //    $scope.activities = [];
+  //   let activities = snapshot.val().activities;
+  //   let tripId = $routeParams.tripId.toString();
+  //   console.log("trip id", tripId);
+  //   Object.keys(activities).forEach((key)=>{
+  //     if (activities[key].tripId == tripId){
+  //       $scope.activities.push(activities[key]);
+  //     }
+  //   })
+  //   console.log("activities", $scope.activities);
+  // });
+
   MemberFactory.getMembersOfTrip($routeParams.tripId)
   .then((memberData)=>{
   $scope.members = [];
-    console.log("memberData", memberData);
       return $q.all(
         Object.keys(memberData).map((key)=>{
           return AuthFactory.getUser(memberData[key].uid)
       }))
       .then((memberData)=>{
-        console.log("memberData", memberData);
         memberData.forEach((member)=>{
           Object.keys(member).forEach((key)=>{
             console.log(member[key]);
@@ -121,8 +133,8 @@ app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, Tra
     $scope.deleteActivityFromTrip = (event, activityId)=>{
       ActivityFactory.deleteActivityFromTrip(activityId)
       .then(()=>{
-        console.log("successfully deleted");
-        $(event.currentTarget).find('.activityInput').remove();
+        console.log("successfully deleted", event);
+        $(event.currentTarget.parentElement).remove();
         $(event.currentTarget).find('.activityInput').remove();
         //For now, the only way I know how to get rid of the deleted item is to reload the page. Not ideal - want to fix later.
         // $route.reload();
