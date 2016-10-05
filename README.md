@@ -4,7 +4,7 @@
   * Use Firebase to host data
   * Use Angular 1.x  
 
-I decided to create Discover America. This application allows users to effectively plan a trip to Yosemite and Glacier National Parks. Content for more parks is welcome! Features of the application include:
+I decided to create Discover America. This application allows users to effectively plan a trip to Yosemite and/or Glacier National Park. Content for more parks is welcome! Features of the application include:
   * A map and list view of campgrounds and various trails in the park
   * Detailed information about each campground and trail
   * No limit on the number of trips a user can plan
