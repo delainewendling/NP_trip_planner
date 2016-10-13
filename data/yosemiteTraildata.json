@@ -345,6 +345,31 @@
       "sceneryFactor": 5,
       "crowdFactor": 2,
       "park": "Yosemite National Park"
+    },
+    {
+      "id": 13,
+      "name": "Artist Point",
+      "coords": {
+        "latitude": 44.720183,
+        "longitude": -110.479766
+      },
+      "distance": "2 miles roundtrip",
+      "difficulty": "easy-moderate",
+      "familyFriendly": true,
+      "elevationGain": "500 ft",
+      "campground": false,
+      "whyVisit": "To see a Tunnel-View-like vista without engaging in the scrum for position that's the normal state of affairs at the actual Tunnel View.",
+      "description": "Artist Point is one of the marquee overlooks on the Grand Canyon of the Yellowstone River, with an exceptional perspective of canyon’s most famous feature, the 308-foot Lower Falls. The trail starts from the Tunnel View on the uphill side of the road. This is the Pohono Trail, which goes all the way to Glacier Point, passing several other points (Inspiration, Crocker, Stanford, Dewey, and Taft) plus Sentinel Dome en route. For this hike, though, you want to turn left half a mile along, where the trail intersects the old stagecoach road into Yosemite Valley. You'll reach Artist Point in just under half a mile. Shortly before Artist Point, you'll pass a viewpoint partially obstructed by trees; this isn't it - keep going and you'll find a much better view just around the corner. Just past Artist Point, the trail crosses Artist Creek. If you get this far, you've missed the literal point, though you'd have to be distracted by assorted bears and a flying saucer to overlook it. If you keep going, you'll eventually come out at Highway 41 a quarter mile uphill from Bridalveil Fall.",
+      "hazards": "There's a small amount of poisen oak, and the first half is often rocky, so be mindful!",
+      "permit": "none",
+      "trailhead": "Yosemite Valley's Tunnel View",
+      "bestHike": false,
+      "backpacking": false,
+      "coverImgUrl": "../images/artistPoint.jpg",
+      "estTime": "4-6 days",
+      "sceneryFactor": 5,
+      "crowdFactor": 2,
+      "park": "Yosemite National Park"
     }
   ]
 }
