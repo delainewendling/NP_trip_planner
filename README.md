@@ -1,5 +1,5 @@
 # Discover America
-  As a student of Nashville Software School, students were given the task of creating a front-end capstone project. The requirements were: 
+  As a student of Nashville Software School, I was given the task of creating a front-end capstone project. The requirements were: 
   * Create a basic CRUD app
   * Use Firebase to host data
   * Use Angular 1.x  
