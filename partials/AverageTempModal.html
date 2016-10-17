@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h3 class="modal-title" ng-show="yosemite">Average Weather in Yosemite Valley during your Trip </h3>
+  <h3 class="modal-title" ng-show="!parkSelected"> You Haven't Selected a Park </h3>
+  <p ng-show="!parkSelected"> Edit Your Trip to Select a Park </p>
+</div>
+<div class="modal-body" ng-show="yosemite">
+  <table class="table table-bordered">
+    <thead>
+      <th> Month </th>
+      <th> Avg. High </th>
+      <th> Avg. Low </th>
+      <th> Avg. Precipitation </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="month in yosemiteMonths">
+        <td> {{month[yosemiteKeys[$index]].month}} </td>
+        <td> {{month[yosemiteKeys[$index]].maxTemp}} &deg;F</td>
+        <td> {{month[yosemiteKeys[$index]].minTemp}} &deg;F</td>
+        <td> {{month[yosemiteKeys[$index]].avgPrecip}} in.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <strong> NOTE: </strong> The temperatures in Yosemite Valley are warmer than other regions of Yosemite National Park. If you are hiking or staying in a campground outside of the valley, prepare for slightly cooler weather. <strong><i> Nights can get especially cool outside of the valley, even in summer. Prepare accordingly. </i></strong>
+  </div>
+</div>
+<div class="modal-header" ng-show="glacier">
+  <h3 class="modal-title">Average Weather in East Glacier during your Trip </h3>
+</div>
+<div class="modal-body" ng-show="glacier">
+  <table class="table table-bordered">
+      <thead>
+        <th> Month </th>
+        <th> Avg. High </th>
+        <th> Avg. Low </th>
+        <th> Avg. Precipitation </th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="month in glacierMonths">
+          <td> {{month[glacierKeys[$index]].month}} </td>
+          <td> {{month[glacierKeys[$index]].maxTemp}} &deg;F</td>
+          <td> {{month[glacierKeys[$index]].minTemp}} &deg;F</td>
+          <td> {{month[glacierKeys[$index]].avgPrecip}} in.</td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-info" ng-click="close()">Close</button>
+</div>

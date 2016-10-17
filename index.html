@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>National Parks Trip Planner</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="lib/bower_components/angular-material/angular-material.min.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-app="NPApp" ng-cloak>
+  <div ng-controller="TopCtrl" class="wrapperDiv">
+    <div ng-include="'partials/navbar.html'"></div>
+    <div ng-view></div>
+  </div>
+<!-- Third Party Libs -->
+<script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="lib/bower_components/lodash/dist/lodash.js"></script>
+<script src="lib/bower_components/angular/angular.min.js"></script>
+<script src="lib/bower_components/moment/moment.js"></script>
+<script src="lib/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="lib/bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="lib/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="lib/bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="lib/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="lib/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="lib/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+<script src="lib/bower_components/angular-material/angular-material.js"></script>
+<script src="lib/bower_components/angular-route/angular-route.min.js"></script>
+<script src="lib/bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+<script src="lib/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="lib/bower_components/firebase/firebase.js"></script>
+<!-- Root File -->
+<script type="text/javascript" src="app/app.js"></script>
+<!-- Providers -->
+<script type="text/javascript" src="app/factories/Key-getter.js"></script>
+<script type="text/javascript" src="app/factories/WishlistFactory.js"></script>
+<script type="text/javascript" src="app/factories/AuthFactory.js"></script>
+<script type="text/javascript" src="app/factories/TrailFactory.js"></script>
+<script type="text/javascript" src="app/factories/TripFactory.js"></script>
+<script type="text/javascript" src="app/factories/ActivityFactory.js"></script>
+<script type="text/javascript" src="app/factories/MemberFactory.js"></script>
+<!-- Controllers -->
+<script type="text/javascript" src="app/controllers/NavCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/LandingPageCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/AverageTempModalCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/RespondToInviteModalCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/InviteFriendModalCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/PackingModalCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/WarningsModalCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/SingleTripCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/CreateTripViewCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/DeleteTripModalCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/EditTripModalCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/WishlistCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/TopCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/ExploreCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/YosemiteCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/GlacierCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/LoginCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/WishlistCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/AddToTripModalCtrl.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<div class="modal-header" >
+  <h3 class="modal-title">{{trips.length === 0 ? "" : "Add Trail to Trip"}}</h3>
+</div>
+<div class="modal-body">
+  <div class="pickDatesContainer" ng-show="trips.length !== 0">
+    <div class="col-xs-12">
+      <!-- Dropdown to select trip -->
+      <div uib-dropdown is-open="status.isTripOpen" class="dropdownTrip">
+        <button id="single-button" type="button" class="btn btn-primary" ng-disabled="disabled" ng-click="openTrips($event)">
+          Choose Trip <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+          <li role="menuitem" ng-repeat="trip in trips" ng-click="getDaysAndLogTrip(trip.id); showTripName(trip.name)"><a ng-click="closeTrips()">{{trip.name}}</a></li>
+        </ul>
+      </div>
+      <span ng-if="tripName"> <strong> Selected Trip: </strong> {{tripName}} </span>
+    </div>
+    <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" ng-show="showTripAlert" close="closeTripAlert()">{{tripAlert.msg}}</div>
+    <!-- Days of that particular trip -->
+    <div class="col-xs-12">
+      <div uib-dropdown is-open="status.isDayOpen" class="dropdownTrip">
+        <button id="single-button" type="button" class="btn btn-primary" ng-disabled="status.isDayDisabled" ng-click="openDays($event)">
+          Choose Day <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+          <li role="menuitem" ng-repeat="day in trip.days" ng-click="logDay(day.id); getDay(day.date)"><a ng-click="closeDays(day.startDate)">{{day.date}}</a></li>
+        </ul>
+      </div>
+      <span ng-if="tripDay"> <strong> Selected Day: </strong> {{tripDay}} </span>
+    </div>
+    <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" ng-show="showDayAlert" close="closeDayAlert()">{{dayAlert.msg}}</div>
+    <!-- Any notes user wants to add about the trail -->
+    <div class="col-xs-12 input-group">
+      <label for="notes" class="col-form-label">Notes</label>
+       <textarea placeholder="Add notes here..." class="form-control" id="notes" ng-model="trailObj.notes"></textarea>
+    </div>
+  </div>
+  <div class="noTripsYet" ng-show="trips.length === 0">
+    <h3 class="planTrip"> You don't have any trips planned yet </h3>
+    <md-button class="md-raised planTrip" ng-click="planATrip()"> Plan a Trip </md-button>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="closeModal()">Close</button>
+  <button class="btn btn-success" ng-click="addTrail()" ng-show="trips.length !==0">Add Trail</button>
+</div>
+

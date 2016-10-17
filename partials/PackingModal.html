@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h3 class="modal-title">Suggested Packing List </h3>
+</div>
+<div class="modal-body">
+  <div class="checkbox packingList" ng-repeat="item in items track by $index">
+    <label class="packingItem done-{{item.packed}}">
+      <input type="checkbox" ng-model="item.packed" ng-checked="{{item.packed}}" ng-click="updatePacked(item.packed, item.id)"> {{item.item}}
+    </label>
+    <span class="glyphicon glyphicon-remove deletePackingItem" ng-click="deleteItemFromList(item.id, $index)"></span>
+  </div>
+  <div ng-show="isAdding">
+    <textarea type="text" ng-model="item.text" class="activityInput showOutline" value="{{item.text}}" ng-keypress="blurInput($event)" focus-me="focusInput">
+    </textarea>
+    <button class="btn btn-success" ng-click="addItem(item.text)"> Add </button>
+  </div>
+  <div class="addActivity" ng-click="showInput(); focusInput=true"> Add Item... </div>
+</div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-info" ng-click="close()">Close</button>
+</div>

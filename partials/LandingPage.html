@@ -1,0 +1,37 @@
+<h1 class="websiteTitle"> Discover America </h1>
+  <div>
+    <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+      <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+        <img ng-src="{{slide.image}}" class="slide">
+        <div class="carousel-caption">
+          <p>{{slide.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <div class="row">
+    <h1 class="websiteTitle"> How to Use this Application</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div class="websiteInfo">
+        <h3 class="websiteTitle"> <span class="glyphicon glyphicon-globe websiteIcon"></span> EXPLORE</h3>
+        <p> There are many amazing National Parks in the United States. This website is a place where you can plan a safe and fun trip to one of America's National Parks. </p>
+        <p> Click on the Explore tab in the menu above and pick a park you want to explore. From there you can explore trails and campgrounds in that park  </p>
+      </div>
+    </div>
+    <div class="xol-xs-12 col-sm-4">
+      <div class="websiteInfo">
+        <h3 class="websiteTitle"><span class="glyphicon glyphicon-briefcase websiteIcon"></span> PLAN A TRIP </h3>
+        <p> If you're not ready to plan a trip you can add trails to your wishlist. If you are ready to plan a trip make sure you click on 'Plan a Trip' in the menu above. From there you can choose the dates and parks you want to visit.  </p>
+      </div>
+    </div>
+    <div class="xol-xs-12 col-sm-4">
+      <div class="websiteInfo">
+        <h3 class="websiteTitle"><span class="glyphicon glyphicon-user websiteIcon"></span>INVITE FRIENDS </h3>
+        <p> Once you have a trip, or many trips, planned you can invite friends as long as they are a user on the website. </p>
+      </div>
+    </div>
+  </div>
+</div>

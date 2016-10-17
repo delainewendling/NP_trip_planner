@@ -1,0 +1,252 @@
+{
+  "campgrounds": [
+    {
+      "id": 0,
+      "name": "Upper Pines",
+      "coords": {
+        "latitude": 37.738954,
+        "longitude": -119.565151
+      },
+      "open": "All year",
+      "elevation": "4000 ft",
+      "maxRV": "35 ft",
+      "maxTrailer": "24 ft",
+      "reserve": "All year",
+      "dailyFee": "$26",
+      "sites": 238,
+      "pets": "yes",
+      "water": "tap",
+      "imgUrl": "../images/upperPines.jpg",
+      "website": "http://www.recreation.gov/camping/upper-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70925"
+    },
+    {
+      "id": 1,
+      "name": "Lower Pines",
+      "coords": {
+        "latitude": 37.7407589,
+        "longitude": -119.5676636
+      },
+      "open": "Mar 28-Nov 1",
+      "elevation": "4000 ft",
+      "maxRV": "40 ft",
+      "maxTrailer": "35 ft",
+      "reserve": "Yes",
+      "dailyFee": "$26",
+      "sites": 60,
+      "pets": "yes",
+      "water": "tap",
+      "imgUrl": "../images/lowerPines.jpg",
+      "website": "http://www.recreation.gov/camping/lower-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70928"
+    },
+    {
+      "id": 2,
+      "name": "North Pines",
+      "coords": {
+        "latitude": 37.7418699,
+        "longitude": -119.5665525
+      },
+      "open": "Apr 4-Nov 7",
+      "elevation": "4000 ft",
+      "maxRV": "40 ft",
+      "maxTrailer": "35 ft",
+      "reserve": "Yes",
+      "dailyFee": "$26",
+      "sites": 81,
+      "pets": "yes",
+      "water": "tap",
+      "imgUrl": "../images/northPines.jpg",
+      "website": "http://www.recreation.gov/camping/north-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70927"
+    },
+    {
+      "id": 3,
+      "name": "Camp 4",
+      "coords": {
+        "latitude": 37.7415,
+        "longitude": -119.6037
+      },
+      "open": "All year",
+      "elevation": "4000 ft",
+      "maxRV": "No RVs",
+      "maxTrailer": "No Trailers",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$6/person",
+      "sites": 35,
+      "pets": "No",
+      "water": "tap",
+      "imgUrl": "../images/camp4.jpg",
+      "website": "https://www.nps.gov/yose/planyourvisit/camp4.htm"
+    },
+    {
+      "id": 4,
+      "name": "Wawona",
+      "coords": {
+        "latitude": 37.5471575,
+        "longitude": -119.6776594
+      },
+      "open": "All year",
+      "elevation": "4000 ft",
+      "maxRV": "35 ft",
+      "maxTrailer": "35 ft",
+      "reserve": "Apr 11-Oct 30",
+      "dailyFee": "$26",
+      "sites": 93,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/wawona.jpg",
+      "website": "http://www.recreation.gov/camping/wawona/r/campgroundDetails.do?contractCode=NRSO&parkId=70924"
+    },
+    {
+      "id": 5,
+      "name": "Bridalveil Creek",
+      "coords": {
+        "latitude": 37.664096,
+        "longitude": -119.622363
+      },
+      "open": "July 1-Sep 19",
+      "elevation": "7200 ft",
+      "maxRV": "35 ft",
+      "maxTrailer": "24 ft",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$18",
+      "sites": 110,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/bridalveilCampground.jpg",
+      "website": "http://www.recreation.gov/camping/bridalveil-creek-group-and-horse-camp/r/campgroundDetails.do?contractCode=NRSO&parkId=70931"
+    },
+    {
+      "id": 6,
+      "name": "Hodgdon Meadow",
+      "coords": {
+        "latitude": 37.800184,
+        "longitude": -119.867712
+      },
+      "open": "All year",
+      "elevation": "4900 ft",
+      "maxRV": "40 ft",
+      "maxTrailer": "30 ft",
+      "reserve": "Apr 11-Oct 10",
+      "dailyFee": "$26",
+      "sites": 105,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/hodgdonMeadow.jpg",
+      "website":"http://www.recreation.gov/camping/hodgdon-meadow/r/campgroundDetails.do?contractCode=NRSO&parkId=70929"
+    },
+    {
+      "id": 7,
+      "name": "Crane Flat",
+      "coords": {
+        "latitude": 37.751608,
+        "longitude": -119.800505
+      },
+      "open": "Jun 10-Oct 10",
+      "elevation": "6200 ft",
+      "maxRV": "40 ft",
+      "maxTrailer": "30 ft",
+      "reserve": "Yes",
+      "dailyFee": "$26",
+      "sites": 166,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/craneFlat.jpg",
+      "website": "http://www.recreation.gov/camping/crane-flat/r/campgroundDetails.do?contractCode=NRSO&parkId=70930"
+    },
+    {
+      "id": 8,
+      "name": "Tamarack Flat",
+      "coords": {
+        "latitude": 37.7503,
+        "longitude": -119.7352
+      },
+      "open": "May 27-Oct 15",
+      "elevation": "6300 ft",
+      "maxRV": "RVs not recommended",
+      "maxTrailer": "Trailers not recommended",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$12",
+      "sites": 52,
+      "pets": "Yes",
+      "water": "Creek (boil)",
+      "imgUrl": "../images/tamarackFlat.jpg",
+      "website": "https://www.nps.gov/yose/planyourvisit/tamarack.htm"
+    },
+    {
+      "id": 9,
+      "name": "White Wolf",
+      "coords": {
+        "latitude": 37.8704,
+        "longitude": -119.6482
+      },
+      "open": "Jul 8-Sep 26",
+      "elevation": "8000 ft",
+      "maxRV": "27 ft",
+      "maxTrailer": "24 ft",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$18",
+      "sites": 74,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/whiteWolf.jpg",
+      "website": "https://www.nps.gov/yose/planyourvisit/wwcamp.htm"
+    },
+    {
+      "id": 10,
+      "name": "Yosemite Creek",
+      "coords": {
+        "latitude": 37.8264,
+        "longitude": -119.5957
+      },
+      "open": "Jun 17-Sep 5",
+      "elevation": "7700 ft",
+      "maxRV": "RVs not recommended",
+      "maxTrailer": "Trailers not recommended",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$12",
+      "sites": 75,
+      "pets": "Yes",
+      "water": "Creek (boil)",
+      "imgUrl": "../images/yosemiteCreek.jpg",
+      "website": "https://www.nps.gov/yose/planyourvisit/ycreekcamp.htm"
+    },
+    {
+      "id": 11,
+      "name": "Porcupine Flat",
+      "coords": {
+        "latitude": 37.8085,
+        "longitude": -119.5664
+      },
+      "open": "Jul 1-Oct 15",
+      "elevation": "8100 ft",
+      "maxRV": "RVs not recommended",
+      "maxTrailer": "Trailers not recommended",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$12",
+      "sites": 52,
+      "pets": "Yes",
+      "water": "Creek (boil)",
+      "imgUrl": "../images/porcupineFlat.jpg",
+      "website": "https://www.nps.gov/yose/planyourvisit/porcupinecamp.htm"
+    },
+    {
+      "id": 12,
+      "name": "Tuolumne Meadows",
+      "coords": {
+        "latitude": 37.8710364,
+        "longitude": -119.3609897
+      },
+      "open": "Jun 20-Sep 26",
+      "elevation": "8600 ft",
+      "maxRV": "35 ft",
+      "maxTrailer": "35 ft",
+      "reserve": "50%",
+      "dailyFee": "$26",
+      "sites": 304,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/tuolumneMeadows.jpeg",
+      "website": "http://www.recreation.gov/camping/tuolumne-meadows/r/campgroundDetails.do?contractCode=NRSO&parkId=70926"
+    }
+
+  ]
+}
