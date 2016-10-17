@@ -34,8 +34,6 @@ app.controller('InviteFriendModalCtrl', function($scope, AuthFactory, TripFactor
           }
         });
       });
-      console.log("users who are not members", $scope.users);
-      console.log("already members", $scope.alreadyMembers);
     });
   }
   getAllUsers();

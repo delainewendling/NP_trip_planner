@@ -2,4 +2,4 @@ lib/bower_components
 lib/node_modules
 lib/.sass_cache
 css/
-app/factories/key-getter.js
+app/factories/Key-getter.js
