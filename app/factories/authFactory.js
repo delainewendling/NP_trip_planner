@@ -20,38 +20,38 @@ app.factory("AuthFactory", function($window, ImportantKeys, $q, $http, FirebaseU
 
   let createUserWithEmail = function(userObject){
     return firebase.auth().createUserWithEmailAndPassword(userObject.email, userObject.password)
-    .catch(function(error){
-      let errorMessage = error.message;
-      console.log("Oops, there was an error", errorMessage);
-    });
+    // .catch(function(error){
+    //   let errorMessage = error.message;
+      // console.log("Oops, there was an error", errorMessage);
+    // });
   };
 
   let loginUserWithEmail = function(userObject){
     return firebase.auth().signInWithEmailAndPassword(userObject.email, userObject.password)
-    .catch(function(error){
-      let errorMessage = error.message;
-      console.log("Oops, there was an error logging in", errorMessage);
-    });
+    // .catch(function(error){
+    //   let errorMessage = error.message;
+      // console.log("Oops, there was an error logging in", errorMessage);
+    // });
   };
 
 
   let loginUserWithGoogle = function(){
     let provider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithPopup(provider)
-    .catch(function(error){
-      let errorMessage = error.message;
-      console.log("Oops, there was an error logging in", errorMessage);
-    });
+    // .catch(function(error){
+    //   let errorMessage = error.message;
+      // console.log("Oops, there was an error logging in", errorMessage);
+    // });
   };
 
 
   let loginUserWithFacebook = function(){
     let provider = new firebase.auth.FacebookAuthProvider();
     return firebase.auth().signInWithPopup(provider)
-    .catch(function(error){
-      let errorMessage = error.message;
-      console.log("Oops, there was an error logging in", errorMessage);
-    });
+    // .catch(function(error){
+    //   let errorMessage = error.message;
+      // console.log("Oops, there was an error logging in", errorMessage);
+    // });
   };
 
   let saveUserToFirebase = function(userObj){

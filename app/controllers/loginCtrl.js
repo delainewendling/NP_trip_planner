@@ -8,6 +8,8 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
     username: ''
   };
 
+  $scope.showAuthAlert = false;
+
   $scope.register = ()=>{
     console.log("You clicked register!");
     AuthFactory.createUserWithEmail({
@@ -29,7 +31,9 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
         console.log("successfully saved user!");
       })
     }, (error)=>{
-      console.log(`Error creating user ${error}`);
+      $scope.error = `${error.message}`;
+      $scope.showAuthAlert = true;
+      console.log(`Error creating an account ${error}. ${$scope.showAuthAlert}`);
     });
   };
 
@@ -44,7 +48,9 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
         $window.location.href = '#/parks/explore';
       }
     }, (error)=>{
-      console.log(`Error logging in user ${error}`);
+      $scope.error = `${error.message}`;
+      $scope.showAuthAlert = true;
+      console.log(`${error} ${$scope.showAuthAlert}`);
     });
   };
 
@@ -56,11 +62,11 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
       let currentUserId = data.user.uid;
       checkWithCurrentUsers(data.user, currentUserId);
       if (data){
-        // AuthFactory.instagramAuth()
         $window.location.href = '#/parks/explore';
       }
     }, (error)=>{
-      console.log(`Error logging in user ${error}`);
+      $scope.showAuthAlert = true;
+      console.log(`Error logging in with Google ${error}`)
     });
   };
 
@@ -98,8 +104,14 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
         $window.location.href = '#/parks/explore';
       }
     }, (error)=>{
-      console.log(`Error logging in user ${error}`);
+      $scope.showAuthAlert = true;
+      console.log(`Error logging in with Facebook ${error}`)
     });
+  };
+
+  $scope.alert = { type: 'danger'};
+  $scope.closeAlert = function() {
+    $scope.showAuthAlert = false;
   };
 
 });

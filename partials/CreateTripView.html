@@ -1,8 +1,8 @@
 <div class="createTripView">
-<h3> Create a Trip </h3>
+  <h3> Create a Trip </h3>
   <form name="myForm" flex-gt-xs>
     <div layout-gt-xs="row pickDatesContainer">
-      <div flex-gt-xs>
+      <div flex-gt-xs="">
         <span> <h4 class="pickDates title required">When do you want to go? <span class="asterisk">*</span></h4></span>
         <md-datepicker name="dateField" ng-model="startDate" md-placeholder="Enter start date" class="pickDates" md-min-date="minStartDate" ng-required="true"></md-datepicker>
         <md-datepicker name="dateField" ng-model="endDate" md-placeholder="Enter end date" class="pickDates" md-min-date="minEndDate" ng-click="updateEndDate()" ng-required="true"></md-datepicker>
@@ -16,7 +16,7 @@
   </form>
   <label for="tripName">Name: <span class="asterisk">*</span></label>
   <input type="text" class="form-control tripName required" name="tripName" ng-model="trip.name" required/>
-  <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" ng-show="showAlert" close="closeAlert()">{{alert.msg}}</div>
+  <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" class="col-xs-12" ng-show="showAlert" close="closeAlert()">{{alert.msg}}</div>
   <label for="tripDescription">Description:</label>
   <input type="text" class="form-control" name="tripDescription" ng-model="trip.description"/>
   <div class="checkbox tripType">
@@ -43,30 +43,30 @@
   <div class="tripImages">
     <h4> Choose a Trip Photo </h4>
     <div class="row tripPhotoRow">
-      <div class="col-sm-offset-1 col-sm-2 col-xs-3 tripPhotoDiv">
+      <div class="col-sm-offset-1 col-sm-2 col-xs-6 tripPhotoDiv">
         <img src="../tripPhotos/yosemiteExplore.jpg" alt="Yosemite Photo" ng-click="saveTripPhoto('../tripPhotos/yosemiteExplore.jpg')" class="tripPhoto">
       </div>
-      <div class="col-sm-2 col-xs-3 tripPhotoDiv">
+      <div class="col-sm-2 col-xs-6 tripPhotoDiv">
         <img src="../tripPhotos/lookingOver.jpg" alt="Yosemite Photo" ng-click="saveTripPhoto('../tripPhotos/lookingOver.jpg')" class="tripPhoto">
       </div>
-      <div class="col-sm-2 col-xs-3 tripPhotoDiv">
+      <div class="col-sm-2 col-xs-6 tripPhotoDiv">
         <img src="../tripPhotos/roadTrip.jpg" alt="Yosemite Photo" ng-click="saveTripPhoto('../tripPhotos/roadTrip.jpg')" class="tripPhoto">
       </div>
-      <div class="col-sm-2 col-xs-3 tripPhotoDiv">
+      <div class="col-sm-2 col-xs-6 tripPhotoDiv">
         <img src="../tripPhotos/yosemiteFalls.jpg" alt="Yosemite Photo" ng-click="saveTripPhoto('../tripPhotos/yosemiteFalls.jpg')" class="tripPhoto">
       </div>
     </div>
     <div class="row tripPhotoRow">
-      <div class="col-sm-offset-1 col-sm-2 col-xs-3 tripPhotoDiv">
+      <div class="col-sm-offset-1 col-sm-2 col-xs-6 tripPhotoDiv">
         <img src="../tripPhotos/backpacker.jpg" alt="Yosemite Photo" ng-click="saveTripPhoto('../tripPhotos/backpacker.jpg')" class="tripPhoto">
       </div>
-      <div class="col-sm-2 col-xs-3 tripPhotoDiv">
+      <div class="col-sm-2 col-xs-6 tripPhotoDiv">
         <img src="../tripPhotos/yosemiteWishlist.jpg" alt="Yosemite Photo" ng-click="saveTripPhoto('../tripPhotos/yosemiteWishlist.jpg')" class="tripPhoto">
       </div>
-      <div class="col-sm-2 col-xs-3 tripPhotoDiv">
+      <div class="col-sm-2 col-xs-6 tripPhotoDiv">
         <img src="../tripPhotos/campsite.JPG" alt="Yosemite Photo" ng-click="saveTripPhoto('../tripPhotos/campsite.JPG')" class="tripPhoto">
       </div>
-      <div class="col-sm-2 col-xs-3 tripPhotoDiv">
+      <div class="col-sm-2 col-xs-6 tripPhotoDiv">
         <img src="../tripPhotos/familyTrip.jpg" alt="Yosemite Photo" ng-click="saveTripPhoto('../tripPhotos/familyTrip.jpg')" class="tripPhoto">
       </div>
     </div>
@@ -83,3 +83,4 @@
   </div>
   <button class="btn btn-success createTripBtn" ng-show="{{!isEditing}}" ng-click="create()">Create Trip</button>
 </div>
+

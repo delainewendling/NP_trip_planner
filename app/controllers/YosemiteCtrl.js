@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, ApiFactory, TrailFactory, WishlistFactory, AuthFactory, $uibModal, $mdToast){
+app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiGmapGoogleMapApi, TrailFactory, WishlistFactory, AuthFactory, $uibModal, $mdToast){
   //The map that shows up when the user goes to the Yosemite view should be centered on Yosemite National Park. Below are the coordinates for Yosemite.
   $scope.map = {
     center: {latitude: 37.8651, longitude: -119.5383 },
@@ -253,7 +253,7 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
 
     $mdToast.show(
       $mdToast.simple()
-        .textContent(`You added ${trailName} to your Wishlist!`)
+        .content(`You added ${trailName} to your Wishlist!`)
         .position(pinTo)
         .hideDelay(3000)
     );

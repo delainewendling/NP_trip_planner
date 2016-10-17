@@ -2,20 +2,6 @@
 
 app.controller('SingleTripCtrl', function($scope, $routeParams, TripFactory, TrailFactory, $route, ActivityFactory, $uibModal, MemberFactory, $q, AuthFactory){
 
-  // let DATABASEREF = firebase.database().ref();
-  // DATABASEREF.on("value", (snapshot)=>{
-  //    $scope.activities = [];
-  //   let activities = snapshot.val().activities;
-  //   let tripId = $routeParams.tripId.toString();
-  //   console.log("trip id", tripId);
-  //   Object.keys(activities).forEach((key)=>{
-  //     if (activities[key].tripId == tripId){
-  //       $scope.activities.push(activities[key]);
-  //     }
-  //   })
-  //   console.log("activities", $scope.activities);
-  // });
-
   MemberFactory.getMembersOfTrip($routeParams.tripId)
   .then((memberData)=>{
   $scope.members = [];

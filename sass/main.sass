@@ -33,14 +33,6 @@ body
 .loginFacebookBtn:hover
   background-color: #ccc
 
-.angular-google-map-container
-  position: absolute
-  margin-bottom: 10%
-  height: 450px
-  top: 20%
-  left: 5%
-  width: 90%
-
 .newMap
   width: 55%
 
@@ -51,17 +43,6 @@ body
 
 #map_canvas
   position: relative
-
-.sideBar
-  z-index: 1000
-  max-height: 450px
-  overflow: scroll
-  position: absolute
-  top: 20%
-  left: 60%
-  width: 40%
-  background-color: white
-  padding: 15px
 
 .trailImg
   position: relative
@@ -164,7 +145,7 @@ ul[dnd-list] li
 .activityInput
   background-color: transparent
   border: 0px solid
-  min-height: 30px
+  min-height: 50px
   text-align: left
   width: 90%
   overflow: auto
@@ -257,9 +238,8 @@ ul[dnd-list] li
   border: 1px solid #aaa
 
 .viewIcon
-  margin-left: 20%
   font-size: 20px
-  margin-top: 15px
+  margin-top: 15%
   display: inline-block
 
 .selectedIcon
@@ -295,9 +275,8 @@ ul[dnd-list] li
 .wishlistTitle
   color: white
   z-index: 1000
-  position: absolute
-  top: 15%
-  left: 45%
+  text-align: center
+  padding-top: 3%
 
 .wishlistDetails
   margin-top: 3%
@@ -543,12 +522,6 @@ ul[dnd-list] li
   font-style: normal
   color: black
 
-.slide
-  display: block
-  margin: 0 auto
-  width: 100%
-  height: 500px
-
 .parkOptions
   color: white
   text-align: center
@@ -581,7 +554,9 @@ ul[dnd-list] li
 .parkName
   color: #aaa
   font-size: 2rem
+  display: inline-block
   margin-left: 15%
+  margin-top: 8%
 
 .websiteTitle
   text-align: center
@@ -598,6 +573,20 @@ ul[dnd-list] li
 
 .inputBox
   margin: 5px
+
+.word
+  color: #ccc
+  text-transform: uppercase
+  letter-spacing: 1px
+  padding: 3px
+  font: bold 12px arial,sans-serif
+  background: #fff
+
+.slide
+  display: block
+  margin: 0 auto
+  width: 100%
+  height: 500px
 
 .wrapper
   position: relative
@@ -622,10 +611,42 @@ ul[dnd-list] li
   margin-top: -12px
   z-index: 2
 
-.word
-  color: #ccc
-  text-transform: uppercase
-  letter-spacing: 1px
-  padding: 3px
-  font: bold 12px arial,sans-serif
-  background: #fff
+.angular-google-map-container
+  position: absolute
+  top: 20%
+  left: 5%
+  margin-bottom: 10%
+  height: 450px
+  width: 90%
+
+.sideBar
+  z-index: 1000
+  max-height: 450px
+  overflow: scroll
+  position: absolute
+  top: 20%
+  left: 60%
+  width: 40%
+  background-color: white
+  padding: 15px
+
+@media (max-width: 990px)
+  .angular-google-map-container
+    top: 30%
+  .sideBar
+    top: 30%
+
+@media(max-width: 768px)
+  .wrapper,
+  .line,
+  .wordwrapper
+    display: none
+
+@media (min-width: 0px) and (max-width: 550px)
+  .slide
+    height: 200px
+
+@media (min-width: 551px) and (max-width: 1000px)
+  .slide
+    height: 400px
+
