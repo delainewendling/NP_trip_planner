@@ -120,7 +120,7 @@
 <!-- Here is the information in the list view -->
 <div ng-if="!mapView" class="row">
  <div class="trailContainer">
-  <div ng-repeat="trail in trailsInfo" ng-show="!selectedCampground">
+  <div ng-repeat="trail in trailsInfo" ng-show="!selectedCampgroundList">
     <div ng-class="{listViewTrail: true}" ng-click="onListClick($event, trail)" ng-show="{{trail[listTrailType]}}">
       <div class="col-xs-2">
         <img src="{{trail.coverImgUrl}}" class="thumbnailImg">
@@ -181,7 +181,7 @@
 </div>
 <div class="row">
   <div class="campgroundContainer">
-   <div ng-repeat="campground in campgroundsInfo" ng-show="selectedCampground">
+   <div ng-repeat="campground in campgroundsInfo" ng-show="selectedCampgroundList">
     <div ng-class="{listViewTrail: true}" ng-click="onListClickCampground($event, campground)">
       <div class="col-xs-2">
         <img src="{{campground.imgUrl}}" class="thumbnailImg">
@@ -193,7 +193,7 @@
     </div>
   </div>
   </div>
-    <div ng-show="campgroundBeenClicked" class="list-sidebar" ng-cloak>
+    <div ng-show="campgroundBeenClickedList" class="list-sidebar" ng-cloak>
       <div><button tooltip-placement="bottom" uib-tooltip="Close" class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
       <div>
         <h3 class="trailName"> {{campground.name}} </h3>

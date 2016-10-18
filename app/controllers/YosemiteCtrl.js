@@ -25,6 +25,7 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
   $scope.trailType = false;
   $scope.listTrailType = 'bestHike';
   $scope.selectedCampground = false;
+  $scope.selectedCampgroundList = false;
 
   //When a user navigates to the explore page they should be shown the top hikes on the map. Afterward they can navigate to other view using filters and the map and list view icons.
   getTrailInfo('bestHike');
@@ -133,7 +134,16 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
     $scope.map.zoom = 10;
     $scope.closeSidebar();
     $('.filterBtn').removeClass('selectedFilter');
-    $scope.selectedCampground = true;
+    if ($scope.mapView){
+      console.log("in map view");
+      $scope.selectedCampground = true;
+      $scope.selectedCampgroundList = false;
+    }
+    if (!$scope.mapView) {
+      console.log("in list view");
+      $scope.selectedCampground = false;
+      $scope.selectedCampgroundList = true;
+    }
     getTrailInfo('campground');
     getCampgroundInfo(true);
   };
@@ -142,6 +152,8 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
     $scope.campgrounds[campgroundMarkerId].icon = 'images/campgroundIcon.png';
     $(".sideBar").addClass("col-xs-4");
     $("#map-canvas").addClass("col-xs-8");
+    $scope.campgroundBeenClickedList = false;
+    $scope.selectedCampgroundList =false;
     campgroundMarkerId = marker.id;
     $scope.map.center = {
         latitude: marker.latitude,
@@ -201,7 +213,7 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
     $('.campgroundContainer').addClass("col-xs-7");
     $(".list-sideBar").addClass("col-xs-5");
     $scope.campground = $scope.campgroundsInfo[campground.id];
-    $scope.campgroundBeenClicked = true;
+    $scope.campgroundBeenClickedList = true;
   };
 
   function inWishlist(trailName){

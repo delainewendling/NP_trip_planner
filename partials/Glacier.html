@@ -77,12 +77,50 @@
       <span ng-if='trailInfo.permit != "none"'> <h4 class="permit"> Permit: </h4> Yes <a href="{{trailInfo.permit}}" target="_blank"> Click here to get a permit for this trail </a></span>
     </div>
   </div>
+  <!-- Here is the sidebar about campground information -->
+<div ng-show="campgroundBeenClicked" class="sideBar" ng-cloak>
+    <div><button tooltip-placement="bottom" uib-tooltip="Close" class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
+    <div>
+      <h3 class="trailName"> {{campground.name}} </h3>
+    </div>
+    <img src="{{campground.imgUrl}}" alt="Picture of {{campground.name}}" class="trailImg img-responsive">
+    <div>
+      <strong> Open: </strong> {{campground.open}}
+    </div>
+    <div>
+      <strong> Elevation: </strong> {{campground.elevation}}
+    </div>
+    <div>
+      <strong> Max RV Length: </strong> {{campground.maxRV}}
+    </div>
+    <div>
+      <strong> Max Trailer Length: </strong> {{campground.maxTrailer}}
+    </div>
+    <div>
+      <strong> Reservations: </strong> {{campground.reserve}}
+    </div>
+    <div>
+      <strong> Daily Fee: </strong> {{campground.dailyFee}}
+    </div>
+    <div>
+      <strong> Number of Sites: </strong> {{campground.sites}}
+    </div>
+    <div>
+      <strong> Pets Allowed? </strong> {{campground.pets}}
+    </div>
+    <div>
+      <strong> Water Available: </strong> {{campground.water}}
+    </div>
+    <div>
+      <strong> More information and booking at: </strong> <span><a ng-href="{{campground.website}}" target="_blank">{{campground.name}} Website</a></span>
+    </div>
+  </div>
 </div>
 </div>
 <!-- Here is the information in the list view -->
 <div ng-if="!mapView" class="row">
  <div class="trailContainer">
-  <div ng-repeat="trail in trailsInfo" ng-show="!selectedCampground">
+  <div ng-repeat="trail in trailsInfo" ng-show="!selectedCampgroundList">
     <div ng-class="{listViewTrail: true, listViewSide: beenClicked, row: true}" ng-click="onListClick($event, trail)" ng-show="{{trail[listTrailType]}}">
       <div class="col-xs-2">
         <img src="{{trail.coverImgUrl}}" class="thumbnailImg">
@@ -143,7 +181,7 @@
 </div>
 <div class="row">
   <div class="campgroundContainer">
-   <div ng-repeat="campground in campgroundsInfo" ng-show="selectedCampground">
+   <div ng-repeat="campground in campgroundsInfo" ng-show="selectedCampgroundList">
     <div ng-class="{listViewTrail: true, listViewSide: campgroundBeenClicked, row: true}" ng-click="onListClickCampground($event, campground)">
       <div class="col-xs-2">
         <img src="{{campground.imgUrl}}" class="thumbnailImg">
@@ -156,7 +194,7 @@
   </div>
 </div>
 <!-- Here is the sidebar about campground information -->
-<div ng-show="campgroundBeenClicked" class="list-sideBar" ng-cloak>
+<div ng-show="campgroundBeenClickedList" class="list-sideBar" ng-cloak>
     <div><button tooltip-placement="bottom" uib-tooltip="Close" class="btn btn-default close" ng-click="closeSidebar()">X</button></div>
     <div>
       <h3 class="trailName"> {{campground.name}} </h3>
