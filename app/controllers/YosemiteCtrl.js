@@ -15,6 +15,7 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
     maxZoom: 18,
     minZoom: 8
   };
+
   let trailMarkerId = 0;
   let campgroundMarkerId = 0;
   //I want the sidebar to be closed when a marker hasn't been clicked
@@ -139,6 +140,8 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
 
   $scope.onClickCampgrounds = function(instance, event, marker) {
     $scope.campgrounds[campgroundMarkerId].icon = 'images/campgroundIcon.png';
+    $(".sideBar").addClass("col-xs-4");
+    $("#map-canvas").addClass("col-xs-8");
     campgroundMarkerId = marker.id;
     $scope.map.center = {
         latitude: marker.latitude,
@@ -170,7 +173,8 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
 
   //When a marker is clicked I want to make sure that the user does not add a trail to his/her wishlist when it has already been added.
   $scope.onClick = function(instance, event, marker) {
-    $(".angular-google-map-container").addClass("newMap");
+    $(".sideBar").addClass("col-xs-4");
+    $("#map-canvas").addClass("col-xs-8");
     $scope.markers[trailMarkerId].icon = 'images/hikerLogo.png';
     trailMarkerId = marker.id
     $scope.map.center = {
@@ -186,12 +190,16 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
   $scope.onListClick = (event, trail)=>{
     $('.selectedListItem').removeClass('selectedListItem');
     $(event.currentTarget).addClass('selectedListItem');
+    $('.trailContainer').addClass("col-xs-7");
+    $(".list-sideBar").addClass("col-xs-5");
     $scope.trailInfo = $scope.trailsInfo[trail.id];
     $scope.beenClicked = true;
     $scope.inWishlist = inWishlist(trail.name);
   }
 
   $scope.onListClickCampground = function(event, campground) {
+    $('.campgroundContainer').addClass("col-xs-7");
+    $(".list-sideBar").addClass("col-xs-5");
     $scope.campground = $scope.campgroundsInfo[campground.id];
     $scope.campgroundBeenClicked = true;
   };
@@ -217,7 +225,11 @@ app.controller("YosemiteCtrl", function($scope, ImportantKeys, uiGmapIsReady, ui
   }
   //Since each marker calls the onClick function it is difficult to open and close the sidebar by resetting the beenClicked property using clicks. Therefore, I created a button that will make the beenClicked property false so that the user can close the sidebar when he/she is done looking at trail information.
   $scope.closeSidebar = ()=>{
-    $(".angular-google-map-container").removeClass("newMap");
+    $(".sideBar").removeClass("col-xs-4");
+    $(".list-sideBar").removeClass("col-xs-5");
+    $(".trailContainer").removeClass("col-xs-7");
+    $('.campgroundContainer').removeClass("col-xs-7");
+    $("#map-canvas").removeClass("col-xs-8");
     $scope.markers[trailMarkerId].icon = 'images/hikerLogo.png';
     $scope.campgrounds[campgroundMarkerId].icon = 'images/campgroundIcon.png';
     $scope.map.center = {latitude: 37.8651, longitude: -119.5383 };

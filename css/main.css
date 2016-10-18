@@ -33,9 +33,6 @@ body {
 .loginFacebookBtn:hover {
   background-color: #ccc; }
 
-.newMap {
-  width: 55%; }
-
 .map, #map_canvas {
   height: 100%;
   width: 100%;
@@ -285,9 +282,6 @@ ul[dnd-list] li {
   margin: 15px 2px 2px 2px;
   margin-bottom: 15px; }
 
-.filterBtn:first-child {
-  margin-left: 10%; }
-
 .filterBtn:focus {
   outline: 0; }
 
@@ -303,7 +297,9 @@ ul[dnd-list] li {
   padding: 2px 0px 5px 10px;
   background-color: #313131;
   color: white;
-  margin: 3px 3%; }
+  margin: 5px;
+  width: 100%;
+  display: inline-block; }
 
 .listViewTrail:hover {
   background-color: #B8B3AF;
@@ -311,10 +307,6 @@ ul[dnd-list] li {
 
 .listViewTrail:focus {
   outline: 0; }
-
-.listViewSide {
-  margin: 3px 0 3px 3%;
-  width: 57%; }
 
 .selectedListItem {
   background-color: #98939F; }
@@ -325,9 +317,9 @@ ul[dnd-list] li {
 
 .list-sideBar {
   height: auto;
-  margin-top: 19.5%;
-  margin-left: 60%;
-  width: 40%;
+  display: inline-block;
+  margin-left: -10px;
+  margin-top: 1%;
   background-color: white;
   padding: 15px; }
 
@@ -553,7 +545,7 @@ ul[dnd-list] li {
   font-size: 2rem;
   display: inline-block;
   margin-left: 15%;
-  margin-top: 8%; }
+  margin-top: 2%; }
 
 .websiteTitle {
   text-align: center; }
@@ -609,28 +601,30 @@ ul[dnd-list] li {
   z-index: 2; }
 
 .angular-google-map-container {
-  position: absolute;
-  top: 20%;
-  left: 5%;
+  margin-top: 1%;
   margin-bottom: 10%;
   height: 450px;
-  width: 90%; }
+  width: 100%;
+  display: inline-block; }
 
 .sideBar {
   z-index: 1000;
   max-height: 450px;
   overflow: scroll;
-  position: absolute;
-  top: 20%;
-  left: 60%;
-  width: 40%;
+  display: inline-block;
   background-color: white;
   padding: 15px; }
 
-@media (max-width: 990px) {
-  .angular-google-map-container {
-    top: 30%; }
+.close {
+  margin-right: 20px; }
 
+canvas {
+  margin: 0; }
+
+#map-canvas {
+  margin: 0; }
+
+@media (max-width: 990px) {
   .sideBar {
     top: 30%; } }
 @media(max-width: 768px) {

@@ -11,7 +11,7 @@
 </span>
 <!-- This is the map with information about trails and campgrounds on it -->
 <div class="exploreView">
-<section class="map" ng-if="mapView">
+<div class="map row" ng-if="mapView">
   <div id="map-canvas">
     <ui-gmap-google-map  center="map.center"
                     zoom="map.zoom"
@@ -29,7 +29,8 @@
             models="campgrounds" coords="'self'" icon="'icon'" click="onClickCampgrounds" options="'options'" ng-cloak>
       </ui-gmap-markers>
     </ui-gmap-google-map>
-</section>
+  </div>
+</div>
 <!-- Here is the information in the list view -->
 <section ng-if="!mapView">
   <div ng-repeat="trail in trailsInfo" ng-show="!selectedCampground">
