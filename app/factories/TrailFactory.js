@@ -4,7 +4,7 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
 
   let getYosemiteTrailInfo = ()=>{
     return $q((resolve, reject)=>{
-      $http.get('../../data/yosemiteTraildata.json')
+      $http.get('data/yosemiteTraildata.json')
       .success((trailData)=>{
         resolve(trailData);
       })
@@ -16,7 +16,7 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
 
   let getYosemiteCampgroundInfo = ()=>{
     return $q((resolve, reject)=>{
-      $http.get('../../data/yosemiteCampgrounds.json')
+      $http.get('data/yosemiteCampgrounds.json')
       .success((campgroundData)=>{
         resolve(campgroundData);
       })
@@ -28,7 +28,7 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
 
   let getGlacierTrailInfo = ()=>{
     return $q((resolve, reject)=>{
-      $http.get('../../data/glacierTraildata.json')
+      $http.get('data/glacierTraildata.json')
       .success((trailData)=>{
         resolve(trailData);
       })
@@ -40,7 +40,7 @@ app.factory("TrailFactory", ($q, $http, FirebaseURL)=>{
 
   let getGlacierCampgroundInfo = ()=>{
     return $q((resolve, reject)=>{
-      $http.get('../../data/glacierCampgrounds.json')
+      $http.get('data/glacierCampgrounds.json')
       .success((campgroundData)=>{
         resolve(campgroundData);
       })
