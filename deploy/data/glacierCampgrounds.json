@@ -1,0 +1,252 @@
+{
+  "campgrounds": [
+    {
+      "id": 0,
+      "name": "Apgar",
+      "coords": {
+        "latitude": 48.5252,
+        "longitude": -113.9838
+      },
+      "open": "All Year (however, amenities are different when it is not summer)",
+      "elevation": "4000 ft",
+      "maxRV": "40 ft",
+      "maxTrailer": "40 ft",
+      "reserve": "First come, first-served",
+      "dailyFee": "$20",
+      "sites": 194,
+      "pets": "yes",
+      "water": "tap",
+      "imgUrl": "../images/apgar.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Apgar"
+    },
+    {
+      "id": 1,
+      "name": "Avalanche",
+      "coords": {
+        "latitude": 48.6771951,
+        "longitude": -113.8165068
+      },
+      "open": "June 17 - Sept 19",
+      "elevation": "4000 ft",
+      "maxRV": "26 ft",
+      "maxTrailer": "26 ft",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$20",
+      "sites": 87,
+      "pets": "yes",
+      "water": "tap",
+      "imgUrl": "../images/avalanche.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Avalanche"
+    },
+    {
+      "id": 2,
+      "name": "Bowman Lake",
+      "coords": {
+        "latitude": 48.8305281,
+        "longitude": -114.2023566
+      },
+      "open": "May 20 - Oct 31",
+      "elevation": "4000 ft",
+      "maxRV": "No RVs",
+      "maxTrailer": "No Trailers",
+      "reserve": "Yes",
+      "dailyFee": "$15",
+      "sites": 48,
+      "pets": "yes",
+      "water": "Creek (boil)",
+      "imgUrl": "../images/bowmanLake.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Bowman%20Lake"
+    },
+    {
+      "id": 3,
+      "name": "Cut Bank",
+      "coords": {
+        "latitude": 48.6019161,
+        "longitude": -113.3828784
+      },
+      "open": "June 5 - Sept 25",
+      "elevation": "4000 ft",
+      "maxRV": "No RVs",
+      "maxTrailer": "No Trailers",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$10",
+      "sites": 14,
+      "pets": "No",
+      "water": "None (bring your own)",
+      "imgUrl": "../images/cutBank.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Cut%20Bank"
+    },
+    {
+      "id": 4,
+      "name": "Fish Creek",
+      "coords": {
+        "latitude": 48.548216244499,
+        "longitude": -113.98532688618
+      },
+      "open": "June 1 - Sept 5",
+      "elevation": "4000 ft",
+      "maxRV": "35 ft",
+      "maxTrailer": "35 ft",
+      "reserve": "June 1 - Sept 5",
+      "dailyFee": "$23",
+      "sites": 178,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/fishCreek.jpg",
+      "website": "http://www.recreation.gov/camping/fish-creek-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=70974"
+    },
+    {
+      "id": 5,
+      "name": "Kintla Lake",
+      "coords": {
+        "latitude": 48.9540,
+        "longitude": -114.3193
+      },
+      "open": "June 10 - Oct 31",
+      "elevation": "7200 ft",
+      "maxRV": "No RVs",
+      "maxTrailer": "No Trailers",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$15",
+      "sites": 13,
+      "pets": "No",
+      "water": "No",
+      "imgUrl": "../images/kintlaLake.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Kintla%20Lake"
+    },
+    {
+      "id": 6,
+      "name": "Logging Creek",
+      "coords": {
+        "latitude": 47.0974596,
+        "longitude": -111.0130056
+      },
+      "open": "July 7 - Oct 28",
+      "elevation": "4900 ft",
+      "maxRV": "No RVs",
+      "maxTrailer": "No Trailers",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$10",
+      "sites": 7,
+      "pets": "No",
+      "water": "No",
+      "imgUrl": "../images/loggingCreek.jpg",
+      "website":"https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Logging%20Creek"
+    },
+    {
+      "id": 7,
+      "name": "Many Glacier",
+      "coords": {
+        "latitude": 48.7967,
+        "longitude": -113.6773
+      },
+      "open": "May 20-Nov 2",
+      "elevation": "6200 ft",
+      "maxRV": "35 ft",
+      "maxTrailer": "35 ft",
+      "reserve": "50% from June 15 - Sept 4",
+      "dailyFee": "$23",
+      "sites": 109,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/manyGlacier.jpg",
+      "website": "http://www.recreation.gov/camping/many-glacier-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=136190"
+    },
+    {
+      "id": 8,
+      "name": "Quartz Creek",
+      "coords": {
+        "latitude": 48.7221924,
+        "longitude": -114.2245782
+      },
+      "open": "July 1 - Oct 28",
+      "elevation": "6300 ft",
+      "maxRV": "RVs not recommended",
+      "maxTrailer": "Trailers not recommended",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$10",
+      "sites": 7,
+      "pets": "No",
+      "water": "No",
+      "imgUrl": "../images/quartzCreek.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Quartz%20Creek"
+    },
+    {
+      "id": 9,
+      "name": "Rising Sun",
+      "coords": {
+        "latitude": 48.6944198,
+        "longitude": -113.5217702
+      },
+      "open": "May 27 - Set 12",
+      "elevation": "8000 ft",
+      "maxRV": "25 ft",
+      "maxTrailer": "25 ft",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$20",
+      "sites": 84,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/risingSun.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Rising%20Sun"
+    },
+    {
+      "id": 10,
+      "name": "Sprague Creek",
+      "coords": {
+        "latitude": 48.6071923,
+        "longitude": -113.8842848
+      },
+      "open": "May 6 - Sept 19",
+      "elevation": "7700 ft",
+      "maxRV": "RVs not recommended",
+      "maxTrailer": "Trailers not recommended",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$20",
+      "sites": 25,
+      "pets": "No",
+      "water": "Creek (boil)",
+      "imgUrl": "../images/spragueCreek.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Sprague%20Creek"
+    },
+    {
+      "id": 11,
+      "name": "St. Mary",
+      "coords": {
+        "latitude": 48.7516,
+        "longitude": -113.442
+      },
+      "open": "All Year (however, amenities are different outside of summer)",
+      "elevation": "8100 ft",
+      "maxRV": "RVs not recommended",
+      "maxTrailer": "Trailers not recommended",
+      "reserve": "June 1- Sept 4",
+      "dailyFee": "$23",
+      "sites": 148,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/stMary.jpg",
+      "website": "http://www.recreation.gov/camping/st-mary-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=70973"
+    },
+    {
+      "id": 12,
+      "name": "Two Medicine",
+      "coords": {
+        "latitude": 48.4915,
+        "longitude": -113.3646
+      },
+      "open": "May 20 - Nov 1",
+      "elevation": "8600 ft",
+      "maxRV": "35 ft",
+      "maxTrailer": "35 ft",
+      "reserve": "First-come, first-served",
+      "dailyFee": "$20",
+      "sites": 100,
+      "pets": "Yes",
+      "water": "tap",
+      "imgUrl": "../images/twoMedicine.jpg",
+      "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Two%20Medicine"
+    }
+
+  ]
+}

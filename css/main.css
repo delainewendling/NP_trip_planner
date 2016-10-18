@@ -1,0 +1,642 @@
+* {
+  box-sizing: border-box; }
+
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  position: relative; }
+
+.wrapperDiv {
+  min-height: 100%; }
+
+.loginGoogleBtn {
+  display: block;
+  margin: 5px;
+  padding: 8px;
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 4px; }
+
+.loginGoogleBtn:hover {
+  background-color: #ccc; }
+
+.loginFacebookBtn {
+  display: block;
+  padding: 8px;
+  margin: 5px;
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 4px; }
+
+.loginFacebookBtn:hover {
+  background-color: #ccc; }
+
+.map, #map_canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0px; }
+
+#map_canvas {
+  position: relative; }
+
+.trailImg {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  max-height: 200px; }
+
+.wishlistImg {
+  max-width: 100%; }
+
+.trailName {
+  text-align: center; }
+
+.close {
+  display: block; }
+
+.wishlist {
+  display: block;
+  margin: 0 auto; }
+
+.pickDates {
+  display: inline-block; }
+
+.pickDatesContainer {
+  margin: 0;
+  top: 10%; }
+
+.title {
+  margin-left: 10px; }
+
+.tripImg {
+  margin-left: 30%;
+  display: inline-block;
+  max-height: 60px; }
+
+.greyText {
+  color: #aaa; }
+
+.tripsMenu {
+  z-index: 2000; }
+
+ul[dnd-list],
+ul[dnd-list] > li {
+  position: relative; }
+
+ul[dnd-list] {
+  min-height: 50px;
+  padding-left: 0px;
+  list-style-type: none; }
+
+ul[dnd-list] .dndDraggingSource {
+  display: none; }
+
+ul[dnd-list] .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 50px; }
+
+ul[dnd-list] li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  display: block;
+  padding: 10px 15px;
+  margin: 2px 2px 2px 2px; }
+
+.selected {
+  background-color: #f8f8f8; }
+
+.dayCard {
+  text-align: center;
+  background-color: #E2E4E6;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  padding: 2px 10px 5px;
+  margin: 0 10px; }
+
+.activityCard {
+  min-height: 42px; }
+
+.addActivity {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: #E2E4E6;
+  color: #aaa;
+  padding: 0 0 15px 15px;
+  margin: 0 10px 10px 10px;
+  cursor: pointer; }
+
+.addActivity:focus {
+  outline: 0; }
+
+.dayInfo {
+  text-align: left; }
+
+.activityInput {
+  background-color: transparent;
+  border: 0px solid;
+  min-height: 50px;
+  text-align: left;
+  width: 90%;
+  overflow: auto;
+  color: black;
+  resize: none; }
+
+.activityInput:focus {
+  outline: 0;
+  color: black; }
+
+.deleteTrailIcon {
+  z-index: 1500;
+  position: absolute;
+  top: 80%;
+  left: 85%;
+  cursor: pointer;
+  font-size: 15px;
+  color: #777; }
+
+.deleteNoteIcon {
+  z-index: 1500;
+  position: absolute;
+  top: 40%;
+  left: 88%;
+  cursor: pointer;
+  font-size: 15px;
+  color: #777; }
+
+.whyVisit {
+  margin-top: 10px; }
+
+.trailInfo {
+  text-align: left; }
+
+.deleteTrip {
+  border-radius: 15px;
+  display: inline-block;
+  padding: 8px;
+  margin-left: 5%;
+  background-color: #E2E4E6; }
+
+.deleteTrip:focus {
+  outline: 0; }
+
+.trailNote {
+  width: 100%;
+  text-align: left; }
+
+.validation-messages {
+  font-size: 12px;
+  color: #dd2c00;
+  margin-left: 15px; }
+
+.navbar {
+  background-color: #313131;
+  margin-bottom: 0; }
+
+.navbar-brand,
+.navbar-default .navbar-nav > li > a {
+  color: white; }
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #aaa; }
+
+.navbar-default .navbar-nav > li > a:focus {
+  color: #aaa; }
+
+.selected {
+  color: #aaa; }
+
+.packingItem {
+  display: inline-block; }
+
+.deletePackingItem {
+  display: inline;
+  margin-left: 1%;
+  color: #900C3F; }
+
+.deletePackingItem:hover {
+  color: #C70039; }
+
+.deletePackingItem:focus {
+  outline: 0; }
+
+.done-true {
+  text-decoration: line-through;
+  color: grey; }
+
+.showOutline {
+  border: 1px solid #aaa; }
+
+.viewIcon {
+  font-size: 20px;
+  margin-top: 15%;
+  display: inline-block; }
+
+.selectedIcon {
+  color: #aaa; }
+
+.listIcon:hover {
+  color: #5F9F9F; }
+
+.listIcon:focus {
+  outline: 0; }
+
+.thumbnailImg {
+  height: 60px;
+  width: auto;
+  display: block;
+  margin: 3% auto; }
+
+.listViewItem {
+  display: inline-block; }
+
+.trailItem:focus {
+  outline: 0; }
+
+.trailItem:hover {
+  background-color: #EAEAEA; }
+
+.wishlistPic {
+  background: url(../images/wishlistPic.png) no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: 150px; }
+
+.wishlistTitle {
+  color: white;
+  z-index: 1000;
+  text-align: center;
+  padding-top: 3%; }
+
+.wishlistDetails {
+  margin-top: 3%; }
+
+.filterBtn {
+  display: inline-block;
+  padding: 8px;
+  border: 1px solid #313131;
+  margin: 15px 2px 2px 2px;
+  margin-bottom: 15px; }
+
+.filterBtn:focus {
+  outline: 0; }
+
+.filterBtn:hover {
+  background-color: #6FAFAF;
+  color: white; }
+
+.selectedFilter {
+  background-color: #6FAFAF;
+  color: white; }
+
+.listViewTrail {
+  padding: 2px 0px 5px 10px;
+  background-color: #313131;
+  color: white;
+  margin: 5px;
+  width: 100%;
+  display: inline-block; }
+
+.listViewTrail:hover {
+  background-color: #B8B3AF;
+  cursor: pointer; }
+
+.listViewTrail:focus {
+  outline: 0; }
+
+.selectedListItem {
+  background-color: #98939F; }
+
+.thumbnailImg {
+  height: 50px;
+  margin-top: 18%; }
+
+.list-sideBar {
+  height: auto;
+  display: inline-block;
+  margin-left: -10px;
+  margin-top: 1%;
+  background-color: white;
+  padding: 15px; }
+
+.addBtn,
+.wishlistBtn {
+  margin: 5px;
+  padding: 5px;
+  border: 0.5px solid #313131;
+  display: inline-block; }
+
+.wishlistBtn:hover {
+  background-color: #56C0DE;
+  color: white; }
+
+.wishlistCard {
+  border: 1px solid #313131;
+  padding: 10px;
+  width: 90%;
+  display: block;
+  margin: 3px auto; }
+
+.deleteWishlist {
+  display: inline-block;
+  margin-top: 3rem; }
+
+.addBtn:hover {
+  background-color: #337AB7;
+  color: white; }
+
+.addBtn:focus,
+.wishlistBtn:focus {
+  outline: 0; }
+
+.permit {
+  display: inline-block;
+  margin-right: 3px; }
+
+.tripPhoto {
+  height: 90px;
+  max-width: 100%;
+  margin: 5px; }
+
+.tripPhoto:focus {
+  border: 2px solid #313131;
+  outline: 0; }
+
+.tripPhotoRow:nth-child(2) {
+  margin-top: 15px; }
+
+.createTripView {
+  width: 90%;
+  margin: 0 auto;
+  padding: 3%; }
+
+.asterisk {
+  color: red; }
+
+.createTripBtn {
+  margin-left: 85%; }
+
+.tripAdvice {
+  display: block;
+  margin: 10px auto; }
+
+.tripAdvice:focus {
+  outline: 0; }
+
+.tripDescription {
+  text-align: center; }
+
+.dropdownTrip {
+  display: inline-block;
+  margin: 10px; }
+
+.alert {
+  display: inline-block; }
+
+.tripDetails {
+  padding: 15px; }
+
+.editTrip {
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: 30%;
+  margin-right: 5px; }
+
+.editTrip:hover {
+  color: #EAEAEA; }
+
+.editTrip:focus {
+  outline: 0; }
+
+.selectedColor {
+  border: 2px solid #313131; }
+
+.tripBackgroundColor {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%; }
+
+.tripBackgroundColor:focus {
+  outline: 0; }
+
+.tripBackgroundColor:hover {
+  border: 2px solid #313131; }
+
+.blueBackground {
+  background-color: #4D95E5; }
+
+.greenBackground {
+  background-color: #4BBF6B; }
+
+.yellowBackground {
+  background-color: #FFC72E; }
+
+.purpleBackground {
+  background-color: #89609E; }
+
+.redBackground {
+  background-color: #B04632; }
+
+.greyBackground {
+  background-color: #83878D; }
+
+.whiteBackground {
+  border: 1px solid #313131; }
+
+.md-datepicker-calendar-pane {
+  z-index: 2000; }
+
+.tripMsg {
+  text-align: center; }
+
+.planTrip {
+  display: inline-block;
+  margin: 5px; }
+
+.md-toast-content {
+  width: 80%;
+  margin: 20px; }
+
+.singleTripView {
+  min-height: 100vh; }
+
+.tooltip-inner {
+  z-index: 3000; }
+
+.deleteTripIcon {
+  font-size: 20px; }
+
+.deleteTripIcon:hover {
+  color: #EAEAEA; }
+
+.deleteTrip:focus {
+  outline: 0; }
+
+.notificationsIcon {
+  color: white; }
+
+.addFriend {
+  background-color: #5CB85C;
+  padding: 5px;
+  color: white;
+  border-radius: 2px;
+  margin: 3px 0 3px 5px; }
+
+.removeFriend {
+  background-color: #D9534F;
+  padding: 5px;
+  color: white;
+  border-radius: 2px;
+  margin: 3px 0 3px 5px; }
+
+.notifications {
+  color: red; }
+
+.memberDetails {
+  display: inline-block; }
+
+.memberNames {
+  margin: 3px; }
+
+.alreadyMember {
+  font-style: italic;
+  color: #aaa; }
+
+.addedMember {
+  font-style: normal;
+  color: black; }
+
+.parkOptions {
+  color: white;
+  text-align: center; }
+
+.parkYosemite {
+  background-image: url(../images/YosemiteCover.jpg);
+  background-size: cover;
+  height: 300px; }
+
+.parkGlacier {
+  background-image: url(../images/GlacierCover.jpg);
+  background-size: cover;
+  height: 300px; }
+
+.bottomLine {
+  margin-top: -18px; }
+
+.topLine {
+  position: relative;
+  padding-top: 10%; }
+
+.parkClickOption {
+  text-decoration: none;
+  color: white; }
+
+.parkClickOption:hover {
+  text-decoration: none;
+  color: #bbb; }
+
+.parkName {
+  color: #aaa;
+  font-size: 2rem;
+  display: inline-block;
+  margin-left: 15%;
+  margin-top: 2%; }
+
+.websiteTitle {
+  text-align: center; }
+
+.websiteInfo {
+  padding: 10px; }
+
+.websiteIcon {
+  padding-right: 8px; }
+
+.loginIcon {
+  height: 30px;
+  margin-right: 15px; }
+
+.inputBox {
+  margin: 5px; }
+
+.word {
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px;
+  font: bold 12px arial, sans-serif;
+  background: #fff; }
+
+.slide {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 500px; }
+
+.wrapper {
+  position: relative;
+  height: 150px; }
+
+.line {
+  position: absolute;
+  left: 49%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #ccc;
+  z-index: 1; }
+
+.wordwrapper {
+  text-align: center;
+  height: 12px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin-top: -12px;
+  z-index: 2; }
+
+.angular-google-map-container {
+  margin-top: 1%;
+  margin-bottom: 10%;
+  height: 450px;
+  width: 100%;
+  display: inline-block; }
+
+.sideBar {
+  z-index: 1000;
+  max-height: 450px;
+  overflow: scroll;
+  display: inline-block;
+  background-color: white;
+  padding: 15px; }
+
+.close {
+  margin-right: 20px; }
+
+canvas {
+  margin: 0; }
+
+#map-canvas {
+  margin: 0; }
+
+@media (max-width: 990px) {
+  .sideBar {
+    top: 30%; } }
+@media(max-width: 768px) {
+  .wrapper,
+  .line,
+  .wordwrapper {
+    display: none; } }
+@media (min-width: 0px) and (max-width: 550px) {
+  .slide {
+    height: 200px; } }
+@media (min-width: 551px) and (max-width: 1000px) {
+  .slide {
+    height: 400px; } }
+
+/*# sourceMappingURL=main.css.map */
