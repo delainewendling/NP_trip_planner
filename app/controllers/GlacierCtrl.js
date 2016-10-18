@@ -24,6 +24,7 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   $scope.trailType = false;
   $scope.listTrailType = 'bestHike';
   $scope.selectedCampground = false;
+  $scope.selectedCampgroundList = false;
 
   //When a user navigates to the explore page they should be shown the top hikes on the map. Afterward they can navigate to other view using filters and the map and list view icons.
   getTrailInfo('bestHike');
@@ -39,7 +40,7 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   };
   $scope.showList=()=>{
     $scope.mapView = false;
-    $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
+    $scope.markers[trailMarkerId].icon = 'images/hikerLogo.png';
     $scope.closeSidebar();
     getWishlistTrails();
     inWishlist();
@@ -49,8 +50,8 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   $scope.filterTrails = (event, trailType)=>{
     $scope.map.center = {latitude: 48.58, longitude: -114.2};
     $scope.map.zoom = 10;
-    $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
-    $scope.markers[campgroundMarkerId].icon = '../images/campgroundIcon.png';
+    $scope.markers[trailMarkerId].icon = 'images/hikerLogo.png';
+    $scope.markers[campgroundMarkerId].icon = 'images/campgroundIcon.png';
     //The sidebar should close if a different view is being selected.
     $scope.closeSidebar();
     $scope.selectedCampground = false;
@@ -81,7 +82,7 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         id: trail.id,
         latitude: trail.coords.latitude,
         longitude: trail.coords.longitude,
-        icon: '../images/hikerLogo.png',
+        icon: 'images/hikerLogo.png',
         name: trail.name,
         options: {
           visible: trail[trailType],
@@ -115,7 +116,7 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
         id: campground.id,
         latitude: campground.coords.latitude,
         longitude: campground.coords.longitude,
-        icon: '../images/campgroundIcon.png',
+        icon: 'images/campgroundIcon.png',
         name: campground.name,
         options: {
           visible: showCampground
@@ -133,20 +134,31 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     $scope.map.zoom = 9;
     $scope.closeSidebar();
     $('.filterBtn').removeClass('selectedFilter');
-    $scope.selectedCampground = true;
+    if ($scope.mapView){
+      $scope.selectedCampground = true;
+      $scope.selectedCampgroundList = false;
+    }
+    if (!$scope.mapView) {
+      $scope.selectedCampground = false;
+      $scope.selectedCampgroundList = true;
+    }
     getTrailInfo('campground');
     getCampgroundInfo(true);
   };
 
   $scope.onClickCampgrounds = function(instance, event, marker) {
-    $scope.campgrounds[campgroundMarkerId].icon = '../images/campgroundIcon.png';
+    $scope.campgrounds[campgroundMarkerId].icon = 'images/campgroundIcon.png';
+    $(".sideBar").addClass("col-xs-4");
+    $("#map-canvas").addClass("col-xs-8");
+    $scope.campgroundBeenClickedList = false;
+    $scope.selectedCampgroundList =false;
     campgroundMarkerId = marker.id;
     $scope.map.center = {
         latitude: marker.latitude,
         longitude: marker.longitude
     };
     $scope.map.zoom = 10;
-    $scope.campgrounds[campgroundMarkerId].icon = '../images/starIcon.png';
+    $scope.campgrounds[campgroundMarkerId].icon = 'images/starIcon.png';
     $scope.campground = $scope.campgroundsInfo[campgroundMarkerId];
     showCampgroundInformation();
   };
@@ -172,7 +184,9 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //When a marker is clicked I want to make sure that the user does not add a trail to his/her wishlist when it has already been added.
   $scope.onClick = function(instance, event, marker) {
     $(".angular-google-map-container").addClass("newMap");
-    $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
+    $(".sideBar").addClass("col-xs-4");
+    $("#map-canvas").addClass("col-xs-8");
+    $scope.markers[trailMarkerId].icon = 'images/hikerLogo.png';
     trailMarkerId = marker.id
     $scope.map.center = {
         latitude: marker.latitude,
@@ -180,7 +194,7 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
     };
     $scope.map.zoom = 10;
     $scope.trailInfo = $scope.trailsInfo[trailMarkerId];
-    $scope.markers[trailMarkerId].icon = '../images/starIcon.png';
+    $scope.markers[trailMarkerId].icon = 'images/starIcon.png';
     $scope.inWishlist = inWishlist(marker.name);
     showInformation();
   };
@@ -188,14 +202,18 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   $scope.onListClick = (event, trail)=>{
     $('.selectedListItem').removeClass('selectedListItem');
     $(event.currentTarget).addClass('selectedListItem');
+    $('.trailContainer').addClass("col-xs-7");
+    $(".list-sideBar").addClass("col-xs-5");
     $scope.trailInfo = $scope.trailsInfo[trail.id];
     $scope.beenClicked = true;
     $scope.inWishlist = inWishlist(trail.name);
   }
 
   $scope.onListClickCampground = function(event, campground) {
+    $('.campgroundContainer').addClass("col-xs-7");
+    $(".list-sideBar").addClass("col-xs-5");
     $scope.campground = $scope.campgroundsInfo[campground.id];
-    $scope.campgroundBeenClicked = true;
+    $scope.campgroundBeenClickedList = true;
   };
 
   function inWishlist(trailName){
@@ -220,8 +238,12 @@ app.controller("GlacierCtrl", function($scope, ImportantKeys, uiGmapIsReady, uiG
   //Since each marker calls the onClick function it is difficult to open and close the sidebar by resetting the beenClicked property using clicks. Therefore, I created a button that will make the beenClicked property false so that the user can close the sidebar when he/she is done looking at trail information.
   $scope.closeSidebar = ()=>{
     $(".angular-google-map-container").removeClass("newMap");
-    $scope.markers[trailMarkerId].icon = '../images/hikerLogo.png';
-    $scope.campgrounds[campgroundMarkerId].icon = '../images/campgroundIcon.png';
+    $('.trailContainer').removeClass("col-xs-7");
+    $('.campgroundContainer').removeClass("col-xs-7");
+    $(".list-sideBar").removeClass("col-xs-5");
+    $("#map-canvas").removeClass("col-xs-8");
+    $scope.markers[trailMarkerId].icon = 'images/hikerLogo.png';
+    $scope.campgrounds[campgroundMarkerId].icon = 'images/campgroundIcon.png';
     $scope.map.center = {latitude: 48.654, longitude: -113.782};
     $scope.map.zoom = 9;
     $scope.beenClicked = false;
