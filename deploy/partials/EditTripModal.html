@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h3 class="modal-title">Edit Your Trip </h3>
+</div>
+<div class="modal-body">
+  <label for="tripName"> Trip Name: </label>
+  <input class="form-control" ng-model="trip.name" value="trip.name" id="tripName">
+  <label for="tripDescription"> Trip Description: </label>
+  <input class="form-control" ng-model="trip.description" value="trip.description" id="tripDescription">
+  <div>
+  <form name="myForm" flex-gt-xs>
+    <div layout-gt-xs="row pickDatesContainer">
+      <div flex-gt-xs>
+        <div> <h4 class="pickDates title">Change your trip dates? <span class="asterisk"></span></h4></div>
+        <md-datepicker name="dateField" ng-model="trip.startDate" md-placeholder="Enter start date" class="pickDates" md-min-date="minStartDate" ng-required="true"></md-datepicker>
+        <md-datepicker name="dateField" ng-model="trip.endDate" md-placeholder="Enter end date" class="pickDates" md-min-date="minEndDate" ng-click="updateEndDate()" ng-required="true"></md-datepicker>
+        <div class="validation-messages" ng-messages="myForm.dateField.$error">
+          <div ng-message="valid">The entered value is not a date!</div>
+          <div ng-message="required">Both dates are required!</div>
+          <div ng-message="mindate">Date is too early!</div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="checkbox tripType">
+    <h4> Where are you going?  <small> (select all parks that apply) </small></h4>
+    <label>
+      <input type="checkbox" ng-model="trip.yosemite" ng-checked="{{trip.yosemite}}" class="tripTypeCheck"> Yosemite National Park
+    </label>
+    <label>
+      <input type="checkbox" ng-model="trip.glacier" ng-checked="{{trip.glacier}}" class="tripTypeCheck"> Glacier National Park
+    </label>
+  </div>
+  <div>
+    <p> <strong> Background Color </strong></p>
+    <span class="tripBackgroundColor blueBackground" ng-click="updateTripColor($event, '#4D95E5')"></span>
+    <span class="tripBackgroundColor greenBackground" ng-click="updateTripColor($event, '#4BBF6B')"></span>
+    <span class="tripBackgroundColor yellowBackground" ng-click="updateTripColor($event, '#FFC72E')"></span>
+    <span class="tripBackgroundColor purpleBackground" ng-click="updateTripColor($event, '#89609E')"></span>
+    <span class="tripBackgroundColor redBackground" ng-click="updateTripColor($event, '#B04632')"></span>
+    <span class="tripBackgroundColor greyBackground" ng-click="updateTripColor($event, '#83878D')"></span>
+    <span class="tripBackgroundColor whiteBackground" ng-click="updateTripColor($event, '#FFF')"></span>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="close()">Close</button>
+  <button class="btn btn-success" ng-click="updateTrip()">Update</button>
+</div>

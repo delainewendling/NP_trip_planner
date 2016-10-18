@@ -1,0 +1,82 @@
+<section>
+<div class="singleTripView" style="background-color: {{trip.color}}; height: 100%;">
+  <div class="col-xs-offset-10 col-xs-2 tripDetails">
+    <span tooltip-placement="top" uib-tooltip="Edit Trip" class="glyphicon glyphicon-pencil editTrip" ng-click="openEditTripModal()"></span>
+    <span tooltip-placement="top" uib-tooltip="Delete Trip" ng-click="openDeleteModal()"> <span class="glyphicon glyphicon-remove-circle deleteTripIcon"></span></span>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 col-md-3">
+      <button class="btn btn-default tripAdvice" ng-click="openInviteModal()"> Invite Friends to your Trip </button>
+    </div>
+    <div class="col-sm-4 col-md-3">
+      <button class="btn btn-default tripAdvice" ng-click="openTempModal()"> What Will the Weather be like? </button>
+    </div>
+    <div class="col-sm-4 col-md-3">
+      <button class="btn btn-default  tripAdvice" ng-click="openPackingModal()"> What Should you Pack? </button>
+    </div>
+  </div>
+  <!-- Add icons here -->
+    <div class="row tripDetails">
+      <div class="col-xs-offset-2 col-xs-4 col-sm-offset-3 col-sm-2">
+        <img src="{{trip.imgUrl}}" class="tripImg">
+      </div>
+      <div class="col-xs-4 col-sm-3">
+        <h4> {{trip.name}} Itinerary</h4>
+      </div>
+      <div class="col-xs-12">
+        <p class="tripDescription"> {{trip.description}} </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-9">
+        <h5 class="memberDetails"> Members: </h5> <span class="memberNames" ng-repeat="member in members"> {{member.displayName}} </span>
+      </div>
+    </div>
+<div class="row">
+  <div ng-repeat="day in trip.days track by $index">
+    <div class="clearfix" ng-if="$index % 3 == 0"></div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="dayCard">
+          <div class="dayInfo">
+            <h3> {{day.day}} </h3>
+            <p>{{day.date}}</p>
+          </div>
+          <div ng-include="'activities.html'"></div>
+        </div>
+        <div class="addActivity" ng-click="addNote(day.id); focusInput=true"> Add Note or Activity...</div>
+      </div>
+  </div>
+</div>
+  <script type="text/ng-template" id="activities.html">
+    <ul dnd-list="activities">
+      <li ng-repeat="activity in activities"
+          dnd-draggable="activity"
+          dnd-effect-allowed="move"
+          dnd-moved="activities.splice($index, 1)"
+          ng-include="activity.type + '.html'",
+          ng-show='activity.dayId == day.id',
+          ng-mouseenter="options=true" ng-mouseleave="options=false">
+      </li>
+      <!-- ng-if="activity.dayId == day.id" -->
+      <li class="dndPlaceholder"> </li>
+    </ul>
+  </script>
+  <script type="text/ng-template" id="trail.html">
+      <span  class="trailInfo activityInput">
+        <h3> {{activity.name}}</h3>
+        <p> <strong> Distance: </strong> {{activity.distance}} </p>
+        <p> <strong> Est. Time: </strong> {{activity.estTime}} </p>
+        <p> <strong> Elevation Gain: </strong> {{activity.elevationGain}} </p>
+        <label for="trailNotes" class="trailNote"> Notes: </label>
+        <textarea data-adaptheight type="text" id="trailNotes" class="activityInput" ng-model="activity.notes" value="{{activity.notes}}" ng-keypress="updateTrailNote($event, activity.id, activity.notes); blurInput($event)" rows="1"></textarea>
+        <span class="glyphicon glyphicon-trash deleteTrailIcon" ng-show="options" ng-click="deleteActivityFromTrip($event, activity.id)"></span>
+        <p style="display:none">Index: {{activity.index = activities.indexOf(activity)}}</p>
+      </span>
+  </script>
+  <script type="text/ng-template" id="note.html">
+       <textarea data-adaptheight type="text" ng-model="activity.text" class="activityInput" value="{{activity.text}}" ng-keypress="updateNote($event, activity.id, activity.text); blurInput($event)" focus-me="focusInput" rows="1">
+      </textarea>
+      <span class="glyphicon glyphicon-trash deleteNoteIcon" ng-show="options" ng-click="deleteActivityFromTrip($event, activity.id)"></span>
+      <p style="display:none">Index: {{activity.index = activities.indexOf(activity)}}</p>
+  </script>
+</section>

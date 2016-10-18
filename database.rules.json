@@ -1,0 +1,53 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "members": {
+      ".indexOn": [
+        "uid",
+        "tripId"
+      ]
+    },
+    "packinglist": {
+      ".indexOn": [
+        "tripId"
+      ]
+    },
+    "activities": {
+      ".indexOn": [
+        "tripId"
+      ]
+    },
+    "wishlist": {
+      ".indexOn": [
+        "uid"
+      ]
+    },
+    "temperature": {
+      ".indexOn": [
+        "monthId"
+      ]
+    },
+    "glacierTemperatures": {
+      ".indexOn": [
+        "monthId"
+      ]
+    },
+    "packingseason": {
+      ".indexOn": [
+        "type"
+      ]
+    },
+    "invitations": {
+      ".indexOn": [
+        "uid",
+        "tripId"
+      ]
+    },
+    "users": {
+      ".indexOn": [
+        "uid"
+      ]
+    }
+  }
+}

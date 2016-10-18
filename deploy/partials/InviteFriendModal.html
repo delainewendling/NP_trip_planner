@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3 class="modal-title">Invite Friends to Your Trip</h3>
+</div>
+<div class="modal-body">
+  <label for="searchUsers"><span class="glyphicon glyphicon-search"></span></label>
+  <input class="form-control" id="searchUsers" placeholder="Search users to invite by email..." ng-model="searchText" ng-keyup="checkSearchText()">
+  <div class="searchResults" ng-show="searchMode">
+    <div ng-repeat="user in users | filter: searchText"><div class="userEmail"> {{user.displayName}} - {{user.email}}<span class="glyphicon glyphicon-plus addFriend" ng-click="addFriend($event, user, $index)"></span></div></div>
+    <div ng-repeat="member in alreadyMembers | filter: searchText" class="alreadyMember"> {{member.displayName}} - {{member.email}} <span class="addedMember"> Already a member </span></div>
+  </div>
+  <div ng-show="friendsAdded">
+    <h5> Friends to Invite </h5>
+    <div ng-repeat = "friend in addedFriends">
+    <div class="friendEmail"> {{friend.displayName}} - {{friend.email}}<span class="glyphicon glyphicon-remove removeFriend" ng-click="removeFriend($event, friend, $index)"></span></div></div>
+  </div>
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="close()">Close</button>
+  <button class="btn btn-info" ng-click="sendInvitation()">Invite</button>
+</div>

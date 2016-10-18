@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default" ng-controller="NavCtrl">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/">Discover America</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <!-- TODO: Use Angular to loop through nav items -->
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="!$parent.isLoggedIn"><a ng-href="#/login"> Login </a></li>
+        <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/explore" ng-class="{'selected':$parent.explore}"> Explore </a></li>
+        <li ng-show="$parent.isLoggedIn"><a ng-href="#/parks/wishlist" ng-class="{'selected':$parent.wishlist}"> Wishlist </a></li>
+        <li ng-show="$parent.isLoggedIn"><a href ng-click="openCreateTripView()"> Plan a Trip </a></li>
+        <!-- Dropdown to select trip -->
+        <li uib-dropdown on-toggle="toggled(open)" ng-show="$parent.isLoggedIn">
+            <a href id="simple-dropdown" uib-dropdown-toggle ng-click="getTrips()" ng-class="{'selected':$parent.trips}"> Trips <span class="caret"></span></a>
+          <ul class="dropdown-menu tripsMenu" uib-dropdown-menu>
+          <li ng-show="trips.length === 0" class="tripMsg" ng-cloak> No Trips Yet. <a href="#/parks/trips/create"> <strong> Plan a Trip </strong> </a> </li>
+            <li ng-repeat="trip in trips"><a href='#/parks/trip/{{trip.id}}'>{{trip.name}}</a></li>
+          </ul>
+        </li>
+        <li uib-dropdown on-toggle="toggled(open)" ng-show="$parent.isLoggedIn">
+          <a href id="simple-dropdown" uib-dropdown-toggle ng-click="getInvitations()"> <span class="glyphicon glyphicon-bell notificationsIcon" ng-class="{'notifications': hasInvitations}"></span></a>
+          <ul class="dropdown-menu notificationsMenu" uib-dropdown-menu>
+            <li ng-show="!hasInvitations" ng-cloak><a href>No notifications</a></li>
+            <li ng-show="hasInvitations" ng-repeat="invitation in invitations" ng-cloak> <a href ng-click="acceptOrDecline(invitation)"> You've been invited to: {{invitation.tripName}}</a></li>
+          </ul>
+        </li>
+        <li ng-show="$parent.isLoggedIn" ng-click="logout()"><a ng-href="#/">Logout, {{userName}} </a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
