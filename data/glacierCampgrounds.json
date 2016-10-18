@@ -16,7 +16,7 @@
       "sites": 194,
       "pets": "yes",
       "water": "tap",
-      "imgUrl": "../images/apgar.jpg",
+      "imgUrl": "images/apgar.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Apgar"
     },
     {
@@ -35,7 +35,7 @@
       "sites": 87,
       "pets": "yes",
       "water": "tap",
-      "imgUrl": "../images/avalanche.jpg",
+      "imgUrl": "images/avalanche.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Avalanche"
     },
     {
@@ -54,7 +54,7 @@
       "sites": 48,
       "pets": "yes",
       "water": "Creek (boil)",
-      "imgUrl": "../images/bowmanLake.jpg",
+      "imgUrl": "images/bowmanLake.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Bowman%20Lake"
     },
     {
@@ -73,7 +73,7 @@
       "sites": 14,
       "pets": "No",
       "water": "None (bring your own)",
-      "imgUrl": "../images/cutBank.jpg",
+      "imgUrl": "images/cutBank.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Cut%20Bank"
     },
     {
@@ -92,7 +92,7 @@
       "sites": 178,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/fishCreek.jpg",
+      "imgUrl": "images/fishCreek.jpg",
       "website": "http://www.recreation.gov/camping/fish-creek-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=70974"
     },
     {
@@ -111,7 +111,7 @@
       "sites": 13,
       "pets": "No",
       "water": "No",
-      "imgUrl": "../images/kintlaLake.jpg",
+      "imgUrl": "images/kintlaLake.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Kintla%20Lake"
     },
     {
@@ -130,7 +130,7 @@
       "sites": 7,
       "pets": "No",
       "water": "No",
-      "imgUrl": "../images/loggingCreek.jpg",
+      "imgUrl": "images/loggingCreek.jpg",
       "website":"https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Logging%20Creek"
     },
     {
@@ -149,7 +149,7 @@
       "sites": 109,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/manyGlacier.jpg",
+      "imgUrl": "images/manyGlacier.jpg",
       "website": "http://www.recreation.gov/camping/many-glacier-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=136190"
     },
     {
@@ -168,7 +168,7 @@
       "sites": 7,
       "pets": "No",
       "water": "No",
-      "imgUrl": "../images/quartzCreek.jpg",
+      "imgUrl": "images/quartzCreek.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Quartz%20Creek"
     },
     {
@@ -187,7 +187,7 @@
       "sites": 84,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/risingSun.jpg",
+      "imgUrl": "images/risingSun.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Rising%20Sun"
     },
     {
@@ -206,7 +206,7 @@
       "sites": 25,
       "pets": "No",
       "water": "Creek (boil)",
-      "imgUrl": "../images/spragueCreek.jpg",
+      "imgUrl": "images/spragueCreek.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Sprague%20Creek"
     },
     {
@@ -225,7 +225,7 @@
       "sites": 148,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/stMary.jpg",
+      "imgUrl": "images/stMary.jpg",
       "website": "http://www.recreation.gov/camping/st-mary-campground/r/campgroundDetails.do?contractCode=NRSO&parkId=70973"
     },
     {
@@ -244,7 +244,7 @@
       "sites": 100,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/twoMedicine.jpg",
+      "imgUrl": "images/twoMedicine.jpg",
       "website": "https://home.nps.gov/applications/glac/cgstatus/camping_detail.cfm?cg=Two%20Medicine"
     }
 

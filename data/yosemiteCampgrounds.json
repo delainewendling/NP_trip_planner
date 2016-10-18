@@ -16,7 +16,7 @@
       "sites": 238,
       "pets": "yes",
       "water": "tap",
-      "imgUrl": "../images/upperPines.jpg",
+      "imgUrl": "images/upperPines.jpg",
       "website": "http://www.recreation.gov/camping/upper-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70925"
     },
     {
@@ -35,7 +35,7 @@
       "sites": 60,
       "pets": "yes",
       "water": "tap",
-      "imgUrl": "../images/lowerPines.jpg",
+      "imgUrl": "images/lowerPines.jpg",
       "website": "http://www.recreation.gov/camping/lower-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70928"
     },
     {
@@ -54,7 +54,7 @@
       "sites": 81,
       "pets": "yes",
       "water": "tap",
-      "imgUrl": "../images/northPines.jpg",
+      "imgUrl": "images/northPines.jpg",
       "website": "http://www.recreation.gov/camping/north-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70927"
     },
     {
@@ -73,7 +73,7 @@
       "sites": 35,
       "pets": "No",
       "water": "tap",
-      "imgUrl": "../images/camp4.jpg",
+      "imgUrl": "images/camp4.jpg",
       "website": "https://www.nps.gov/yose/planyourvisit/camp4.htm"
     },
     {
@@ -92,7 +92,7 @@
       "sites": 93,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/wawona.jpg",
+      "imgUrl": "images/wawona.jpg",
       "website": "http://www.recreation.gov/camping/wawona/r/campgroundDetails.do?contractCode=NRSO&parkId=70924"
     },
     {
@@ -111,7 +111,7 @@
       "sites": 110,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/bridalveilCampground.jpg",
+      "imgUrl": "images/bridalveilCampground.jpg",
       "website": "http://www.recreation.gov/camping/bridalveil-creek-group-and-horse-camp/r/campgroundDetails.do?contractCode=NRSO&parkId=70931"
     },
     {
@@ -130,7 +130,7 @@
       "sites": 105,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/hodgdonMeadow.jpg",
+      "imgUrl": "images/hodgdonMeadow.jpg",
       "website":"http://www.recreation.gov/camping/hodgdon-meadow/r/campgroundDetails.do?contractCode=NRSO&parkId=70929"
     },
     {
@@ -149,7 +149,7 @@
       "sites": 166,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/craneFlat.jpg",
+      "imgUrl": "images/craneFlat.jpg",
       "website": "http://www.recreation.gov/camping/crane-flat/r/campgroundDetails.do?contractCode=NRSO&parkId=70930"
     },
     {
@@ -168,7 +168,7 @@
       "sites": 52,
       "pets": "Yes",
       "water": "Creek (boil)",
-      "imgUrl": "../images/tamarackFlat.jpg",
+      "imgUrl": "images/tamarackFlat.jpg",
       "website": "https://www.nps.gov/yose/planyourvisit/tamarack.htm"
     },
     {
@@ -187,7 +187,7 @@
       "sites": 74,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/whiteWolf.jpg",
+      "imgUrl": "images/whiteWolf.jpg",
       "website": "https://www.nps.gov/yose/planyourvisit/wwcamp.htm"
     },
     {
@@ -206,7 +206,7 @@
       "sites": 75,
       "pets": "Yes",
       "water": "Creek (boil)",
-      "imgUrl": "../images/yosemiteCreek.jpg",
+      "imgUrl": "images/yosemiteCreek.jpg",
       "website": "https://www.nps.gov/yose/planyourvisit/ycreekcamp.htm"
     },
     {
@@ -225,7 +225,7 @@
       "sites": 52,
       "pets": "Yes",
       "water": "Creek (boil)",
-      "imgUrl": "../images/porcupineFlat.jpg",
+      "imgUrl": "images/porcupineFlat.jpg",
       "website": "https://www.nps.gov/yose/planyourvisit/porcupinecamp.htm"
     },
     {
@@ -244,7 +244,7 @@
       "sites": 304,
       "pets": "Yes",
       "water": "tap",
-      "imgUrl": "../images/tuolumneMeadows.jpeg",
+      "imgUrl": "images/tuolumneMeadows.jpeg",
       "website": "http://www.recreation.gov/camping/tuolumne-meadows/r/campgroundDetails.do?contractCode=NRSO&parkId=70926"
     }
 
