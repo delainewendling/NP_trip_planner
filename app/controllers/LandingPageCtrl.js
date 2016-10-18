@@ -6,12 +6,12 @@ app.controller("LandingPageCtrl", function($scope){
   $scope.active = 0;
   var currIndex = 0;
   var slides = [
-    {image: '../../landingPhotos/Arches.jpg', text: 'Arches National Park'},
-    {image: '../../landingPhotos/Everglades.jpg', text: 'Everglades National Park'},
-    {image: '../../landingPhotos/Glacier.jpg', text: 'Glacier National Park'},
-    {image: '../../landingPhotos/GrandCanyon.jpg', text: 'Grand Canyon National Park'},
-    {image: '../../landingPhotos/SmokyMountains.jpg', text: 'Smoky Mountains National Park'},
-    {image: '../../landingPhotos/Yosemite.jpg', text: 'Yosemite National Park'}
+    {image: '../landingPhotos/Arches.jpg', text: 'Arches National Park'},
+    {image: '../landingPhotos/Everglades.jpg', text: 'Everglades National Park'},
+    {image: '../landingPhotos/Glacier.jpg', text: 'Glacier National Park'},
+    {image: '../landingPhotos/GrandCanyon.jpg', text: 'Grand Canyon National Park'},
+    {image: '../landingPhotos/SmokyMountains.jpg', text: 'Smoky Mountains National Park'},
+    {image: '../landingPhotos/Yosemite.jpg', text: 'Yosemite National Park'}
   ];
   $scope.slides = [];
 
