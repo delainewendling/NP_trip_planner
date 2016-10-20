@@ -33,6 +33,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
     }, (error)=>{
       $scope.error = `${error.message}`;
       $scope.showAuthAlert = true;
+      $scope.$apply();
       console.log(`Error creating an account ${error}. ${$scope.showAuthAlert}`);
     });
   };
@@ -50,6 +51,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
     }, (error)=>{
       $scope.error = `${error.message}`;
       $scope.showAuthAlert = true;
+      $scope.$apply();
       console.log(`${error} ${$scope.showAuthAlert}`);
     });
   };
@@ -65,7 +67,9 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
         $window.location.href = '#/parks/explore';
       }
     }, (error)=>{
+      $scope.error = `${error.message}`;
       $scope.showAuthAlert = true;
+      $scope.$apply();
       console.log(`Error logging in with Google ${error}`)
     });
   };
@@ -104,7 +108,9 @@ app.controller("LoginCtrl", function($scope, AuthFactory, $window){
         $window.location.href = '#/parks/explore';
       }
     }, (error)=>{
+      $scope.error = `${error.message}`;
       $scope.showAuthAlert = true;
+      $scope.$apply();
       console.log(`Error logging in with Facebook ${error}`)
     });
   };

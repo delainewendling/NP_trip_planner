@@ -13,8 +13,8 @@
         <div class="inputBox">
           <input type="password" name="password" placeholder="Password*" class="form-control" ng-model="account.password">
         </div>
-          <span class="btn btn-info inputBox" ng-click="loginWithEmail()" ng-disabled="!allFields"> Login </span>
-          <span class="btn btn-info inputBox" ng-click="register()" ng-disabled="!allFields"> Register </span>
+          <span class="btn btn-info inputBox" ng-click="loginWithEmail()" ng-disabled="!(account.username && account.email && account.password)"> Login </span>
+          <span class="btn btn-info inputBox" ng-click="register()" ng-disabled="!(account.username && account.email && account.password)"> Register </span>
       </div>
       <div class="col-sm-1 wrapper">
         <div class="line"></div>
