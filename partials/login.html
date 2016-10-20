@@ -1,0 +1,32 @@
+<div class="container">
+  <h3> Welcome! </h3>
+  <div class="row loginScreen">
+    <div class="col-sm-offset-1 col-md-offset-2">
+      <p> Login or Register Below </p>
+      <div class="col-xs-12 col-sm-5 col-md-6">
+        <div class="inputBox">
+          <input type="text" name="username" placeholder="Username*" class="form-control" ng-model="account.username">
+        </div>
+        <div class="inputBox">
+          <input type="email" name="email" placeholder="Email*" class="form-control" ng-model="account.email">
+        </div>
+        <div class="inputBox">
+          <input type="password" name="password" placeholder="Password*" class="form-control" ng-model="account.password">
+        </div>
+          <span class="btn btn-info inputBox" ng-click="loginWithEmail()" ng-disabled="!(account.username && account.email && account.password)"> Login </span>
+          <span class="btn btn-info inputBox" ng-click="register()" ng-disabled="!(account.username && account.email && account.password)"> Register </span>
+      </div>
+      <div class="col-sm-1 wrapper">
+        <div class="line"></div>
+        <div class="wordwrapper">
+          <div class="word">or</div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-5">
+          <span class="loginGoogleBtn" ng-click="loginWithGoogle()"><img src="images/googleIcon.png" class="loginIcon"> Login with Google </span>
+          <span class="loginFacebookBtn" ng-click="loginWithFacebook()"> <img src="images/facebookIcon.png" class="loginIcon">Login with Facebook </span>
+      </div>
+      <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" class="col-xs-12" ng-show="showAuthAlert" close="closeAlert()">{{error}}</div>
+    </div>
+  </div>
+</div>
